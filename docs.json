@@ -32,7 +32,8 @@
             "pages": [
               "overview",
               "quickstart",
-              "incident-management"
+              "incident-management",
+              "guides/getting-started/incident-classifications"
             ]
           },
           {
