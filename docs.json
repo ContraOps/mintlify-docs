@@ -43,13 +43,14 @@
           {
             "group": "Onboarding",
             "pages": [
-              "defender-xdr-module-deployment"
+              "guides/onboarding/defender-xdr-module-deployment"
             ]
           },
           {
             "group": "Technical",
             "pages": [
-              "entity-insights"
+              "entity-insights",
+              "defender-xdr-module"
             ]
           },
           {

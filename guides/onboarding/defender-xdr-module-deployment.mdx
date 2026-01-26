@@ -1,0 +1,406 @@
+---
+title: "Microsoft Defender XDR Deployment"
+---
+
+This guide walks you through the complete onboarding process for the ContraForce XDR module, enabling you to manage Microsoft Defender XDR incidents, run Gamebook response actions, and monitor endpoints across your managed tenants.
+
+<Info>
+The XDR module is designed for environments using Microsoft Defender XDR (Defender for Endpoint, Defender for Identity, Defender for Office 365, and Defender for Cloud Apps). If you also use Microsoft Sentinel, consider the **XDR + SIEM** module instead.
+</Info>
+
+## Before You Begin
+
+### Prerequisites
+
+Ensure you have the following before starting the onboarding process:
+
+<Steps>
+  <Step title="Microsoft Defender XDR">
+    An active Microsoft Defender XDR deployment in the target tenant
+  </Step>
+  <Step title="Admin Credentials">
+    Global Administrator access to the Microsoft tenant being onboarded
+  </Step>
+  <Step title="Onboarding Link">
+    The ContraForce Onboarding Wizard URL (provided by the ContraForce team)
+  </Step>
+  <Step title="User List">
+    Email addresses of users who need access to ContraForce (optional, can be added later)
+  </Step>
+</Steps>
+
+### Supported Licenses
+
+The XDR module works with the following Microsoft 365 licenses:
+
+| License | Supported | Notes |
+|---------|:---------:|-------|
+| **Microsoft 365 Business Premium** | ✓ | Full XDR capabilities |
+| **Microsoft 365 E3** | ✓ | Full XDR capabilities |
+| **Microsoft 365 E5** | ✓ | Full XDR capabilities + advanced features |
+| **Standalone Defender for Endpoint** | ✓ | Endpoint features only |
+
+<Card title="Capability Matrix" icon="table" href="/guides/technical/microsoft-defender-capability-matrix">
+  View detailed feature availability by license tier
+</Card>
+
+---
+
+## Module Options
+
+ContraForce offers two deployment modules. Choose based on your security stack:
+
+<CardGroup cols={2}>
+  <Card title="XDR Module" icon="shield-halved">
+    **Microsoft Defender XDR only**
+    
+    - Defender XDR incidents
+    - Endpoint management
+    - Identity and email response
+    - Gamebook actions
+    
+    *Choose this if you don't use Microsoft Sentinel*
+  </Card>
+  <Card title="XDR + SIEM Module" icon="layer-group">
+    **Defender XDR + Microsoft Sentinel**
+    
+    - Everything in XDR module
+    - Sentinel incidents
+    - Advanced threat hunting
+    - Data connectors
+    - Custom notifications by severity
+    
+    *Choose this if you use Sentinel alongside Defender*
+  </Card>
+</CardGroup>
+
+### Feature Comparison
+
+| Feature | XDR Module | XDR + SIEM Module |
+|---------|:----------:|:-----------------:|
+| Defender XDR Incidents | ✓ | ✓ |
+| Endpoint Management | ✓ | ✓ |
+| Gamebook Response Actions | ✓ | ✓ |
+| Entity Insights | ✓ | ✓ |
+| Sentinel Incidents | — | ✓ |
+| Advanced Threat Hunting | — | ✓ |
+| Data Connectors | — | ✓ |
+| Custom Severity Notifications | — | ✓ |
+
+<Tip>
+Not sure which module to choose? Start with XDR if you only use Defender products. You can upgrade to XDR + SIEM later if you add Sentinel.
+</Tip>
+
+---
+
+## Onboarding Process
+
+Follow these seven steps to complete the XDR module deployment.
+
+### Step 1: Sign into the Onboarding Wizard
+
+<Frame>
+  <img src="/images/xdr-onboarding-step1-signin.png" alt="ContraForce Onboarding Wizard sign-in" />
+</Frame>
+
+1. Open the **Onboarding Wizard link** provided by the ContraForce team
+2. Click **Sign In**
+3. Authenticate with a **Global Administrator** account from the target tenant
+
+<Warning>
+The account you sign in with must have Global Administrator permissions and the ability to consent enterprise applications for the organization.
+</Warning>
+
+---
+
+### Step 2: Consent Core Enterprise Applications
+
+The first consent step authorizes the foundational ContraForce applications.
+
+<Frame>
+  <img src="/images/xdr-onboarding-step2-api-consent.png" alt="ContraForce API consent" />
+</Frame>
+
+#### Consent ContraForce API
+
+1. Click **Consent** for the ContraForce API
+2. Review the requested permissions
+3. Click **Accept** to grant consent
+
+#### Consent ContraForce Portal
+
+<Frame>
+  <img src="/images/xdr-onboarding-step2-portal-consent.png" alt="ContraForce Portal consent" />
+</Frame>
+
+1. Click **Consent** for the ContraForce Portal
+2. Review the requested permissions
+3. Click **Accept** to grant consent
+
+<Info>
+These two applications (API and Portal) are required for all ContraForce deployments, regardless of module selection.
+</Info>
+
+---
+
+### Step 3: Select the XDR Module
+
+<Frame>
+  <img src="/images/xdr-onboarding-step3-module-select.png" alt="Module selection screen" />
+</Frame>
+
+1. In the Onboarding Wizard menu, select **XDR** module
+2. Review the module description
+3. Click **Consent Microsoft Defender XDR** to proceed
+
+<Tip>
+If you also use Microsoft Sentinel and want SIEM capabilities, select **XDR + SIEM** instead.
+</Tip>
+
+---
+
+### Step 4: Consent Microsoft Defender XDR Application
+
+A series of consent windows will appear for the Defender XDR integration.
+
+<Frame>
+  <img src="/images/xdr-onboarding-step4-mde-consent.png" alt="Microsoft Defender XDR consent flow" />
+</Frame>
+
+<Steps>
+  <Step title="First Consent Window">
+    Grants read access to Defender for Endpoint data
+  </Step>
+  <Step title="Second Consent Window">
+    Grants access to security events and incidents
+  </Step>
+  <Step title="Third Consent Window">
+    Completes the Defender XDR integration
+  </Step>
+</Steps>
+
+For each window:
+1. Review the requested permissions
+2. Click **Accept** to proceed
+3. Wait for the redirect to the next step
+
+<Warning>
+Complete all consent windows. If you close the browser or cancel mid-flow, you'll need to restart the consent process.
+</Warning>
+
+---
+
+### Step 5: Add Users (Optional)
+
+<Frame>
+  <img src="/images/xdr-onboarding-step5-add-users.png" alt="Add users during onboarding" />
+</Frame>
+
+During deployment, you can add users who need access to ContraForce:
+
+1. **Search by email** — Enter the user's email address
+2. **Select user** — Choose from the search results (pulled from Entra ID)
+3. **Assign role** — Select the appropriate permission level
+
+| Role | Best For |
+|------|----------|
+| **Admin** | Team leads, workspace owners |
+| **Incident Responder** | SOC analysts who need response capabilities |
+| **Incident Analyst** | Junior analysts, read-only access |
+| **Data Source Admin** | Integration specialists |
+
+<Card title="User Roles Reference" icon="users" href="/guides/technical/contraforce-user-roles">
+  View detailed permissions for each role
+</Card>
+
+<Info>
+Adding users is optional during onboarding. You can always add more users later through **Settings > User Management**.
+</Info>
+
+---
+
+### Step 6: Authorize Gamebook Service Principals
+
+To enable Gamebook response actions, you need to consent additional service principals after the wizard completes.
+
+<Frame>
+  <img src="/images/xdr-onboarding-step6-workspaces.png" alt="Workspaces page with gear icon" />
+</Frame>
+
+#### Navigate to Workspace Settings
+
+1. Go to the **Workspaces** page
+2. Find your newly onboarded workspace
+3. Click the **gear icon** to open settings
+
+#### Consent Gamebooks for Microsoft Defender XDR
+
+<Frame>
+  <img src="/images/xdr-onboarding-step6-gamebooks-consent.png" alt="Gamebooks for Defender XDR consent" />
+</Frame>
+
+1. Scroll to find **Gamebooks for Microsoft Defender XDR**
+2. Click **Consent**
+3. Complete the Microsoft authentication flow
+4. Click **Accept** on the permissions prompt
+
+<Tabs>
+  <Tab title="Direct Workspace">
+    For workspaces you manage directly, click **Consent** only.
+  </Tab>
+  <Tab title="Partner/Child Workspace">
+    For customer workspaces connected to a partner (parent) workspace, you'll see two buttons:
+    - **Consent** — For the customer tenant
+    - **Consent for Partner** — Allows the partner to run Gamebooks on behalf of the customer
+    
+    Click both buttons to enable full functionality.
+  </Tab>
+</Tabs>
+
+#### Additional Service Principals (Optional)
+
+Depending on your needs, consent these additional applications:
+
+| Application | Purpose | When to Consent |
+|-------------|---------|-----------------|
+| **Gamebooks for Identity** | User response actions (disable, reset password) | If managing Entra ID identities |
+| **Microsoft 365 Response** | Email response actions (delete email) | If using Defender for Office 365 |
+| **Azure Response** | Azure resource response actions | If responding to Azure-based threats |
+
+---
+
+### Step 7: Onboarding Complete
+
+<Frame>
+  <img src="/images/xdr-onboarding-step7-complete.png" alt="Onboarding complete confirmation" />
+</Frame>
+
+Congratulations! Your XDR module deployment is complete.
+
+**What happens next:**
+
+- Defender XDR incidents begin syncing to ContraForce (may take 15-30 minutes)
+- Endpoints appear on the Endpoints page
+- Gamebook actions become available for incident response
+
+<Tip>
+If you don't see incidents immediately, verify that incidents exist in Microsoft Defender XDR. ContraForce only displays incidents that exist in the source system.
+</Tip>
+
+---
+
+## Post-Onboarding Checklist
+
+After completing the wizard, verify your deployment:
+
+<Steps>
+  <Step title="Check Incidents">
+    Navigate to the **Command Page** and verify Defender XDR incidents are appearing
+  </Step>
+  <Step title="Verify Endpoints">
+    Go to the **Endpoints** page and confirm devices are listed
+  </Step>
+  <Step title="Test Gamebooks">
+    Open an incident and verify Gamebook actions are available
+  </Step>
+  <Step title="Add Team Members">
+    Go to **Settings > User Management** and add remaining users
+  </Step>
+  <Step title="Configure Notifications">
+    Set up notification preferences for incident alerts
+  </Step>
+</Steps>
+
+---
+
+## XDR Module Limitations
+
+When using the XDR module (without SIEM), the following features are **not available**:
+
+| Feature | Status | Alternative |
+|---------|--------|-------------|
+| SIEM Incidents | Not available | Upgrade to XDR + SIEM |
+| Sentinel Advanced Threat Hunting | Not available | Upgrade to XDR + SIEM |
+| Data Connectors page | Empty | Upgrade to XDR + SIEM |
+| Custom severity notifications | Not available | Upgrade to XDR + SIEM |
+
+### Notifications
+
+<Info>
+**XDR Module Notification Behavior:**
+- Email notifications are **not** generated by ContraForce for new Defender XDR incidents
+- Email notifications **are** sent for Gamebook runs
+- ContraForce does not interrupt existing Defender notification configurations
+</Info>
+
+<Card title="Notifications Guide" icon="bell" href="/guides/technical/contraforce-notifications">
+  Learn more about ContraForce notification options
+</Card>
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| **Consent fails** | Insufficient permissions | Verify you're using a Global Administrator account |
+| **No incidents appearing** | Sync in progress | Wait 15-30 minutes for initial sync |
+| **No incidents appearing** | No incidents in Defender | Verify incidents exist in Microsoft Defender XDR portal |
+| **Endpoints page empty** | MDE consent incomplete | Re-consent the Microsoft Defender XDR application |
+| **Gamebooks unavailable** | Service principal not consented | Consent Gamebooks for Microsoft Defender XDR in workspace settings |
+| **Partner consent button missing** | Not a partner relationship | Only appears for partner/child workspace configurations |
+
+### Getting Help
+
+If you encounter issues during onboarding:
+
+1. **Check consent status** in workspace settings
+2. **Verify admin permissions** in the target tenant
+3. **Review error messages** for specific guidance
+4. **Contact support** at [support@contraforce.com](mailto:support@contraforce.com)
+
+---
+
+## Related Documentation
+
+### Enterprise Applications
+
+<CardGroup cols={2}>
+  <Card title="Enterprise Applications Overview" icon="key" href="/guides/technical/contraforce-enterprise-applications">
+    Overview of all ContraForce service principals
+  </Card>
+  <Card title="Microsoft Defender XDR Application" icon="shield-halved" href="/guides/technical/contraforce-defender-xdr-enterprise-application">
+    Detailed permissions reference
+  </Card>
+  <Card title="Gamebooks for Defender XDR" icon="bolt" href="/guides/technical/contraforce-gamebooks-for-defender-xdr-enterprise-application">
+    Endpoint response permissions
+  </Card>
+  <Card title="Portal Application" icon="browser" href="/guides/technical/contraforce-portal-enterprise-application">
+    Core portal permissions
+  </Card>
+</CardGroup>
+
+### Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Incident Management Guide" icon="book" href="/guides/getting-started/contraforce-incident-management-user-guide">
+    Learn the incident workflow
+  </Card>
+  <Card title="Gamebooks" icon="bolt" href="/guides/getting-started/what-are-gamebooks">
+    Start using response actions
+  </Card>
+  <Card title="User Management" icon="users" href="/guides/general-support/contraforce-user-management">
+    Add and manage users
+  </Card>
+  <Card title="Command Page" icon="gauge" href="/guides/getting-started/contraforce-command-page">
+    Navigate your dashboard
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about XDR module onboarding? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
