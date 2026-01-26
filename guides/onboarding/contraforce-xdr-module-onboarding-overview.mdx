@@ -1,0 +1,80 @@
+---
+title: "ContraForce XDR Module Onboarding Overview"
+description: "This article will provide an overview of the onboarding process for the ContraForce XDR module."
+---
+
+## Overview
+
+The ContraForce Defender XDR module plays a crucial role in assisting partners and customers who rely on the Microsoft Defender XDR product suite. To facilitate the onboarding process for ContraForce, it is necessary to consent to various Enterprise applications via the user-friendly ContraForce Onboarding wizard. In order to provide a comprehensive understanding of the onboarding process, each step will be outlined in detail below. By following these steps, users can seamlessly integrate ContraForce into their existing systems and maximize the benefits of the Microsoft Defender XDR suite.
+
+<Warning>
+If you are trying to onboard ContraForce to an Azure Sentinel instance, select the SIEM or XDR + SIEM deployment modules. If you have any questions about this, contact the ContraForce Support Team at support@contraforce.com.
+</Warning>
+
+## 1. Sign into the ContraForce Onboarding Wizard
+
+![Sign into onboarding wizard](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/XDR%20Onboarding%2001.png)
+
+When you begin the onboarding process for ContraForce, the ContraForce team will provide you with a link to the ContraForce Onboarding Wizard. The first step is to sign into the onboarding wizard using an admin user account that has the necessary permissions for onboarding. It's important to note that the user you sign in with must be a Global Admin and have the ability to consent to enterprise applications for your organization.
+
+## 2. Consent the ContraForce API and ContraForce Portal
+
+![Consent ContraForce API](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/XDR%20Onboarding%2003.png)
+
+Once you have signed in with your admin user as outlined in step 1, the next step is to provide consent for the ContraForce API and ContraForce Portal enterprise applications. First, you will need to consent to the API, which is shown in the screenshot above. After that, you will need to consent to the ContraForce Portal, which is displayed below.
+
+![Consent ContraForce Portal](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/XDR%20Onboarding%2004.png)
+
+![Consent confirmation](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/XDR%20Onboarding%2005.png)
+
+<Warning>
+For the purposes of this article, the ContraForce development applications were used.
+</Warning>
+
+## 3. Select the ContraForce XDR Module
+
+![Select XDR module](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Mar-27-2024-09-25-35-3758-PM.png)
+
+To start the onboarding process, navigate to the Onboarding Wizard menu and choose the XDR module. Once you have selected the correct module, click on "Consent Microsoft Defender XDR." This action will initiate the deployment of the XDR module.
+
+## 4. Consent ContraForce MDE
+
+Once you launch the ContraForce Onboarding Wizard, a series of application consent windows will appear for the selected module.
+
+![Consent MDE 1](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/XDR%20Onboarding%2007.jpeg)
+
+![Consent MDE 2](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/XDR%20Onboarding%2008.jpeg)
+
+![Consent MDE 3](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/XDR%20Onboarding%2009.jpeg)
+
+## 5. Add Additional Users
+
+![Add users](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/XDR%20Onboarding%2010.jpeg)
+
+During the deployment process, you have the option to add additional users to your ContraForce environment. Simply search for the users by their email addresses and assign the appropriate permissions to each one that you add. If you need guidance on which permissions are suitable for each role, you can find a detailed overview of our permissions [here](https://docs.contraforce.com/knowledge/contraforce-user-roles). This step is the final one in the deployment wizard. Once completed, you will see a message indicating the successful completion of the deployment and a button to continue to the ContraForce Portal.
+
+## 6. Authorize ContraForce Service Principals
+
+![Service principals](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/XDR%20Onboarding%2012-1.jpeg)
+
+To enable the use of Gamebooks in ContraForce, you need to provide consent for the ContraForce Service Principals. This can be found within the Workspaces page by clicking the gear icon.
+
+![Gear icon](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/Screenshot%202024-03-27%20135318.png)
+
+![Service principal consent](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Mar-27-2024-08-09-10-2663-PM.png)
+
+When it comes to "Gamebooks for Microsoft Defender XDR," make sure to select the "Consent" option. It's important to note that if you are connecting a child workspace (customer) to a partner workspace (parent), an additional "Consent for Partner" button will be displayed for you to click on.
+
+## 7. Onboarding Complete
+
+![Onboarding complete](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/XDR%20Onboarding%2014.jpeg)
+
+At this point, the onboarding wizard has finished and gamebooks have been authorized for use in the ContraForce environment. If Defender incidents exist, they will appear in the ContraForce portal.
+
+## Supporting Documentation
+
+- [ContraForce V2.0.0 Service Principals](https://docs.contraforce.com/knowledge/consenting-contraforce-v2.0.0-service-principals)
+- [ContraForce Portal Service Principal](https://docs.contraforce.com/knowledge/contraforce-portal-service-principal)
+- [ContraForce API Service Principal](https://docs.contraforce.com/knowledge/contraforce-api-service-principal-1)
+- [ContraForce MDE Service Principal](https://docs.contraforce.com/knowledge/contraforce-for-mde-service-principal)
+- [ContraForce Gamebooks for MDE Service Principal](https://docs.contraforce.com/knowledge/contraforce-api-service-principal)

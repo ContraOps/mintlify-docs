@@ -1,0 +1,29 @@
+---
+title: "How to connect Cisco Meraki data to ContraForce"
+description: "ContraForce can ingest syslog event data from Cisco Meraki appliances. This article will cover the setup process for this connector."
+---
+
+## Overview
+
+To connect Cisco Meraki data to ContraForce, syslog forwarding needs to be setup within the Meraki dashboard. Fortunately, this is a fairly simple process using the Meraki dashboard. The Cisco Meraki documentation found [here](https://documentation.meraki.com/General_Administration/Monitoring_and_Reporting/Meraki_Device_Reporting_-_Syslog%2C_SNMP%2C_and_API#Syslog_Configuration) is useful for this setup process and is referenced for this document.
+
+## Configure Syslog Forwarding
+
+1. Login to your Meraki Dashboard.
+
+2. Click Network-Wide, Configure, then General.
+
+3. Under Reporting, there should be an option for Syslog server configurations.
+
+4. Click Add a syslog server to add a new server.
+
+5. ContraForce will provide you with the IP address of the syslog server and the port number to be used.
+
+6. Add the roles that you wish to send to the ContraForce syslog server.
+   - Note that the type of events that can be send vary depending on your appliance. See the Syslog Configuration section of the Meraki help documentation found here.
+
+7. Once the syslog configuration is complete, let ContraForce know to finish the connection process.
+
+<Info>
+If you have any questions, don't hesitate to reach out! Please feel free to contact us at support@contraforce.com.
+</Info>
