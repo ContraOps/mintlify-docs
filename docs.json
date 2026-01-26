@@ -43,17 +43,13 @@
           {
             "group": "Onboarding",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "essentials/settings"
             ]
           },
           {
             "group": "Technical",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "entity-insights"
             ]
           },
           {
