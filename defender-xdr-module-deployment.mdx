@@ -1,0 +1,319 @@
+---
+title: "Microsoft Defender XDR Enterprise Application"
+description: "Enable endpoint visibility and management in ContraForce by consenting the Microsoft Defender XDR enterprise application."
+---
+
+The Microsoft Defender XDR enterprise application enables ContraForce to access Microsoft Defender for Endpoint (MDE) data. Once consented, you gain visibility into endpoints across your managed tenants and can perform response actions directly from ContraForce.
+
+<Info>
+This enterprise application is required for the Endpoints page, device insights, and endpoint-related Gamebook actions in ContraForce.
+</Info>
+
+## What This Application Enables
+
+<CardGroup cols={2}>
+  <Card title="Endpoint Visibility" icon="laptop">
+    View all devices managed by Defender for Endpoint across your workspaces
+  </Card>
+  <Card title="Device Details" icon="circle-info">
+    Access device information including OS, health state, and exposure level
+  </Card>
+  <Card title="Incident Correlation" icon="link">
+    See device-related incidents and timeline data during investigations
+  </Card>
+  <Card title="Response Actions" icon="shield-halved">
+    Execute endpoint Gamebooks (with additional consent)
+  </Card>
+</CardGroup>
+
+---
+
+## Features Enabled
+
+Once consented, the Microsoft Defender XDR enterprise application enables the following capabilities:
+
+### Endpoints Page
+
+The ContraForce Endpoints page aggregates MDE data from all connected workspaces:
+
+<Frame>
+  <img src="/images/defender-xdr-endpoints-page.png" alt="ContraForce Endpoints page with MDE data" />
+</Frame>
+
+| Feature | Description |
+|---------|-------------|
+| **Device List** | View all endpoints across managed tenants |
+| **Device Info** | Access hardware, OS, and configuration details |
+| **Health State** | Monitor device security health |
+| **Exposure Level** | See risk assessment for each device |
+| **Last Seen** | Track when devices last checked in |
+
+### Entity Insights
+
+During incident investigation, access device-related insights:
+
+| Insight | Description |
+|---------|-------------|
+| **Device Timeline** | Chronological view of events on the endpoint |
+| **Device Info** | Detailed hardware and software information |
+| **Related Incidents** | Other incidents involving the same device |
+
+### Incident Data
+
+The application also enables:
+
+- Bi-directional incident streaming from Defender XDR
+- Fetching incident entities and evidence
+- Alert timelines and investigation audit trails
+
+<Tip>
+For full endpoint response capabilities (isolate, scan, quarantine), you'll also need to consent the **Gamebooks for Defender XDR** enterprise application.
+</Tip>
+
+---
+
+## Permissions
+
+The Microsoft Defender XDR enterprise application requests the following Microsoft Graph and Defender API permissions:
+
+### Required Permissions
+
+| Permission | Type | Purpose |
+|------------|------|---------|
+| **Machine.Read.All** | Application | Read device information from MDE |
+| **Machine.ReadWrite.All** | Delegated | Access device details during user sessions |
+| **SecurityEvents.Read.All** | Application | Read security alerts and incidents |
+| **SecurityEvents.ReadWrite.All** | Delegated | Update incident status and assignments |
+
+<Warning>
+These permissions grant read access to endpoint data across the tenant. Ensure you have proper authorization before consenting on behalf of customers.
+</Warning>
+
+### Permission Types Explained
+
+| Type | Description | Use Case |
+|------|-------------|----------|
+| **Application** | Runs without user context | Background data synchronization |
+| **Delegated** | Runs on behalf of signed-in user | Interactive portal access |
+
+---
+
+## Prerequisites
+
+Before consenting this enterprise application:
+
+<Steps>
+  <Step title="Microsoft Defender for Endpoint">
+    MDE must be deployed and active in the target tenant
+  </Step>
+  <Step title="Appropriate Licensing">
+    Microsoft 365 Business Premium, E3, or E5 (or standalone MDE license)
+  </Step>
+  <Step title="Admin Permissions">
+    Global Administrator role in the target tenant
+  </Step>
+  <Step title="ContraForce Workspace">
+    The workspace must be created and the tenant onboarded
+  </Step>
+</Steps>
+
+---
+
+## How to Consent
+
+### Step 1: Navigate to Workspace Modules
+
+<Steps>
+  <Step title="Open Workspaces">
+    Go to the **Workspaces** page in ContraForce
+  </Step>
+  <Step title="Select Workspace">
+    Find the workspace you want to configure
+  </Step>
+  <Step title="Open Modules">
+    Click the **gear icon** or **Modules** to access workspace settings
+  </Step>
+</Steps>
+
+### Step 2: Add the Module
+
+<Steps>
+  <Step title="Click Add Module">
+    Click the **Add Module** button
+  </Step>
+  <Step title="Select Microsoft Defender XDR">
+    Choose **Microsoft Defender XDR** from the list
+  </Step>
+  <Step title="Confirm">
+    Click **Confirm** to add the module to the workspace
+  </Step>
+</Steps>
+
+### Step 3: Consent Permissions
+
+<Steps>
+  <Step title="Open the Module">
+    Click on the **Microsoft Defender XDR** module you just added
+  </Step>
+  <Step title="Review Permissions">
+    Scroll down to see the list of permissions required
+  </Step>
+  <Step title="Click Consent">
+    Click the **Consent** button to start the consent flow
+  </Step>
+  <Step title="Authenticate">
+    Sign in with a Global Administrator account from the target tenant
+  </Step>
+  <Step title="Accept Permissions">
+    Review and accept the requested permissions
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/defender-xdr-consent-permissions.png" alt="Microsoft Defender XDR permission consent" />
+</Frame>
+
+<Info>
+The consent flow is a 3-step process. Ensure you complete all steps for the application to function correctly.
+</Info>
+
+---
+
+## Verifying Consent
+
+After consenting, verify the application is working:
+
+### In ContraForce
+
+1. Navigate to the **Endpoints** page
+2. Select the workspace you just configured
+3. Confirm devices are populating in the list
+
+### In Microsoft Entra ID
+
+1. Go to **Azure Portal** > **Microsoft Entra ID** > **Enterprise Applications**
+2. Search for "ContraForce" or the application name
+3. Verify the application appears with **Enabled** status
+4. Check **Permissions** to confirm grants are in place
+
+---
+
+## Capability Matrix
+
+The Microsoft Defender XDR integration capabilities vary by license:
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| **Incident Management** | | | |
+| Bi-directional incident streaming | ✓ | ✓ | ✓ |
+| Fetch incident entities | ✓ | ✓ | ✓ |
+| Fetch incident evidence | ✓ | ✓ | ✓ |
+| Alert timelines | ✓ | ✓ | ✓ |
+| **Device Insights** | | | |
+| Device info | ✓ | ✓ | ✓ |
+| Device timeline | ✓* | ✓* | ✓ |
+| Related incidents | ✓* | ✓* | ✓ |
+| **Endpoint Management** | | | |
+| View device list | ✓ | ✓ | ✓ |
+| View device info | ✓ | ✓ | ✓ |
+
+*Requires Microsoft Defender for Endpoint Plan 2 add-on
+
+<Card title="Full Capabilities Matrix" icon="table" href="/guides/technical/microsoft-defender-capability-matrix">
+  View the complete Defender capability matrix including Gamebook actions
+</Card>
+
+---
+
+## Related Enterprise Applications
+
+The Microsoft Defender XDR application works alongside other ContraForce enterprise applications:
+
+| Application | Purpose |
+|-------------|---------|
+| **[Gamebooks for Defender XDR](/guides/technical/contraforce-gamebooks-for-defender-xdr-enterprise-application)** | Endpoint response actions (isolate, scan, quarantine) |
+| **[Gamebooks for Identity](/guides/technical/contraforce-gamebooks-for-identity-enterprise-application)** | User response actions (disable, reset password) |
+| **[Microsoft 365 Response](/guides/technical/contraforce-microsoft-365-response-enterprise-application)** | Email response actions (delete email) |
+| **[Azure Response](/guides/technical/contraforce-azure-response-enterprise-application)** | Azure resource response actions |
+
+<Tip>
+For a complete MXDR setup, consent all relevant enterprise applications based on the response capabilities you need.
+</Tip>
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| **No devices showing** | Consent incomplete | Re-run the consent flow and complete all steps |
+| **Consent fails** | Insufficient permissions | Use a Global Administrator account |
+| **Partial data** | MDE not fully deployed | Verify MDE is active on target devices |
+| **Stale device data** | Sync delay | Wait 15-30 minutes for initial sync |
+| **Permission denied errors** | Consent revoked | Check Entra ID enterprise apps and re-consent |
+
+### Checking Consent Status
+
+In the workspace modules view, consented applications show a green checkmark or "Consented" status. If you see "Not Consented" or a warning icon, re-run the consent process.
+
+### Revoking Consent
+
+If you need to revoke consent:
+
+1. Go to **Azure Portal** > **Microsoft Entra ID** > **Enterprise Applications**
+2. Find the ContraForce Defender XDR application
+3. Go to **Properties** and set **Enabled for users to sign-in** to **No**
+4. Or delete the application entirely
+
+<Warning>
+Revoking consent will disable MDE data access in ContraForce for that workspace. The Endpoints page will no longer show devices.
+</Warning>
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Consent during onboarding">
+    Add and consent the Microsoft Defender XDR module during initial workspace onboarding for a smoother setup experience.
+  </Accordion>
+  <Accordion title="Use a dedicated admin account">
+    Create a dedicated service account with Global Admin permissions for consenting enterprise applications across customer tenants.
+  </Accordion>
+  <Accordion title="Document consent status">
+    Track which enterprise applications are consented for each workspace to simplify troubleshooting.
+  </Accordion>
+  <Accordion title="Consent related applications together">
+    If you need Gamebook response actions, consent both Microsoft Defender XDR and Gamebooks for Defender XDR at the same time.
+  </Accordion>
+  <Accordion title="Verify after consent">
+    Always verify the Endpoints page is populating data after completing the consent flow.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="Enterprise Applications Overview" icon="key" href="/guides/technical/contraforce-enterprise-applications">
+    Overview of all ContraForce enterprise applications
+  </Card>
+  <Card title="Gamebooks for Defender XDR" icon="bolt" href="/guides/technical/contraforce-gamebooks-for-defender-xdr-enterprise-application">
+    Enable endpoint response actions
+  </Card>
+  <Card title="Endpoint Page" icon="laptop" href="/guides/getting-started/endpoint-page-overview">
+    Using the Endpoints page in ContraForce
+  </Card>
+  <Card title="Defender Capability Matrix" icon="table" href="/guides/technical/microsoft-defender-capability-matrix">
+    Full Defender feature capabilities
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about the Microsoft Defender XDR enterprise application? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
