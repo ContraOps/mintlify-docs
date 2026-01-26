@@ -1,0 +1,361 @@
+---
+title: "Workspaces Page"
+description: "Manage customer tenants, pre-onboard new customers, configure modules, and control workspace settings from one central location."
+---
+
+The Workspaces Page is your administrative control center for managing customer tenants. Pre-onboard new customers before deployment, configure module settings, and manage integrations—all from one place.
+
+<Info>
+Workspaces represent individual customer tenants in ContraForce. Each workspace has its own data, configurations, and user permissions.
+</Info>
+
+## What Can You Do Here?
+
+<CardGroup cols={2}>
+  <Card title="Pre-Onboard Customers" icon="user-plus">
+    Create workspace placeholders before full deployment
+  </Card>
+  <Card title="Manage Configurations" icon="gear">
+    Edit module settings and integration configurations
+  </Card>
+  <Card title="Monitor Status" icon="circle-check">
+    Track onboarding progress for all tenants
+  </Card>
+  <Card title="Control Permissions" icon="key">
+    Manage module consents and access settings
+  </Card>
+</CardGroup>
+
+---
+
+## Accessing the Workspaces Page
+
+<Steps>
+  <Step title="Locate the Icon">
+    Find the **Workspaces icon** (triangle) in the left navigation bar—it's the 3rd icon from the top
+  </Step>
+  <Step title="Click to Open">
+    Click the icon to open the Workspaces Page
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/workspaces-navigation-icon.png" alt="Workspaces navigation icon" />
+</Frame>
+
+---
+
+## Workspaces Overview
+
+The Workspaces Page displays all your customer tenants in a filterable table.
+
+<Frame>
+  <img src="/images/workspaces-page-overview.png" alt="Workspaces page overview" />
+</Frame>
+
+### Filter Options
+
+| Filter | Description |
+|--------|-------------|
+| **All** | Shows all workspaces regardless of status |
+| **Onboarded** | Shows only fully onboarded, active tenants |
+| **Pre-Onboarded** | Shows workspaces created but not yet fully deployed |
+
+### Table Columns
+
+| Column | Description |
+|--------|-------------|
+| **Workspace Name** | Customer/tenant identifier |
+| **Status** | Onboarded or Pre-Onboarded |
+| **Modules** | Which ContraForce modules are enabled |
+| **Created** | When the workspace was created |
+| **Actions** | Edit and expand controls |
+
+---
+
+## Viewing Workspace Details
+
+Click the **dropdown arrow** on any workspace row to expand and view additional details:
+
+<Frame>
+  <img src="/images/workspace-expanded-details.png" alt="Workspace expanded details" />
+</Frame>
+
+### Expanded Information
+
+- **Tenant ID** — Microsoft tenant identifier
+- **Enabled Modules** — XDR, SIEM, or both
+- **Data Connectors** — Connected integrations
+- **Onboarding Date** — When the tenant was fully onboarded
+- **Last Activity** — Most recent data received
+
+<Tip>
+Use the expanded view to quickly verify a workspace's configuration without opening the full edit panel.
+</Tip>
+
+---
+
+## Pre-Onboarding Customers
+
+Pre-onboarding lets you prepare customer environments before full deployment, streamlining the onboarding process.
+
+### Why Pre-Onboard?
+
+<CardGroup cols={3}>
+  <Card title="Faster Deployment" icon="bolt">
+    Configuration is ready when the customer is
+  </Card>
+  <Card title="Reduced Errors" icon="shield-check">
+    Verify settings before going live
+  </Card>
+  <Card title="Better Planning" icon="calendar">
+    Schedule onboardings in advance
+  </Card>
+</CardGroup>
+
+### Creating a Pre-Onboarded Workspace
+
+<Steps>
+  <Step title="Click Add Workspace">
+    Click the **Add Workspace** or **Pre-Onboard** button
+  </Step>
+  <Step title="Enter Customer Details">
+    Provide the workspace name and basic configuration
+  </Step>
+  <Step title="Select Modules">
+    Choose which ContraForce modules to enable (XDR, SIEM, etc.)
+  </Step>
+  <Step title="Save">
+    The workspace is created with "Pre-Onboarded" status
+  </Step>
+</Steps>
+
+### Completing Onboarding
+
+When ready to fully deploy:
+
+1. Open the pre-onboarded workspace
+2. Complete the required consent flows
+3. Configure data connectors
+4. The status automatically updates to "Onboarded"
+
+<Card title="Learn More" icon="book" href="/guides/onboarding/contraforce-customer-pre-onboarding-process">
+  Complete guide to the pre-onboarding process
+</Card>
+
+---
+
+## Editing Workspace Configuration
+
+Modify settings for any workspace using the edit function.
+
+### Accessing the Edit Panel
+
+Click the **edit icon** (pencil) next to any workspace's dropdown arrow.
+
+<Frame>
+  <img src="/images/workspace-edit-icon.png" alt="Workspace edit icon" />
+</Frame>
+
+### Configuration Panel
+
+The edit panel opens with all configurable options:
+
+<Frame>
+  <img src="/images/workspace-edit-panel.png" alt="Workspace configuration panel" />
+</Frame>
+
+<Tabs>
+  <Tab title="General">
+    **Basic workspace settings:**
+    - Workspace name
+    - Display preferences
+    - Notification settings
+  </Tab>
+  <Tab title="Modules">
+    **Enable/disable ContraForce modules:**
+    - XDR Module
+    - SIEM Module
+    - Response capabilities
+  </Tab>
+  <Tab title="Permissions">
+    **Manage consent and access:**
+    - Enterprise application consents
+    - API permissions
+    - Response action authorizations
+  </Tab>
+  <Tab title="Integrations">
+    **Data connector configuration:**
+    - Connected sources
+    - API credentials
+    - Connection settings
+  </Tab>
+</Tabs>
+
+---
+
+## Module Management
+
+Each workspace can have different modules enabled based on customer needs.
+
+### Available Modules
+
+| Module | Description | Key Features |
+|--------|-------------|--------------|
+| **XDR Module** | Microsoft Defender integration | Endpoint detection, response actions, device management |
+| **SIEM Module** | Microsoft Sentinel integration | Log analysis, custom alerts, threat hunting |
+
+### Configuring Modules
+
+<Steps>
+  <Step title="Open Edit Panel">
+    Click the edit icon for the workspace
+  </Step>
+  <Step title="Select Module Tab">
+    Navigate to the module you want to configure
+  </Step>
+  <Step title="Adjust Settings">
+    Enable/disable features, set thresholds, configure options
+  </Step>
+  <Step title="Consent Permissions">
+    Click **Consent** to authorize required permissions for the module
+  </Step>
+  <Step title="Save Changes">
+    Apply the configuration
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/workspace-module-config.png" alt="Module configuration options" />
+</Frame>
+
+### Module-Specific Settings
+
+Different modules expose different configuration options:
+
+<AccordionGroup>
+  <Accordion title="XDR Module Settings">
+    - **Defender for Endpoint** — Device isolation permissions, scan options
+    - **Defender for Identity** — User action permissions
+    - **Defender for Office 365** — Email response actions
+    - **Gamebook Actions** — Which response actions are enabled
+  </Accordion>
+  <Accordion title="SIEM Module Settings">
+    - **Sentinel Workspace** — Connection details
+    - **Log Analytics** — Query permissions
+    - **Custom Rules** — Alert configuration
+    - **Notifications** — Alert routing settings
+  </Accordion>
+  <Accordion title="QRadar Settings">
+    - **QRadar Console** — Connection URL
+    - **API Credentials** — Authentication details
+    - **Offense Mapping** — How QRadar offenses map to ContraForce incidents
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Permission Consent
+
+Some features require explicit consent to Microsoft enterprise applications.
+
+### Why Consent is Required
+
+ContraForce uses Microsoft Graph API and other APIs to:
+- Read security alerts and incidents
+- Execute response actions (isolate devices, disable users)
+- Access log data for analysis
+
+These permissions must be granted by a tenant administrator.
+
+### Granting Consent
+
+<Steps>
+  <Step title="Open Workspace Configuration">
+    Click the edit icon for the workspace
+  </Step>
+  <Step title="Find Consent Section">
+    Look for the **Consent** or **Permissions** area
+  </Step>
+  <Step title="Click Consent Button">
+    A Microsoft authentication window opens
+  </Step>
+  <Step title="Sign In as Admin">
+    Sign in with a Global Administrator or appropriate admin role
+  </Step>
+  <Step title="Review & Accept">
+    Review the requested permissions and click Accept
+  </Step>
+</Steps>
+
+<Warning>
+Consent requires administrator privileges in the customer's Microsoft tenant. Work with your customer's IT team if you don't have admin access.
+</Warning>
+
+<Card title="Learn More" icon="key" href="/guides/technical/contraforce-enterprise-applications">
+  Complete guide to enterprise applications and permissions
+</Card>
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Use consistent naming conventions">
+    Name workspaces consistently (e.g., "CustomerName - Primary") so they're easy to identify in filters and reports.
+  </Accordion>
+  <Accordion title="Pre-onboard before customer meetings">
+    Create pre-onboarded workspaces before onboarding calls so you can complete setup efficiently during the meeting.
+  </Accordion>
+  <Accordion title="Verify consent status regularly">
+    Periodically check that all required permissions are still consented. Token expirations or policy changes can affect access.
+  </Accordion>
+  <Accordion title="Document module configurations">
+    Keep records of which modules and settings are enabled for each customer for support and renewal conversations.
+  </Accordion>
+  <Accordion title="Review inactive workspaces">
+    Periodically review workspaces that haven't received data recently. This may indicate connector issues or offboarded customers.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| Workspace shows no data | Consent not completed | Re-run consent flow with admin credentials |
+| Module won't enable | Missing permissions | Verify required permissions are granted |
+| Pre-onboarded stuck | Consent incomplete | Complete all required consent steps |
+| Configuration won't save | Validation error | Check for required fields or invalid values |
+
+<Note>
+If you encounter persistent issues with workspace configuration, contact [support@contraforce.com](mailto:support@contraforce.com) with the workspace name and error details.
+</Note>
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="Pre-Onboarding Process" icon="user-plus" href="/guides/onboarding/contraforce-customer-pre-onboarding-process">
+    Complete pre-onboarding guide
+  </Card>
+  <Card title="Enterprise Applications" icon="key" href="/guides/technical/contraforce-enterprise-applications">
+    Understanding permissions and consent
+  </Card>
+  <Card title="Module Overview" icon="cubes" href="/guides/onboarding/contraforce-module-overview">
+    Learn about XDR and SIEM modules
+  </Card>
+  <Card title="Multi-Tenant Features" icon="building" href="/guides/getting-started/contraforce-multi-tenant-support">
+    Managing multiple workspaces
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about the Workspaces Page? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>

@@ -32,6 +32,7 @@
             "pages": [
               "overview",
               "quickstart",
+              "guides/getting-started/workspaces",
               "incident-management",
               "guides/getting-started/incident-classifications",
               "guides/getting-started/multi-tenant-features",
