@@ -1,0 +1,355 @@
+---
+title: "ContraForce Release Notes"
+description: "With each product release, we document changes to the ContraForce Portal. Product releases can include bug fixes, new features, and performance related improvements. We will send an email each time in"
+---
+
+## Release Notes:
+
+## September 5th, 2025
+
+This release brings important updates to the *Content Management (CMS).* Users will find a new tab called rules. In the rules tab, users will be able to view all the analytical rules that exist in the specified workspace Microsoft Sentinel. Additionally, users will be able to manage a specific rules state by being able to enable/disable the rule through the ContraForce platform.
+
+<Warning>
+If you have any questions, please contact us at support@contraforce.com.
+</Warning>
+
+**New Feature(s)**
+
+- Sentinel Rules Tab
+  - Users will now be able see all the existing rules a specific Sentinel has deployed.
+
+- Enable/Disable Rule
+  - Users can manage rule status by enabling or disabling rules through the ContraForce Portal
+
+## August 18th, 2025
+
+This release brings important updates to the *Gamebook Workbench and Gamebook Approvers.* Users will find an improved layout and user experience when creating gamebooks. Additionally, users will be able to add specific gamebook approvers if the service provider needs to run actions that need approval, or if the service provider doesn't have permissions to run gamebooks directly.
+
+**New Feature(s)**
+
+- Gamebook Approver Management
+  - Users will now be able to choose add gamebook approvers within the workspace settings. The user will need a workspace owner role to manage. Only workspace owners of the managed account will be available as options.
+
+**UI Enhancements**
+
+- Gamebook Workbench Layout
+  - The gamebook workbench has a new and improved layout that will enhance the user experience when queuing and executing gamebooks.
+
+## July 18th, 2025
+
+This release brings important updates to workspace management. Specifically when managing detection and response modules. This will make it simpler and more efficient when adding modules to a workspace. Additionally, the Microsoft Defender Module has an option to ignore Defender incidents if the Sentinel module in that workspace has Defender incidents being forwarded to it. This will remove the duplication of incidents in the incident queue for desired workspaces.
+
+**New Feature(s)**
+
+- Microsoft Defender module incident toggle
+  - This will ignore Microsoft Defender incidents if the workspace has the Sentinel receiving Defender incidents. If customers configure the Microsoft Defender XDR data connector through the Azure Portal to forward incidents and alerts to Sentinel, users would see duplicate incidents in the ContraForce incident queue.
+
+**UI Enhancements**
+
+- Workspace Management Enhancements
+  - Workspace General Account Information
+    - General account information shown for a given workspace
+    - Ability to update the following properties
+      - Alias name for workspace
+      - Domain for account
+      - Primary contact name
+      - Primary contact email
+    - Service Provider Information
+  - Modules Tab
+    - Clean view of detection and response modules added to the workspace
+    - Module specific pages that describe the purpose of the module
+
+- Ticketing Module Relocation
+  - Ticketing module information now is seen in account settings
+
+## May 28, 2025
+
+*This release brings key feature additions and interface enhancements designed to streamline incident investigation and standardize the user experience. A new **Rule** tab for Microsoft Sentinel incidents provides deeper insights by displaying the rule description, query, entity mappings, frequency, and period — with the added ability to run or modify the query directly in log search. UI improvements include the unification of ContraForce's incident **Status** (New, Active, Closed) and **Severity** (High, Medium, Low, Informational) labels for consistency across modules, as well as updates to the **Evidence** tab table for improved readability and navigation.*
+
+**New Feature(s)**
+
+- Rule tab for Microsoft Sentinel incidents
+  - View rule details like rule description, rule query, entity mapping, rule frequency and period.
+  - Run/modify rule query in log search to see results
+
+**UI Enhancements**
+
+- ContraForce Status & Severity Unification
+  - Status: New, Active, Closed
+  - Severity: High, Medium, Low, Informational
+
+- Updated Evidence Tab Table
+
+## May 9, 2025
+
+*This release introduces focused enhancements aimed at refining user experience and system usability. Updates include an enhanced device timeline for improved incident context, integrated log search functionality directly within the incident detail page, dynamic adjustment of audit and sign-in log tables based on dock height, and a crucial fix addressing schema detection issues within the Monaco editor. If you have any questions, please contact us at support@contraforce.com.*
+
+**New Feature(s)**
+
+- Added Log Search capability within Incident Detail Pages.
+
+**UI Enhancements**
+
+- Improved Device Timeline
+- Dynamic adjustment of Audit and Sign-in log table heights.
+
+**Bug Fix**
+
+- Monaco Editor schema detection when switching workspace
+
+## Apr 25, 2025
+
+*This release introduces powerful enhancements to streamline security operations and improve user efficiency. The **Log Search** experience has been upgraded with a unified page, allowing analysts to seamlessly query both Microsoft Sentinel and Defender data from a single interface. Users can now easily toggle between modules per workspace using a new dropdown selector and export query results directly to CSV for reporting and collaboration purposes.*
+
+*Additionally, onboarding **Microsoft Sentinel** has been enhanced with automated scanning of connected data sources. Upon integration, ContraForce will now detect and display supported data sources within the CMS Analytics page, giving users immediate visibility into their logging environment and improving detection content management.*
+
+**UI & Performance Enhancements**
+
+- Enhanced Log Search Page
+  - Unified log search page
+  - Dropdown shows sentinel and defender module option for each supported workspace
+  - Export results from query to cvs
+
+- Scanning Data Sources from Microsoft Sentinel
+  - Onboarding Microsoft Sentinel will now scan connected data sources and display supported data sources in our CMS analytics page
+
+## April 18, 2025
+
+*This release brings a comprehensive set of updates focused on enhancing system stability, performance, and user experience. Key improvements include entity insights data, bug fixes for error handling, UI enhancements for a more intuitive interface, performance optimizations, and strengthened security measures. A significant highlight is the new Jira Service Desk (JSD) integration, providing streamlined ticket management and synchronization capabilities.*
+
+**New Features**
+
+- Added comprehensive support for Jira Service Desk, including ticket creation, synchronization, linking, comments management, and enhanced response handling.
+
+**UI & Performance Enhancements**
+
+- Implemented IAM assignment change tracking for improved data consistency.
+- Added validation logic to the detection module.
+- Enhanced browser routing and deep-linking capabilities with right-click support.
+- Set default behavior to fetch new and active incidents.
+- Improved email property handling, defaulting to UPN if email is null.
+- Updated AutoTask module to automatically sync configuration upon addition.
+- Integrated real-time updates for ServiceNow tickets within the UI.
+- Improved Autotask API response handling to manage null values effectively.
+- Enabled the create button for gamebooks after execution.
+- Optimized logic for deleting email search parameters.
+
+**Bug Fixes & Resolutions**
+
+- Fixed Email Entity Insights KQL query errors.
+- Resolved issues causing gamebooks to hang.
+- Corrected RBAC linkage issues affecting gamebook activities like Retry/Approve.
+- Addressed a bug causing gamebook history not to update for new accounts.
+- Fixed error occurring when canceling wizards in the Security Modules page.
+- Prevented Ticketing tab from appearing in incidents when ITSM is not configured.
+- Corrected errors when creating tickets without user information.
+- Resolved urgency field and service ticket form layout issues in ServiceNow.
+- Fixed the inability to bulk-update incidents.
+- Corrected "Audit Logs" error when selecting "Load More."
+- Validated and corrected links in Apollo email notifications for gamebook approvals.
+- Addressed loading issues with CrowdStrike incident details.
+- Fixed ownership assignment bugs in Defender incidents.
+- Improved resizing behavior for audit logs, sign-in logs tables, and evidence tabs.
+
+## Feb 27, 2025
+
+*This release brings a comprehensive set of updates focused on enhancing system stability, performance, and user experience. Key improvements include defender for endpoint alert process tree, bug fixes for error handling, UI enhancements for a more intuitive interface, performance optimizations, and strengthened security measures.*
+
+**Improvements**
+
+- Process tree for Defender XDR alerts shows tree for multiple alerts
+- Updated the process tree so that clicking a node properly aligns its title, content, and clickable areas.
+- Added a copy button for the email subject in insights.
+- Displayed group and role details in user insights.
+- Removed extra action buttons from the endpoint details modal.
+- Minimize button icon and enabled auto-maximization for investigation canvas.
+- Enabled the minimize dock view feature.
+- Enhanced the device timeline display by adding UTC conversion for local times.
+
+**Bugs**
+
+- Fixed an error that caused exceptions when an account was not found.
+- Resolved spacing and fixed-height issues in the device timeline.
+- Corrected deprecated MudSwitch attribute warnings.
+- Resolved issues in the Notifications tab.
+- Fixed data mismatches in Defender incidents.
+- Corrected tree view labels on the Advanced Hunting page.
+- Resolved incident closing status errors.
+
+**Security & Validation**
+
+- Upgraded vulnerable and deprecated packages—including a migration to MudBlazor v8.0.
+- Added assignment validation when editing Workspace Groups and during group assignment.
+- Implemented enhanced exception handling for Defender XDR incident errors.
+
+## Jan 31, 2025
+
+*This release contains some reported bugs from our users and a few improvements.*
+
+**Improvements**
+
+- Unified Incidents Page
+  - The incidents table found in the command page now has the filter for source.
+  - The ContraForce platform now has unified incidents page
+
+**Bugs**
+
+- Workspace Owner Assignment - Preonboarding
+  - The user that preonboards a customer workspace will be added to the workspace as Owner
+
+- Workspace Module Validation Post Onboarding
+  - Validation checks are now executed when the onboarding finished
+
+- CMS UI Rule Deployment Bug
+  - A spinning wheel wouldn't go away after a successful rule deployment.
+
+- Investigation Canvas UI error
+  - Errors occur when opening investigation canvas
+
+- Related Incidents query for Defender XDR incidents
+  - Updated query to fetch related incidents for a specific entity in a Defender XDR incident.
+
+- User Feedback
+  - Tabs for entity types when an incident a lot of entities
+  - The number of alerts in alert attack activity title
+  - The subject of the email insights.
+
+- Group membership validation
+  - Workspace role assignment with groups issues resolved.
+
+## Dec 13, 2024
+
+*This release contains Crowdstrike Gamebooks and some reported bugs from our users.*
+
+If you have any questions, please feel free to contact us at support@contraforce.com.
+
+**New**
+
+- Crowdstrike Gamebooks: improving our current integration
+  - Scan Endpoint: users will be able to target and scan a specific endpoint with a gamebook action through Crowdstrike
+  - Isolate Endpoint: users will be able to target and isolate a specific endpoint with a gamebook action through Crowdstrike
+
+**Bugs**
+
+- Add/Update user error fix: there were issues when adding/updating users in the user management tab. this release fixes the inconsistencies
+
+## Dec 7, 2024
+
+*This release includes updates to provide user management across multiple workspaces and the ability to add multiple tenants to an end-customer tenant. Additionally, this release includes our ServiceNow integration for ticket management and association to incidents in ContraForce..*
+
+**New**
+
+- ContraForce IAM - This feature includes some powerful user management and access functionality. This will enable organization/user administrators to grant access to users in desired workspaces.
+  - Organization roles
+    - Organization Admin
+    - User Admin
+    - Workspace Admin
+    - Org Member
+  - Workspace roles
+    - Workspace Owner
+    - Workspace Content Admin
+    - Incident Responder
+    - Incident Analyst
+
+- ServiceNow Ticket Management - this integration will now allow users to create/associate and manage tickets that is connected to their organizations ServiceNow instance
+
+## Sep 9, 2024
+
+*This release includes our improved IP address entity insights*
+
+If you have any questions, please feel free to contact us at support@contraforce.com.
+
+**Improvements**
+
+- ContraForce Insights now supports IP address entity
+  - for every IP address that appears as an entity in a ContraForce incident, ContraForce Insights will pull in signin logs from that IP address and will show if the signins are from a registered device
+
+## September 3rd, 2024
+
+*This release includes our new detection module SentinelOne. This includes gamebook actions for assets (endpoints) registered in SentinelOne*
+
+If you have any questions, please feel free to contact us at support@contraforce.com.
+
+**New**
+
+- SentinelOne Integration
+  - Threats (incidents) are now available in the ContraForce platform
+  - Gamebook actions availble to SentinelOne
+    - Disconnect from network (isolate endpoint gamebook)
+    - Reconnect to network (unisolate endpoint gamebook)
+    - Initiate scan (scan endpoint gamebook)
+
+**Improvements**
+
+- New and improved nav bar menu. This will help users navigate the platform in a better way.
+
+**Bug fixes**
+
+- n/a
+
+## August 2, 2024
+
+*This release includes our new detection module Splunk. This will be a beta release of Splunk and will role out enhancements over time.*
+
+If you have any questions about version 2024.08.02 please feel free to contact us at support@contraforce.com.
+
+**New**
+
+- CalVer versioning system is going to be used from now on
+
+- *Splunk Module (Beta) -* Splunk notable events will be now visible as a ContraForce incident in the platform. Features include:
+  - Assign users to notable events
+  - Change notable event status
+  - filtering notable events by title, severity, status and time
+  - ***Entities and alert timelines are only supported in Splunk notable events when Microsoft Defender logs are present***
+
+**Improvements**
+
+- n/a
+
+**Bug fixes**
+
+- CSS bugfix with gamebook queue in incident detail page
+
+## July 15, 2024
+
+*This release includes the launch of the UIE 2.0 and Service Provider Onboarding.*
+
+**New**
+
+- *Unified Investigation Experience (UIE) 2.0* is now available in production. This release standardized an investigation of an incident for a user in the ContraForce platform. Every incident, regardless of source (SIEM or XDR), will have ContraForce insights and enriched entities available in the incident detail view and gamebook workbench.
+  - For *User/Account* entity, sign-in and audit logs are displayed in a table with a time filter option
+  - For *IP Address* entity, ContraForce specific insights are displayed in the insights tab
+  - Related incidents tab shows a related incident feed that shows an incident investigation audit with incident closing comment (if incident is closed)
+
+- *Service Provider Onboarding* has enabled service providers to get started and pre-onboard their customers faster than ever. In a few steps, service providers can connect their ticketing system (AutoTask), add users, and pre-onboard customers before they get to the main ContraForce platform.
+
+**Improvements**
+
+- New quick link buttons in incident table
+  - Gamepad button - takes you straight to desired incident gamebook workbench
+  - Expand button - takes you straight to the incident detail
+
+**Bug fixes**
+
+- n/a
+
+## June 4th, 2024
+
+*This release includes the launch of the Email Gamebook Actions and Microsoft Entra ID SIgn-in logs.*
+
+**New**
+
+- General availability of *Email Gamebook* actions. The email gamebook actions allows users to remove specific emails from an inbox when phishing or malicious activity is suspected. This is the first action that we are making available related to email. More to come in the future.
+
+- Microsoft Entra ID sign-in logs for an account entity in gamebook workbench
+  - In the gamebook workbench, you can now click on an Account entity and it will fetch sign-in logs from Microsoft Entra ID. This will only fetch sign-in logs from that account entity if the user exist in the specific Microsoft Entra ID tenant.
+
+**Improvements**
+
+- Incident caching
+  - this allows the incident data to be cached temporarily so that the incident data doesn't have to be fetched again. This has increased efficiency and load times of the portal.
+
+**Bug fixes**
+
+- n/a
