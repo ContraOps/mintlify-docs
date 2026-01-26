@@ -1,80 +1,126 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: "Command Page"
+description: "Your central hub for monitoring incidents, managing workspaces, and overseeing security operations across all your Microsoft tenants."
 ---
 
-## Get started in three steps
+The Command Page is ContraForce's mission control center—a unified dashboard that gives you complete visibility into security incidents across all your managed tenants.
 
-Get your documentation site running locally and make your first customization.
+<Frame>
+  <img src="/images/command-page-overview.jpg" alt="ContraForce Command Page" />
+</Frame>
 
-### Step 1: Set up your local environment
+## Overview
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+The Command Page serves as your central hub for overseeing multiple Microsoft tenants through a single, intuitive dashboard. By default, it displays data for all onboarded tenants, with the option to customize your view by filtering specific workspaces.
 
-### Step 2: Deploy your changes
+<Info>
+The Command Page is designed for MSSPs and service providers managing multiple customer environments. All data updates in real-time as incidents are detected and resolved.
+</Info>
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+## Dashboard Cards
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
-
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
-
-### Step 3: Go live
-
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
-
-## Next steps
-
-Now that you have your docs running, explore these key features:
+The Command Page features four key data cards that provide at-a-glance insights into your security posture:
 
 <CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
+  <Card title="Incident Tracker" icon="chart-line">
+    Displays the number of High severity incidents and total incident count per workspace. Quickly identify which tenants need immediate attention.
+  </Card>
+  <Card title="Latest Gamebook Activity" icon="bolt">
+    Shows recent Gamebook actions including Workspace, Status, Incident ID, and Owner. Click any incident ID to jump directly to its summary.
+  </Card>
+  <Card title="Data Connector Anomalies" icon="triangle-exclamation">
+    Lists detected anomalies in your data connectors by workspace. Click a connector name to access that workspace's Data Connector library.
+  </Card>
+  <Card title="Incidents Table" icon="table">
+    A comprehensive view of all incidents across connected workspaces with filtering and bulk action capabilities.
+  </Card>
 </CardGroup>
 
+## Incidents Table
+
+The Incidents table is the heart of the Command Page, displaying all security incidents across your connected workspaces.
+
+### Table Columns
+
+| Column | Description |
+|--------|-------------|
+| **Severity** | Incident severity level (High, Medium, Low, Informational) |
+| **Workspace** | The tenant/workspace where the incident occurred |
+| **Incident Title** | Brief description of the incident |
+| **Incident ID** | Unique identifier (click to view details) |
+| **Creation Time** | When the incident was first detected |
+| **Status** | Current state (New, Active, Closed) |
+| **Owner** | Analyst assigned to the incident |
+
+### Filtering Options
+
+You can filter the incidents table by:
+
+- **Workspace** — Select specific workspaces to focus on
+- **Severity** — Filter by High, Medium, Low, or Informational
+- **Status** — Show only New, Active, or Closed incidents
+
+### Bulk Actions
+
+Select multiple incidents to perform bulk operations:
+
+<Steps>
+  <Step title="Select Incidents">
+    Use the checkboxes to select one or more incidents
+  </Step>
+  <Step title="Choose Action">
+    Select an action from the bulk actions menu (e.g., assign owner, change status)
+  </Step>
+  <Step title="Apply Changes">
+    Confirm to apply the changes to all selected incidents
+  </Step>
+</Steps>
+
+## Workspace Filtering
+
+The workspace filter at the top of the Command Page allows you to customize your view:
+
+1. Click the **Workspace Filter** dropdown
+2. Select one or more workspaces to display
+3. Your selection persists as you navigate to other pages in ContraForce
+
+<Tip>
+Your workspace filter selection is maintained across all ContraForce pages during your session. This allows you to focus on specific customers without re-selecting filters on each page.
+</Tip>
+
+## Accessing Incident Details
+
+To view detailed information about any incident:
+
+1. Locate the incident in the Incidents table
+2. Click the **Incident ID** (hyperlinked)
+3. The Incident Details page opens with full investigation capabilities
+
+From the Incident Details page, you can:
+- View the complete incident timeline
+- See all affected entities
+- Run Gamebook response actions
+- Add comments and update status
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Incident Management Guide" icon="book" href="/guides/getting-started/contraforce-incident-management-user-guide">
+    Learn the complete workflow for triaging and resolving incidents
+  </Card>
+  <Card title="Data Connector Anomalies" icon="plug" href="/guides/getting-started/contraforce-data-connector-anomoly-detection">
+    Understand how ContraForce detects connector issues
+  </Card>
+  <Card title="Gamebooks" icon="bolt" href="/guides/getting-started/what-are-gamebooks">
+    Automate incident response with one-click actions
+  </Card>
+  <Card title="Multi-Tenant Features" icon="building" href="/guides/getting-started/contraforce-multi-tenant-support">
+    Explore all multi-tenant management capabilities
+  </Card>
+</CardGroup>
+
+---
+
 <Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
+Need help? Contact the ContraForce Support team at [support@contraforce.com](mailto:support@contraforce.com).
 </Note>
