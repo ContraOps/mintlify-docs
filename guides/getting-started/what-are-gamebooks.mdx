@@ -1,66 +1,313 @@
 ---
-title: "What are Gamebooks in ContraForce?"
-description: "In the ContraForce Portal, users are able to respond to incidents with a single click using Gamebooks."
+title: "What are Gamebooks?"
+description: "Automate incident response with one-click actions. Gamebooks let you isolate devices, disable users, block IPs, and more—without manual intervention."
 ---
 
-## Overview
+Gamebooks are ContraForce's automated response engine. Instead of manually logging into multiple consoles to contain a threat, you can execute proven response actions with a single click.
 
-The Gamebook Workbench can be opened through the Incident Summary overview that is accessed by clicking the hyperlinked incident ID shown on the Incidents table. Once the Incident Summary has been opened, click the dropdown next to Edit then Create New Gamebook.
+<Info>
+Think of Gamebooks as your incident response playbook—automated. Select the actions you need, click run, and ContraForce handles the execution across your integrated security tools.
+</Info>
 
-![Open gamebook workbench](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Jun-15-2023-04-43-07-7329-PM.png)
+## Why Gamebooks?
 
-![Create new gamebook](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-21-29-3279-PM.png)
+Traditional incident response requires analysts to:
 
-## What Gamebook actions are available?
+1. Identify affected entities (users, devices, IPs)
+2. Log into each security tool separately
+3. Manually execute containment actions
+4. Document what was done
 
-In ContraForce there are multiple entity types, and the operator will see the options change in real time based on the entities selected. The available options are listed below:
+**Gamebooks compress this into seconds:**
 
-**User**
+<CardGroup cols={3}>
+  <Card title="One Click" icon="mouse-pointer">
+    Execute multiple actions across tools instantly
+  </Card>
+  <Card title="Consistent" icon="check-double">
+    Same response every time—no missed steps
+  </Card>
+  <Card title="Auditable" icon="clipboard-list">
+    Complete history of every action taken
+  </Card>
+</CardGroup>
 
-- Invalidate Existing Sessions
-- Lockout User
-- Reset User Password
-- Unlock User
+---
 
-**Endpoint**
+## Available Gamebook Actions
 
-- Isolate Endpoint
-- Scan Endpoint
-- Release from Isolation
-- Quarantine File
+Gamebook actions are organized by entity type. ContraForce automatically shows relevant actions based on the entities involved in each incident.
 
-**Network**
+### User Actions
 
-- Block IP
+| Action | Description | Use Case |
+|--------|-------------|----------|
+| **Invalidate Existing Sessions** | Terminates all active sessions | Compromised account, suspicious activity |
+| **Lockout User** | Prevents user from signing in | Confirmed account compromise |
+| **Reset User Password** | Forces password reset on next login | Credential theft suspected |
+| **Unlock User** | Re-enables a locked account | After remediation is complete |
 
-**Email**
+### Endpoint Actions
 
-- Delete Email
+| Action | Description | Use Case |
+|--------|-------------|----------|
+| **Isolate Endpoint** | Disconnects device from network (except Defender) | Active malware, lateral movement |
+| **Scan Endpoint** | Triggers antivirus/EDR scan | Suspicious file activity |
+| **Release from Isolation** | Restores network connectivity | After threat is contained |
+| **Quarantine File** | Moves malicious file to quarantine | Known malware detected |
 
-Not all entities are supported with Gamebook actions due to technical limitations. If a Gamebook is not available, an error message will be shown.
+### Network Actions
 
-![Gamebook not available](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-34-41-5186-PM.png)
+| Action | Description | Use Case |
+|--------|-------------|----------|
+| **Block IP** | Adds IP to blocklist | C2 communication, malicious source |
 
-## Building a Playbook
+### Email Actions
 
-Once the Gamebook Workbench is opened, actions can be added to the playbook by clicking the green "+" icon or removed using the red "-" icon. Once all actions have been added, the operator can run the Gamebook by clicking Run Gamebook.
+| Action | Description | Use Case |
+|--------|-------------|----------|
+| **Delete Email** | Removes malicious email from mailbox | Phishing, malware delivery |
 
-![Building a gamebook](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-41-06-3587-PM.png)
+<Tip>
+Available actions depend on your connected integrations. For example, endpoint actions require Microsoft Defender for Endpoint to be onboarded.
+</Tip>
 
-## Gamebooks Requiring Approval
+---
 
-If a Gamebook necessitates approval, the Run Gamebook button will shift to a "Waiting Approval" button. An approval message will be displayed when a user attempts to run a gamebook without the appropriate permissions. Furthermore, when the Incident Summary flyout is accessed, the status will indicate Waiting Approval.
+## How to Access Gamebooks
 
-![Waiting approval](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-48-49-9546-PM.png)
+<Steps>
+  <Step title="Open an Incident">
+    From the Command Page, click any **Incident ID** to open the Incident Summary
+  </Step>
+  <Step title="Open the Gamebook Workbench">
+    Click the dropdown next to **Edit** and select **Create New Gamebook**
+  </Step>
+  <Step title="Start Building">
+    The Gamebook Workbench opens with the Entity Graph and action carousel
+  </Step>
+</Steps>
 
-End-customers or users with the correct permissions will be given the ability to approve the Gamebook sequence, which will initiate the selected actions.
+<Frame>
+  <img src="/images/gamebook-access-dropdown.png" alt="Accessing Gamebook Workbench" />
+</Frame>
 
-## Where do I see Gamebook History?
+---
 
-Gamebook history can be seen on the Gamebooks page, accessed by clicking on the 2nd triangle icon shown on the navigation bar. If a tenant filter has been applied, only Gamebook history for that selected tenant will be shown.
+## Building a Gamebook
 
-![Gamebooks page](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-51-36-5496-PM.png)
+Creating a Gamebook is intuitive—select entities, choose actions, and execute.
 
-The Gamebooks page displays completed Gamebooks, those awaiting approval, and any failed Gamebooks. Users can filter the table to delve deeper into the displayed Gamebook history. By clicking on the dropdown for each row, additional details will be revealed regarding the actions that were executed.
+### Step 1: Select an Entity
 
-![Gamebook details](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-53-28-7720-PM.png)
+Click an entity in the **Entity Graph** (user, device, IP, etc.). The action carousel appears showing available response actions.
+
+<Frame>
+  <img src="/images/gamebook-entity-selection.png" alt="Entity selection in Gamebook" />
+</Frame>
+
+### Step 2: Add Actions
+
+- Use the **arrows** to browse available actions
+- Click the **green + icon** to add an action to your Gamebook
+- Click the **red - icon** to remove an action
+
+### Step 3: Repeat for Other Entities
+
+Select additional entities and add their actions. You can build comprehensive response workflows targeting multiple entity types.
+
+### Step 4: Review & Execute
+
+Your selected actions appear in the **Gamebook Card**:
+
+<Frame>
+  <img src="/images/gamebook-actions-queue.png" alt="Gamebook actions queue" />
+</Frame>
+
+| Column | Description |
+|--------|-------------|
+| **Action** | The response action to be performed |
+| **Entity** | Target of the action |
+| **Status** | "Pending" before execution |
+
+Click **Run Gamebook** to execute all actions.
+
+---
+
+## Gamebook Execution Status
+
+After clicking Run Gamebook, monitor the execution:
+
+| Status | Meaning |
+|--------|---------|
+| **Pending** | Action queued, not yet started |
+| **Running** | Action currently executing |
+| **Finished** | Action completed successfully |
+| **Failed** | Action encountered an error |
+
+<Frame>
+  <img src="/images/gamebook-execution-status.png" alt="Gamebook execution status" />
+</Frame>
+
+<Warning>
+If an action fails, check the Gamebook Activity page for error details. Common causes include permission issues or connectivity problems with the target system.
+</Warning>
+
+---
+
+## Gamebook Approval Workflow
+
+Some actions are too impactful to execute without oversight. These require approval before running.
+
+### How to Identify Approval-Required Actions
+
+Actions requiring approval display a **red lock icon** in the carousel.
+
+<Frame>
+  <img src="/images/gamebook-approval-required.png" alt="Approval required indicator" />
+</Frame>
+
+### Requesting Approval
+
+When your Gamebook includes locked actions:
+
+1. Build your Gamebook as usual
+2. The button changes to **Request Gamebook Approval**
+3. Click to submit the request
+4. Status shows **Waiting Approval**
+
+### Approving Gamebooks
+
+Users with approval permissions can approve from:
+
+<CardGroup cols={2}>
+  <Card title="Incident Summary" icon="file-lines">
+    Open the incident and approve directly from the Gamebook status
+  </Card>
+  <Card title="Gamebooks Page" icon="list-check">
+    Review all pending approvals in one centralized location
+  </Card>
+</CardGroup>
+
+Once approved, the Gamebook executes automatically.
+
+---
+
+## Gamebook History
+
+Track all Gamebook activity across your environment from the dedicated **Gamebooks Page**.
+
+### Accessing Gamebook History
+
+Click the **Gamebooks icon** (triangle) in the navigation bar—it's the 2nd icon from the top.
+
+<Frame>
+  <img src="/images/gamebooks-page-navigation.png" alt="Gamebooks page navigation" />
+</Frame>
+
+### What You Can See
+
+The Gamebooks page shows:
+
+| Filter | Description |
+|--------|-------------|
+| **Completed** | Successfully executed Gamebooks |
+| **Waiting Approval** | Pending approval requests |
+| **Failed** | Gamebooks with errors |
+
+### Viewing Details
+
+Click the **dropdown arrow** on any row to expand and see:
+
+- Individual action results
+- Execution timestamps
+- Error messages (if failed)
+- Entity details
+
+<Frame>
+  <img src="/images/gamebook-history-expanded.png" alt="Gamebook history expanded view" />
+</Frame>
+
+<Tip>
+Use the workspace filter to view Gamebook history for specific tenants. This is useful when reviewing activity for a particular customer.
+</Tip>
+
+---
+
+## Unsupported Entities
+
+Not all entity types support Gamebook actions due to technical limitations with source integrations.
+
+If an entity doesn't support actions, you'll see an error message:
+
+<Frame>
+  <img src="/images/gamebook-unsupported-entity.png" alt="Unsupported entity message" />
+</Frame>
+
+**Common reasons:**
+
+- Integration doesn't expose response APIs
+- Entity type not yet supported
+- Permissions not configured for response actions
+
+<Note>
+ContraForce continuously adds new integrations and actions. If you need specific response capabilities, contact [support@contraforce.com](mailto:support@contraforce.com) to discuss your requirements.
+</Note>
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Start with containment">
+    Prioritize actions that stop the threat from spreading—isolate devices, disable compromised accounts, block malicious IPs.
+  </Accordion>
+  <Accordion title="Use approval workflows for high-impact actions">
+    Configure approval requirements for actions like device isolation that could impact business operations.
+  </Accordion>
+  <Accordion title="Review before running">
+    Always verify the Gamebook Card shows the correct entities and actions before clicking Run.
+  </Accordion>
+  <Accordion title="Monitor the Gamebooks page">
+    Check the Gamebooks page regularly for failed actions that may need manual intervention.
+  </Accordion>
+  <Accordion title="Document with comments">
+    After running a Gamebook, add comments to the incident explaining what actions were taken and why.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Gamebook Actions Quick Reference
+
+| Entity | Actions Available |
+|--------|-------------------|
+| **User** | Invalidate Sessions, Lockout, Reset Password, Unlock |
+| **Endpoint** | Isolate, Scan, Release from Isolation, Quarantine File |
+| **Network** | Block IP |
+| **Email** | Delete Email |
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="Security Workbench" icon="screwdriver-wrench" href="/guides/getting-started/contraforce-security-workbench-overview">
+    Learn about the full investigation interface
+  </Card>
+  <Card title="Incident Management" icon="book" href="/guides/getting-started/contraforce-incident-management-user-guide">
+    Complete incident workflow guide
+  </Card>
+  <Card title="Incident Classifications" icon="tags" href="/guides/getting-started/understanding-incident-classifications">
+    Classify incidents after response
+  </Card>
+  <Card title="User Roles" icon="users" href="/guides/technical/contraforce-user-roles">
+    Configure approval permissions
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about Gamebooks? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
