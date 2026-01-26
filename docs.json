@@ -33,7 +33,8 @@
               "overview",
               "quickstart",
               "incident-management",
-              "guides/getting-started/incident-classifications"
+              "guides/getting-started/incident-classifications",
+              "guides/getting-started/multi-tenant-features"
             ]
           },
           {

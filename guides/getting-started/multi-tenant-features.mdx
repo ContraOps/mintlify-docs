@@ -1,0 +1,265 @@
+---
+title: "Multi-Tenant Features"
+description: "Manage security delivery across all your customers from a single unified platform. Built for MSPs and MSSPs."
+---
+
+ContraForce is purpose-built for MSPs and MSSPs managing multiple customer environments. View incidents, run response actions, and monitor security posture across all your tenants—without switching between portals.
+
+<Info>
+  Whether you manage 5 tenants or 500, ContraForce scales with your business. All multi-tenant features are included in the platform at no additional cost.
+</Info>
+
+## Why Multi-Tenant Matters
+
+Traditional security tools force analysts to log into each customer environment separately. ContraForce eliminates this friction:
+
+<CardGroup cols={3}>
+  <Card title="Single Pane of Glass" icon="desktop">
+    View all customer incidents in one unified dashboard
+  </Card>
+  <Card title="Consistent Workflows" icon="arrows-rotate">
+    Same response process across every tenant
+  </Card>
+  <Card title="Efficient Staffing" icon="users">
+    One analyst can manage more customers effectively
+  </Card>
+</CardGroup>
+
+---
+
+## Command Dashboard: Your Central Hub
+
+The **Command Dashboard** is the heart of ContraForce's multi-tenant capabilities. It provides a unified view of all security incidents across your managed tenants.
+
+<Frame>
+  ![Command Dashboard multi-tenant view](/images/Command.svg)
+</Frame>
+
+### What You Can See
+
+| Card                         | Multi-Tenant Capability                               |
+| ---------------------------- | ----------------------------------------------------- |
+| **Incident Tracker**         | High severity and total incident counts per workspace |
+| **Latest Gamebook Activity** | Recent response actions across all tenants            |
+| **Data Connector Anomalies** | Connector health issues by workspace                  |
+| **Incidents Table**          | All incidents from all tenants in one view            |
+
+### Default Behavior
+
+By default, the Command Page displays data for all onboarded tenants. This gives you immediate visibility into your entire customer base without any configuration.
+
+<Tip>
+  Start your day on the Command Page to quickly identify which customers need attention. High severity incidents are surfaced automatically.
+</Tip>
+
+---
+
+## Workspace Filtering
+
+While seeing everything is powerful, sometimes you need to focus. The **Workspace Filter** lets you customize your view.
+
+### How It Works
+
+<Steps>
+  <Step title="Open the Filter">
+    Click the workspace dropdown in the top navigation bar
+  </Step>
+  <Step title="Select Workspaces">
+    Check the workspaces you want to display (one, several, or all)
+  </Step>
+  <Step title="View Filtered Data">
+    All dashboard cards and tables update to show only selected workspaces
+  </Step>
+</Steps>
+
+<Frame>
+  ![Workspace filter selection](/images/workspace-filter-selection.png)
+</Frame>
+
+### Filter Persistence
+
+Your workspace selection **persists as you navigate** between pages in ContraForce:
+
+- Command Page → Endpoints Page → Gamebooks Page
+- Your selected workspaces remain active throughout your session
+- No need to re-select filters on each page
+
+<Info>
+  This persistence is especially useful when you're focused on a specific customer's issues and need to investigate across multiple ContraForce features.
+</Info>
+
+### Additional Filters
+
+Beyond workspace filtering, you can further refine the Incidents table by:
+
+| Filter       | Options                          | Use Case                      |
+| ------------ | -------------------------------- | ----------------------------- |
+| **Severity** | High, Medium, Low, Informational | Prioritize critical incidents |
+| **Status**   | New, Active, Closed              | Focus on open investigations  |
+| **Module**   | Sentinel, Defender XDR           | Filter by security product    |
+
+---
+
+## Multi-Tenant Incident Management
+
+Managing incidents across tenants follows the same workflow—but with added context about which customer is affected.
+
+### Incident Table Columns
+
+The Incidents table includes workspace identification:
+
+| Column             | Description                                   |
+| ------------------ | --------------------------------------------- |
+| **Severity**       | Incident severity level                       |
+| **Workspace**      | Which customer/tenant the incident belongs to |
+| **Incident Title** | Description of the incident                   |
+| **Incident ID**    | Unique identifier (click to investigate)      |
+| **Creation Time**  | When the incident was detected                |
+| **Status**         | Current investigation state                   |
+| **Owner**          | Assigned analyst                              |
+
+### Bulk Operations Across Tenants
+
+You can perform bulk actions on incidents from multiple tenants simultaneously:
+
+<Steps>
+  <Step title="Select Incidents">
+    Check incidents from any combination of workspaces
+  </Step>
+  <Step title="Click Update Incidents">
+    Open the bulk action dialog
+  </Step>
+  <Step title="Apply Changes">
+    Assign owner, change status, or close—all in one action
+  </Step>
+</Steps>
+
+<Warning>
+  When performing bulk operations, verify you've selected the correct incidents. The workspace column helps you confirm which customers are affected.
+</Warning>
+
+---
+
+## Multi-Tenant Endpoint Management
+
+The **Endpoints Page** extends multi-tenant visibility to your device inventory.
+
+### Unified Device View
+
+See all endpoints from all tenants in a single table:
+
+| Column             | Description                    |
+| ------------------ | ------------------------------ |
+| **Workspace**      | Which customer owns the device |
+| **Device Name**    | Endpoint hostname              |
+| **Exposure Level** | Risk assessment from Defender  |
+| **OS Platform**    | Windows, macOS, Linux, etc.    |
+| **Health State**   | Device health status           |
+| **Last Seen**      | Most recent check-in time      |
+
+### Cross-Tenant Endpoint Actions
+
+Run Defender for Endpoint actions on any device, regardless of tenant:
+
+- Isolate device
+- Run antivirus scan
+- Collect investigation package
+- Restrict app execution
+
+<Tip>
+  Use the workspace filter to focus on a specific customer's endpoints when troubleshooting device-specific issues.
+</Tip>
+
+---
+
+## Multi-Tenant Gamebook Activity
+
+Track automated response actions across your entire customer base.
+
+### Gamebook Activity Card
+
+The Command Page shows **Latest Gamebook Activity** with:
+
+- **Workspace** — Which customer the action was performed on
+- **Status** — Success, Failed, Pending Approval
+- **Incident** — Linked incident ID
+- **Owner** — Who initiated the action
+
+### Approval Workflows
+
+When Gamebook actions require approval, you can manage all pending requests from one location:
+
+1. Navigate to the **Gamebook Activity** tab
+2. View pending approvals across all tenants
+3. Approve or reject with full context
+
+## Workspace Management
+
+The **Workspaces Page** provides administrative control over your tenants.
+
+### Pre-Onboarding
+
+Prepare customer environments before full deployment:
+
+- Create workspace placeholders
+- Configure initial settings
+- Streamline the onboarding process
+
+### Post-Onboarding Management
+
+After onboarding, manage workspace configurations:
+
+- View onboarding status
+- Access workspace settings
+- Monitor integration health
+
+<Card title="Learn More" icon="folder-tree" href="/guides/getting-started/contraforce-workspaces-page">
+  Complete guide to the Workspaces Page
+</Card>
+
+---
+
+## Best Practices for Multi-Tenant Operations
+
+<AccordionGroup>
+  <Accordion title="Establish naming conventions">
+    Use consistent workspace names that clearly identify customers. This makes filtering and incident triage faster.
+  </Accordion>
+  <Accordion title="Create tiered response procedures">
+    Define which incident types require immediate attention vs. scheduled review. Use severity filtering to prioritize.
+  </Accordion>
+  <Accordion title="Assign dedicated analysts per customer segment">
+    For large deployments, consider assigning analysts to specific workspace groups to build customer familiarity.
+  </Accordion>
+  <Accordion title="Review the Command Page daily">
+    Start each day with a Command Page review across all tenants to catch emerging issues early.
+  </Accordion>
+  <Accordion title="Monitor connector health proactively">
+    Don't wait for incidents to reveal data flow problems. Check Data Connector Anomalies regularly.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="Command Page" icon="gauge" href="/guides/getting-started/contraforce-command-page">
+    Deep dive into the central dashboard
+  </Card>
+  <Card title="Incident Management" icon="shield-halved" href="/guides/getting-started/contraforce-incident-management-user-guide">
+    Complete incident workflow guide
+  </Card>
+  <Card title="Workspaces Page" icon="folder-tree" href="/guides/getting-started/contraforce-workspaces-page">
+    Manage tenant configurations
+  </Card>
+  <Card title="Endpoint Management" icon="laptop" href="/guides/getting-started/endpoint-page-overview">
+    Device inventory and actions
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+  Questions about multi-tenant features? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
