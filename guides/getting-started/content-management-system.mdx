@@ -1,0 +1,407 @@
+---
+title: "Content Management System (CMS)"
+description: "Deploy and manage security detection rules across Microsoft Sentinel environments with toggle-based activation—no KQL expertise required."
+---
+
+The Content Management System (CMS) transforms security detection engineering from a specialized discipline into an accessible, scalable process. Deploy expert-authored detection rules to your Sentinel workspaces with simple toggles—no complex configuration, no KQL expertise required.
+
+<Info>
+CMS is available for workspaces with the **XDR + SIEM module** deployed. Detection rules are continuously updated by ContraForce's security engineering team.
+</Info>
+
+## Why CMS?
+
+<CardGroup cols={2}>
+  <Card title="Expert-Authored Rules" icon="shield-check">
+    Detection content written by security engineers, continuously updated for emerging threats
+  </Card>
+  <Card title="One-Click Deployment" icon="toggle-on">
+    Enable rules with a toggle—no KQL, no complex configuration, no multi-step installations
+  </Card>
+  <Card title="Multi-Tenant Scale" icon="building">
+    Deploy the same rules across one customer or hundreds from a single interface
+  </Card>
+  <Card title="Automatic Updates" icon="arrows-rotate">
+    Keep detection rules current as threats evolve, with optional auto-update
+  </Card>
+</CardGroup>
+
+---
+
+## The Problem CMS Solves
+
+Security teams face what we call "the content storm"—the overwhelming challenge of creating, deploying, and maintaining detection rules at scale.
+
+### Traditional Challenges
+
+<AccordionGroup>
+  <Accordion title="Expertise Requirements">
+    Writing effective detection rules requires deep knowledge of KQL (Kusto Query Language), understanding of attack techniques, and familiarity with Microsoft Sentinel's rule configuration options. This expertise is expensive and hard to find.
+  </Accordion>
+  <Accordion title="Time-Intensive Maintenance">
+    Threats evolve constantly. Detection rules that worked yesterday may miss today's attack variants. Keeping rules current across multiple customer environments is a never-ending task.
+  </Accordion>
+  <Accordion title="Scaling Difficulties">
+    What works for one Sentinel workspace becomes exponentially harder when managing dozens or hundreds of customer environments. Microsoft's native interface requires navigating through each tenant individually.
+  </Accordion>
+  <Accordion title="Configuration Complexity">
+    Deploying a single rule in Sentinel's native interface involves multiple steps—finding the template, configuring parameters, setting schedules, mapping entities. Multiply this across hundreds of rules and many tenants, and the burden becomes unsustainable.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## How CMS Works
+
+### Detection Rule Library
+
+CMS provides access to a continuously updated library of detection rules organized by data source. Each rule includes:
+
+| Attribute | Description |
+|-----------|-------------|
+| **Display Name** | Clear, descriptive name for the detection |
+| **Description** | What the rule detects and why it matters |
+| **Severity** | Risk level (Low, Medium, High) to prioritize response |
+| **MITRE ATT&CK Mapping** | Tactics and techniques the detection covers |
+| **Query** | The underlying KQL logic (visible for transparency) |
+| **Version** | CalVer format (e.g., 2024.01.15) for tracking updates |
+| **Query Frequency** | How often the rule runs |
+| **Query Period** | The time window the rule analyzes |
+
+### Simple Deployment
+
+Deploying a detection rule is as simple as toggling a switch:
+
+<Steps>
+  <Step title="Toggle Enable">
+    Click the toggle switch next to any rule
+  </Step>
+  <Step title="Rule Retrieved">
+    CMS retrieves the rule definition from the secure repository
+  </Step>
+  <Step title="Transformation">
+    The rule is transformed into Microsoft Sentinel's API format
+  </Step>
+  <Step title="Deployment">
+    An authenticated API call deploys the rule to your workspace
+  </Step>
+  <Step title="Confirmation">
+    Deployment status updates in real-time
+  </Step>
+</Steps>
+
+### Automated Updates
+
+When our security engineering team improves a detection rule—whether to catch new attack variants, reduce false positives, or optimize performance—CMS can automatically update the rule in your environment.
+
+<Tip>
+You control whether updates happen automatically or require manual approval based on your change management requirements.
+</Tip>
+
+### Version Management
+
+Every rule is versioned using Calendar Versioning (CalVer). You can see:
+
+- Which version is currently deployed
+- Whether a newer version is available
+- The history of changes to any rule
+
+This transparency lets you make informed decisions about when and whether to update.
+
+---
+
+## Key Capabilities
+
+<Tabs>
+  <Tab title="Multi-Tenant Deployment">
+    For MSSPs and organizations with multiple Sentinel workspaces, CMS enables deployment across all environments from a single interface.
+    
+    - Deploy to one customer or one hundred—the process is identical
+    - Consistent detection coverage across your entire customer base
+    - No need to log into each Azure tenant separately
+  </Tab>
+  <Tab title="Toggle-Based Activation">
+    Enable or disable any rule with a single click.
+    
+    - No navigating through Azure portals
+    - No complex configuration forms
+    - At-a-glance visibility into which rules are active, disabled, or have updates available
+  </Tab>
+  <Tab title="Real-Time Status">
+    When you deploy or remove a rule, you see immediate feedback:
+    
+    - Deployment in progress indicator
+    - Success confirmation
+    - Error details with actionable information if something goes wrong
+  </Tab>
+  <Tab title="Role-Based Access">
+    CMS respects your organization's permission structure:
+    
+    - Control who can deploy new rules
+    - Control who can enable automatic updates
+    - Control who can remove deployed rules
+    - Maintain audit trails of all changes
+  </Tab>
+</Tabs>
+
+---
+
+## Supported Data Sources
+
+CMS provides detection rules for threats across your Microsoft Sentinel data sources:
+
+<CardGroup cols={3}>
+  <Card title="Identity" icon="user-shield">
+    - Azure Active Directory
+    - Entra ID
+    - Sign-in analytics
+  </Card>
+  <Card title="Microsoft 365" icon="microsoft">
+    - Exchange Online
+    - SharePoint
+    - Teams
+  </Card>
+  <Card title="Azure Infrastructure" icon="cloud">
+    - Azure Activity
+    - Azure Security Center
+    - Network Security Groups
+  </Card>
+  <Card title="Endpoints" icon="laptop">
+    - Windows Security Events
+    - Linux Syslog
+    - Defender for Endpoint
+  </Card>
+  <Card title="Network" icon="network-wired">
+    - DNS Analytics
+    - Firewall logs
+    - Network flow data
+  </Card>
+  <Card title="And More" icon="plus">
+    Library continuously expands with new data sources and detections
+  </Card>
+</CardGroup>
+
+Each data source has its own collection of rules tailored to the specific threats and attack patterns relevant to that telemetry.
+
+---
+
+## Technical Architecture
+
+### Direct Integration with Microsoft Sentinel
+
+CMS communicates directly with Microsoft Sentinel through the Azure Resource Manager (ARM) API:
+
+| Advantage | Description |
+|-----------|-------------|
+| **Reliability** | No intermediate systems that could fail or introduce delays |
+| **Speed** | Rule deployments complete in seconds, not minutes |
+| **Transparency** | Every deployment operation is logged with full details |
+
+### Background Processing
+
+Rule deployments run as background jobs:
+
+- Your browser doesn't need to stay open during deployment
+- Multiple deployments can run simultaneously
+- Failed deployments automatically retry
+- Notifications alert you when operations complete
+
+### Secure Rule Storage
+
+Detection rules are stored in a dedicated Azure Cosmos DB database with:
+
+- Encryption at rest
+- Version history preservation
+- Geographic redundancy
+- High availability
+
+---
+
+## Benefits by Role
+
+<Tabs>
+  <Tab title="Security Analysts">
+    <Card title="For Security Analysts" icon="user-magnifying-glass">
+      - **Faster onboarding** — Start detecting threats immediately with pre-built rules
+      - **Less context switching** — Manage detection content alongside incident response in one platform
+      - **Confidence** — Know that detection rules are authored by security experts and continuously updated
+    </Card>
+  </Tab>
+  <Tab title="Security Engineers">
+    <Card title="For Security Engineers" icon="code">
+      - **Focus on what matters** — Spend time on custom detections specific to your environment, not maintaining standard rules
+      - **Transparency** — Review the underlying queries to understand exactly what each rule does
+      - **Control** — Choose between automatic updates and manual approval based on your change management requirements
+    </Card>
+  </Tab>
+  <Tab title="MSSPs">
+    <Card title="For MSSPs" icon="building">
+      - **Scale efficiently** — Manage detection content for all customers from one interface
+      - **Differentiate services** — Offer managed detection content as a value-added service
+      - **Reduce costs** — Minimize the specialized expertise needed for detection engineering
+      - **Onboard faster** — Deploy comprehensive detection coverage to new customers in minutes
+    </Card>
+  </Tab>
+  <Tab title="Security Leaders">
+    <Card title="For Security Leaders" icon="chart-line">
+      - **Reduce risk** — Comprehensive threat detection without building an in-house detection engineering team
+      - **Optimize spending** — Achieve broad coverage at a fraction of the cost of custom development
+      - **Maintain compliance** — Documentation and audit trails support compliance requirements
+      - **Stay current** — Automatic updates ensure protection against emerging threats
+    </Card>
+  </Tab>
+</Tabs>
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+<Steps>
+  <Step title="ContraForce Account">
+    A ContraForce account with appropriate permissions
+  </Step>
+  <Step title="Sentinel Workspace">
+    A Microsoft Sentinel workspace connected to ContraForce (XDR + SIEM module)
+  </Step>
+  <Step title="Required Role">
+    Data Source Admin, Content Admin, or Organization Admin role
+  </Step>
+</Steps>
+
+### Deploying Your First Rule
+
+<Steps>
+  <Step title="Navigate to CMS">
+    Go to the **Content Management** section in ContraForce
+  </Step>
+  <Step title="Select Data Source">
+    Choose the data source you want to configure (e.g., Azure AD, Microsoft 365)
+  </Step>
+  <Step title="Browse Rules">
+    Review available rules and their descriptions, MITRE mappings, and severities
+  </Step>
+  <Step title="Enable Rules">
+    Toggle the rules you want to deploy to **Enabled**
+  </Step>
+  <Step title="Monitor Deployment">
+    Watch the real-time status as rules deploy to your workspace
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/cms-rule-deployment.png" alt="CMS rule deployment interface" />
+</Frame>
+
+### Configuring Automatic Updates
+
+<Steps>
+  <Step title="Select Rule">
+    Click on a deployed rule to open its details
+  </Step>
+  <Step title="Enable Auto-Update">
+    Toggle the **Auto-Update** option to enabled
+  </Step>
+  <Step title="Automatic Deployment">
+    When new versions are released, they deploy automatically
+  </Step>
+</Steps>
+
+<Info>
+You can enable auto-update for individual rules or set a workspace-wide default. Rules with auto-update disabled will show an "Update Available" indicator when new versions are released.
+</Info>
+
+---
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="Will deploying a rule affect my existing Sentinel rules?">
+    No. CMS-deployed rules are tracked separately and won't interfere with rules you've created manually in Sentinel. They coexist peacefully with your custom detections.
+  </Accordion>
+  <Accordion title="Can I modify a CMS-deployed rule?">
+    CMS rules are deployed as-is to ensure consistency and supportability. If you need custom modifications, you can use the rule as a template and create your own version in Sentinel directly.
+  </Accordion>
+  <Accordion title="What happens if a deployment fails?">
+    You'll see an error message with details about what went wrong. Common causes include permission issues or temporary Azure API unavailability. Failed deployments can be retried with a single click.
+  </Accordion>
+  <Accordion title="How often are new rules added to the library?">
+    Our security engineering team continuously develops new detections based on emerging threats, customer feedback, and industry research. New rules are added regularly.
+  </Accordion>
+  <Accordion title="Can I see what changed in a rule update?">
+    Yes. Each rule version includes information about what was modified—whether it's an improvement to detection logic, a reduction in false positives, or a performance optimization.
+  </Accordion>
+  <Accordion title="What permissions do I need to deploy rules?">
+    You need the **Data Source Admin**, **Content Admin**, or **Organization Admin** role in ContraForce. You also need appropriate permissions in the target Azure tenant for Sentinel API access.
+  </Accordion>
+  <Accordion title="Can I deploy rules to multiple workspaces at once?">
+    Yes. CMS supports bulk deployment across multiple Sentinel workspaces. Select the workspaces you want to target and enable the rules—they deploy to all selected workspaces simultaneously.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Start with high-confidence rules">
+    Begin by enabling rules with low false positive rates and high detection value. As you gain confidence in the system, expand to broader coverage.
+  </Accordion>
+  <Accordion title="Enable auto-update for standard rules">
+    For general-purpose detection rules, enable auto-update to stay current with threat landscape changes. Reserve manual approval for rules where you need tight change control.
+  </Accordion>
+  <Accordion title="Review MITRE coverage">
+    Use the MITRE ATT&CK mappings to ensure you have detection coverage across the kill chain. Identify gaps and enable rules that address them.
+  </Accordion>
+  <Accordion title="Align rules with data sources">
+    Only enable rules for data sources you actually have connected. Enabling rules without the corresponding telemetry will result in rules that never fire.
+  </Accordion>
+  <Accordion title="Monitor rule performance">
+    Periodically review which rules are generating incidents. Rules that never trigger may indicate missing data sources or detections that aren't relevant to your environment.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Learn More
+
+<CardGroup cols={2}>
+  <Card title="Product Release Blog" icon="newspaper" href="https://www.contraforce.com/blog/product-release-a-better-way-to-manage-detection-content">
+    A Better Way to Manage Detection Content
+  </Card>
+  <Card title="CISA Guidance for SIEM/SOAR" icon="shield" href="https://www.contraforce.com/blog/how-mssps-can-implement-the-new-cisa-guidance-for-siem-and-soar">
+    How MSSPs Can Implement CISA Guidance
+  </Card>
+  <Card title="Multi-Tenant Automation" icon="gears" href="https://www.contraforce.com/blog/10-ways-contraforce-uniquely-automates-multi-tenant-management-of-microsoft-sentinel-and-microsoft-defender-2">
+    10 Ways ContraForce Automates Multi-Tenant Management
+  </Card>
+  <Card title="User Roles Reference" icon="users" href="/guides/technical/contraforce-user-roles">
+    Permissions for CMS access
+  </Card>
+</CardGroup>
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="Module Overview" icon="cubes" href="/guides/onboarding/contraforce-module-overview">
+    XDR vs XDR + SIEM modules
+  </Card>
+  <Card title="Sentinel Hunting" icon="magnifying-glass" href="/guides/technical/sentinel-advanced-threat-hunting">
+    Advanced threat hunting in Sentinel
+  </Card>
+  <Card title="Notifications" icon="bell" href="/guides/technical/contraforce-notifications">
+    Configure incident notifications
+  </Card>
+  <Card title="Capabilities Matrix" icon="table" href="/guides/technical/contraforce-capabilities-matrix">
+    Full feature comparison by integration
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about the Content Management System? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
