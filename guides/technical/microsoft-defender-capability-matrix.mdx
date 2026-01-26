@@ -1,0 +1,388 @@
+---
+title: "Microsoft Defender Capability Matrix"
+description: "Complete feature reference for ContraForce capabilities with Microsoft Defender products across Business Premium, E3, and E5 licenses."
+---
+
+This capability matrix details which ContraForce features are available for Microsoft Defender XDR based on your Microsoft 365 license tier. Use this reference to understand what capabilities you can leverage and what dependencies may apply.
+
+<Info>
+This matrix covers the **XDR module** capabilities. For SIEM capabilities with Microsoft Sentinel, see the [full Capabilities Matrix](/guides/technical/contraforce-capabilities-matrix).
+</Info>
+
+## Understanding the Matrix
+
+### Legend
+
+| Symbol | Meaning |
+|:------:|---------|
+| ✓ | Capability fully available |
+| ✓(1) | Requires Microsoft Entra ID connection |
+| ✓(2) | Requires Microsoft Sentinel connection |
+| ✓(3) | Requires Defender for Endpoint Plan 2 |
+| ✓(4) | Requires Microsoft 365 Exchange license |
+| — | Not available |
+
+### License Tiers
+
+<CardGroup cols={3}>
+  <Card title="Business Premium" icon="building">
+    Small/medium business license with Defender for Business
+  </Card>
+  <Card title="Enterprise E3" icon="building-columns">
+    Enterprise license with Defender for Endpoint P1
+  </Card>
+  <Card title="Enterprise E5" icon="city">
+    Full enterprise license with Defender for Endpoint P2
+  </Card>
+</CardGroup>
+
+---
+
+## Incident Investigation
+
+Core capabilities for investigating security incidents detected by Microsoft Defender XDR.
+
+### Incident Management
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Bi-directional streaming of incidents | ✓ | ✓ | ✓ |
+| Fetching incident entities | ✓ | ✓ | ✓ |
+| Fetching incident evidence (logs) | ✓ | ✓ | ✓ |
+| Incident alert timelines | ✓ | ✓ | ✓ |
+| Incident investigation audit | ✓ | ✓ | ✓ |
+
+<Tip>
+All core incident management features are available across all license tiers. ContraForce provides full incident visibility regardless of your Microsoft 365 license.
+</Tip>
+
+---
+
+## Entity Enrichment & Triage
+
+Capabilities for enriching entity data and correlating related incidents during investigation.
+
+### User Insights
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Related incident search | ✓ | ✓ | ✓ |
+| Sign-in logs | ✓(1) | ✓(1) | ✓(1) |
+| Audit logs | ✓(1) | ✓(1) | ✓(1) |
+| Entra ID profile | ✓(1) | ✓(1) | ✓(1) |
+
+<Note>
+**(1)** User insights require Microsoft Entra ID to be connected to ContraForce. Consent the appropriate enterprise applications during onboarding.
+</Note>
+
+### IP Address Insights
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Sign-in log activity | ✓(2) | ✓(2) | ✓(2) |
+| Related incidents | ✓(3) | ✓(3) | ✓ |
+
+<Note>
+**(2)** IP sign-in activity requires Microsoft Sentinel connection (XDR + SIEM module).
+
+**(3)** Some IP insights require Defender for Endpoint Plan 2 on Business Premium and E3.
+</Note>
+
+### Device Insights
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Device info | ✓ | ✓ | ✓ |
+| Device timeline | ✓(3) | ✓(3) | ✓ |
+| Related incidents | ✓(3) | ✓(3) | ✓ |
+
+<Note>
+**(3)** Device timeline and related incidents require Defender for Endpoint Plan 2 add-on for Business Premium and E3 licenses.
+</Note>
+
+### Email Insights
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Related incidents | ✓ | ✓ | ✓ |
+| Email info | ✓(3) | ✓(3) | ✓ |
+
+### File Insights
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Related incidents | ✓ | ✓ | ✓ |
+| File info | ✓ | ✓ | ✓ |
+
+### URL Insights
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Related incidents | ✓ | ✓ | ✓ |
+| URL info | ✓(3) | ✓(3) | ✓ |
+
+---
+
+## Log Search
+
+Advanced hunting and log query capabilities.
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Log search (Advanced Hunting) | ✓(3) | ✓(3) | ✓ |
+
+<Warning>
+Log search requires Defender for Endpoint Plan 2 for Business Premium and E3 licenses. E5 includes this capability natively.
+</Warning>
+
+---
+
+## Endpoint Management
+
+Capabilities for managing and monitoring endpoints through ContraForce.
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| View device list | ✓ | ✓ | ✓ |
+| View device info | ✓ | ✓ | ✓ |
+
+<Tip>
+All endpoint visibility features are available across all license tiers. The Endpoints page in ContraForce shows all devices managed by Defender for Endpoint.
+</Tip>
+
+---
+
+## Gamebook Response Actions
+
+Automated response capabilities organized by entity type.
+
+### Endpoint Actions
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Isolate endpoint | ✓ | ✓ | ✓ |
+| Anti-virus scan of endpoint | ✓ | ✓ | ✓ |
+| Remove from isolation | ✓ | ✓ | ✓ |
+
+<Info>
+Endpoint Gamebook actions require the **Gamebooks for Microsoft Defender XDR** enterprise application to be consented.
+</Info>
+
+### File Actions
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Quarantine file | ✓ | ✓ | ✓ |
+
+### User Actions
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Invalidate existing sessions | ✓(1) | ✓(1) | ✓(1) |
+| Reset user password | ✓(1) | ✓(1) | ✓(1) |
+| Lock out user | ✓(1) | ✓(1) | ✓(1) |
+| Unlock user | ✓(1) | ✓(1) | ✓(1) |
+
+<Note>
+**(1)** User Gamebook actions require Microsoft Entra ID connection and the **Gamebooks for Identity** enterprise application.
+</Note>
+
+### IP Address Actions
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Block IP (Azure NSG) | — | — | — |
+
+<Info>
+IP blocking via Azure Network Security Groups is planned for future release.
+</Info>
+
+### Email Actions
+
+| Capability | Business Premium | E3 | E5 |
+|------------|:----------------:|:--:|:--:|
+| Soft delete email | ✓(4) | ✓(4) | ✓(4) |
+
+<Note>
+**(4)** Email actions require a Microsoft 365 Exchange license and the **Microsoft 365 Response** enterprise application.
+</Note>
+
+---
+
+## Dependencies Reference
+
+### Dependency (1): Microsoft Entra ID
+
+**Required for:** User insights, User Gamebook actions
+
+**How to enable:**
+1. During onboarding, consent the ContraForce enterprise applications
+2. The Gamebooks for Identity service principal must be consented for user response actions
+
+**Enterprise Applications:**
+- ContraForce API
+- ContraForce Portal
+- Gamebooks for Identity
+
+### Dependency (2): Microsoft Sentinel
+
+**Required for:** IP sign-in activity
+
+**How to enable:**
+1. Deploy the XDR + SIEM module instead of XDR-only
+2. Connect your Sentinel workspace during onboarding
+
+<Card title="Sentinel Onboarding" icon="shield-halved" href="/guides/onboarding/microsoft-sentinel-onboarding">
+  Complete Sentinel onboarding guide
+</Card>
+
+### Dependency (3): Defender for Endpoint Plan 2
+
+**Required for:** Device timeline, IP/Email/URL detailed insights, Log search
+
+**How to enable:**
+- E5 licenses include Plan 2 natively
+- Business Premium and E3 require the Defender for Endpoint Plan 2 add-on
+
+**License options:**
+| Base License | Add-on Required |
+|--------------|-----------------|
+| Business Premium | Defender for Endpoint Plan 2 |
+| Enterprise E3 | Defender for Endpoint Plan 2 |
+| Enterprise E5 | Included |
+
+### Dependency (4): Microsoft 365 Exchange
+
+**Required for:** Email Gamebook actions (soft delete)
+
+**How to enable:**
+1. Ensure users have Exchange Online licenses
+2. Consent the Microsoft 365 Response enterprise application
+
+<Card title="M365 Response Application" icon="envelope" href="/guides/technical/contraforce-microsoft-365-response-enterprise-application">
+  Microsoft 365 Response enterprise application details
+</Card>
+
+---
+
+## Complete Capability Summary
+
+### By License Tier
+
+<Tabs>
+  <Tab title="Business Premium">
+    **Full capabilities:**
+    - All incident management features
+    - Endpoint management (view devices)
+    - All endpoint Gamebook actions
+    - File quarantine
+    - Basic entity insights
+    
+    **With Entra ID:**
+    - User insights (sign-in, audit, profile)
+    - User Gamebook actions
+    
+    **With Exchange:**
+    - Email soft delete
+    
+    **Requires Plan 2 add-on:**
+    - Device timeline
+    - Advanced log search
+    - Detailed IP/Email/URL insights
+  </Tab>
+  <Tab title="Enterprise E3">
+    **Full capabilities:**
+    - All incident management features
+    - Endpoint management (view devices)
+    - All endpoint Gamebook actions
+    - File quarantine
+    - Basic entity insights
+    
+    **With Entra ID:**
+    - User insights (sign-in, audit, profile)
+    - User Gamebook actions
+    
+    **With Exchange:**
+    - Email soft delete
+    
+    **Requires Plan 2 add-on:**
+    - Device timeline
+    - Advanced log search
+    - Detailed IP/Email/URL insights
+  </Tab>
+  <Tab title="Enterprise E5">
+    **Full capabilities:**
+    - All incident management features
+    - Endpoint management (view devices)
+    - All endpoint Gamebook actions
+    - File quarantine
+    - Device timeline
+    - Advanced log search
+    - All entity insights (IP, Email, URL, File)
+    
+    **With Entra ID:**
+    - User insights (sign-in, audit, profile)
+    - User Gamebook actions
+    
+    **With Exchange:**
+    - Email soft delete
+  </Tab>
+</Tabs>
+
+### Quick Reference by Feature Area
+
+| Feature Area | Dependencies | Notes |
+|--------------|--------------|-------|
+| Incident Management | None | Full capability on all licenses |
+| Endpoint Management | None | Full capability on all licenses |
+| Endpoint Gamebooks | Gamebooks for Defender XDR | Full capability on all licenses |
+| User Insights | Entra ID (1) | Same across all licenses |
+| User Gamebooks | Entra ID (1) + Gamebooks for Identity | Same across all licenses |
+| Device Timeline | Plan 2 (3) | Native on E5 |
+| Log Search | Plan 2 (3) | Native on E5 |
+| Email Actions | Exchange (4) + M365 Response | Same across all licenses |
+| IP Sign-in Activity | Sentinel (2) | Requires XDR + SIEM module |
+
+---
+
+## Maximizing Your Capabilities
+
+<AccordionGroup>
+  <Accordion title="Connect Entra ID for user capabilities">
+    User insights and user Gamebook actions are essential for identity-based investigations. Ensure you consent all identity-related enterprise applications during onboarding.
+  </Accordion>
+  <Accordion title="Consider E5 or Plan 2 add-on for full visibility">
+    If you frequently need device timelines, advanced hunting, or detailed entity insights, the Defender for Endpoint Plan 2 capabilities are worth the investment.
+  </Accordion>
+  <Accordion title="Add Sentinel for comprehensive coverage">
+    The XDR + SIEM module adds Sentinel incidents, advanced threat hunting, CMS, and IP sign-in insights. Consider upgrading if you use Sentinel.
+  </Accordion>
+  <Accordion title="Consent all relevant enterprise applications">
+    Many capabilities require specific enterprise applications. Review the [Enterprise Applications Overview](/guides/technical/contraforce-enterprise-applications) and consent all applications relevant to your needs.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="Full Capabilities Matrix" icon="table" href="/guides/technical/contraforce-capabilities-matrix">
+    Complete matrix including SIEM integrations
+  </Card>
+  <Card title="XDR Onboarding" icon="rocket" href="/guides/onboarding/microsoft-defender-xdr-onboarding">
+    Deploy the XDR module
+  </Card>
+  <Card title="Enterprise Applications" icon="key" href="/guides/technical/contraforce-enterprise-applications">
+    All service principals and permissions
+  </Card>
+  <Card title="Gamebooks" icon="bolt" href="/guides/getting-started/what-are-gamebooks">
+    Response action capabilities
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about capabilities or licensing? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>

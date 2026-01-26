@@ -48,7 +48,8 @@
             "group": "Technical",
             "pages": [
               "entity-insights",
-              "defender-xdr-module"
+              "defender-xdr-module",
+              "guides/technical/microsoft-defender-capability-matrix"
             ]
           },
           {
