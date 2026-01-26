@@ -30,9 +30,9 @@
           {
             "group": "Getting started",
             "pages": [
-              "index",
+              "overview",
               "quickstart",
-              "development"
+              "incident-management-user-guide"
             ]
           },
           {

@@ -1,0 +1,296 @@
+---
+title: "Incident Management User Guide"
+description: "A complete workflow for triaging, investigating, and resolving security incidents in ContraForce."
+---
+
+This guide walks you through the recommended workflow for managing security incidents in ContraForce—from initial triage to resolution.
+
+<Info>
+ContraForce empowers analysts to efficiently manage incidents across multiple tenants and data sources. This workflow is designed to help you resolve incidents faster and deliver better service to your customers.
+</Info>
+
+## Workflow Overview
+
+<Steps>
+  <Step title="Filter Workspaces">
+    Focus on specific tenants or view all incidents across your environment
+  </Step>
+  <Step title="Assign Incidents">
+    Route incidents to the appropriate analyst
+  </Step>
+  <Step title="Investigate">
+    Review the incident summary, entities, timeline, and evidence
+  </Step>
+  <Step title="Respond with Gamebooks">
+    Execute automated response actions with one click
+  </Step>
+  <Step title="Close the Incident">
+    Document findings and close with proper classification
+  </Step>
+</Steps>
+
+---
+
+## 1. Workspace Filtering
+
+The Command Page allows you to customize which incidents are displayed by filtering on Workspace, Severity, and Status. These filters persist as you navigate between pages in ContraForce.
+
+### Setting Your Workspace Filter
+
+<Steps>
+  <Step title="Open the Filter">
+    Click the workspace dropdown menu in the top bar of the Command Page
+  </Step>
+  <Step title="Select Workspaces">
+    Choose one or more workspaces to display
+  </Step>
+  <Step title="View Filtered Results">
+    The Incidents table updates to show only incidents from selected workspaces
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/workspace-filter-dropdown.png" alt="Workspace filter dropdown" />
+</Frame>
+
+### Additional Filters
+
+Beyond workspace filtering, you can further refine your view:
+
+| Filter | Options | Use Case |
+|--------|---------|----------|
+| **Severity** | High, Medium, Low, Informational | Focus on critical incidents first |
+| **Status** | New, Active, Closed | View only incidents requiring action |
+| **Module** | Sentinel, Defender XDR | Filter by security product |
+
+<Tip>
+When filtering by status, you'll see statuses organized by module (Sentinel, Defender XDR, etc.). This helps you quickly identify incidents by source.
+</Tip>
+
+---
+
+## 2. Incident Assignment
+
+Proper incident assignment ensures the right analyst handles each incident and provides clear ownership for tracking.
+
+### Individual Assignment
+
+To assign a single incident:
+
+1. Locate the incident in the Incidents table
+2. Click the dropdown in the **Owner** column
+3. Select an analyst from the list of portal users
+
+### Bulk Assignment
+
+To assign multiple incidents at once:
+
+<Steps>
+  <Step title="Select Incidents">
+    Check the boxes next to incidents you want to update
+  </Step>
+  <Step title="Click Update Incidents">
+    Click the "Update Incidents" button in the table header
+  </Step>
+  <Step title="Set Owner and Status">
+    Choose the assignee and optionally update the status
+  </Step>
+  <Step title="Apply Changes">
+    Confirm to apply changes to all selected incidents
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/bulk-incident-assignment.png" alt="Bulk incident assignment" />
+</Frame>
+
+---
+
+## 3. Incident Summary
+
+The Incident Summary provides a complete view of an incident with all the context you need for investigation.
+
+### Accessing the Summary
+
+Click any **Incident ID** in the Incidents table to open its Summary view.
+
+<Frame>
+  <img src="/images/incident-summary-overview.png" alt="Incident Summary overview" />
+</Frame>
+
+### Summary Tabs
+
+<Tabs>
+  <Tab title="Entities">
+    **Associated Entities** shows all entities involved in the incident (users, devices, IPs, etc.).
+    
+    - Click the dropdown on any entity to see other incidents it's associated with
+    - Click an incident ID to open it in a new tab
+    - Use entity insights to understand the full scope of the threat
+  </Tab>
+  <Tab title="Threat Intel">
+    **Threat Intelligence** displays enrichment data from integrated tools like VirusTotal.
+    
+    - View reputation scores for IPs, domains, and file hashes
+    - See detection ratios from multiple security vendors
+    - Access detailed threat reports when available
+  </Tab>
+  <Tab title="Timeline">
+    **Timeline** provides a chronological view of all events related to the incident.
+    
+    - See when the incident was first detected
+    - Track the progression of the attack
+    - Identify key moments for investigation
+  </Tab>
+  <Tab title="Evidence">
+    **Evidence** displays raw logs and artifacts associated with the incident.
+    
+    - Review original log data for detailed analysis
+    - Export evidence for documentation
+    - Note: Not all data connectors provide raw logs
+  </Tab>
+  <Tab title="Comments">
+    **Comments** allows analysts to collaborate and document their investigation.
+    
+    - Add notes during active investigation
+    - View comments from all team members
+    - Track investigation progress over time
+  </Tab>
+</Tabs>
+
+---
+
+## 4. Gamebook Responses
+
+Gamebooks are pre-built and custom response actions that let you remediate threats with a single click.
+
+<Info>
+Available Gamebook actions are determined by the entity types present in the incident. ContraForce automatically suggests relevant actions based on what it detects.
+</Info>
+
+### Using Suggested Gamebooks
+
+If a Gamebook has been previously executed for similar incidents, ContraForce suggests it automatically:
+
+<Frame>
+  <img src="/images/suggested-gamebook.png" alt="Suggested Gamebook" />
+</Frame>
+
+### Creating a Custom Gamebook
+
+<Steps>
+  <Step title="Open the Workbench">
+    Click the dropdown next to "Edit" and select **Create New Gamebook**
+  </Step>
+  <Step title="Explore Available Actions">
+    Click entity icons in the Entity Graph to see available response actions
+  </Step>
+  <Step title="Build Your Response">
+    - Use the arrows to navigate through action options
+    - Click the green **+** icon to add an action
+    - Click the red **-** icon to remove an action
+  </Step>
+  <Step title="Execute">
+    Click **Run Gamebook** to execute all selected actions
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/gamebook-workbench.png" alt="Gamebook Workbench" />
+</Frame>
+
+### Gamebook Approval Workflow
+
+Some Gamebook actions require approval before execution:
+
+<Warning>
+Actions with a **red lock icon** require approval from a user with appropriate permissions in the tenant.
+</Warning>
+
+**To request approval:**
+1. Build your Gamebook as usual
+2. Click **Request Gamebook Approval** (instead of Run Gamebook)
+3. The request is sent to authorized approvers
+
+**To approve a Gamebook:**
+- Approvers can approve directly from the incident, or
+- Use the **Gamebook Activity** tab to review and approve pending requests
+
+---
+
+## 5. Incident Closure
+
+After completing your investigation and response, close the incident with proper documentation.
+
+### Quick Close from Gamebook
+
+After a Gamebook completes, a green **Close Incident** button appears at the bottom of the entity graph:
+
+<Frame>
+  <img src="/images/close-incident-dialog.png" alt="Close Incident dialog" />
+</Frame>
+
+### Closure Fields
+
+| Field | Options | Purpose |
+|-------|---------|---------|
+| **Status** | Closed | Marks the incident as resolved |
+| **Classification** | True Positive, False Positive, Benign Positive, Undetermined | Categorizes the incident outcome |
+| **Classification Reason** | Free text | Documents why this classification was chosen |
+| **Comments** | Free text | Final notes on resolution |
+
+<Tip>
+Need help understanding classifications? See [Understanding Incident Classifications](/guides/getting-started/understanding-incident-classifications) for detailed guidance.
+</Tip>
+
+### Bulk Closure
+
+You can also close incidents in bulk from the Command Page:
+
+1. Select multiple incidents using checkboxes
+2. Click **Update Incidents**
+3. Set status to **Closed** and add classification details
+4. Apply changes
+
+---
+
+## Putting It Together
+
+The ContraForce incident management workflow is designed to help you:
+
+<CardGroup cols={3}>
+  <Card title="Triage Faster" icon="gauge-high">
+    Filter and prioritize incidents across all your tenants from one dashboard
+  </Card>
+  <Card title="Respond Automatically" icon="bolt">
+    Execute proven response actions with Gamebooks instead of manual remediation
+  </Card>
+  <Card title="Document Everything" icon="file-lines">
+    Maintain complete audit trails with comments, classifications, and history
+  </Card>
+</CardGroup>
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="Command Page" icon="gauge" href="/guides/getting-started/contraforce-command-page">
+    Learn more about the central incident dashboard
+  </Card>
+  <Card title="What are Gamebooks?" icon="bolt" href="/guides/getting-started/what-are-gamebooks">
+    Deep dive into automated response actions
+  </Card>
+  <Card title="Security Workbench" icon="screwdriver-wrench" href="/guides/getting-started/contraforce-security-workbench-overview">
+    Create custom response workflows
+  </Card>
+  <Card title="Incident Classifications" icon="tags" href="/guides/getting-started/understanding-incident-classifications">
+    Understand True Positive, False Positive, and more
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about this workflow? Contact us at [support@contraforce.com](mailto:support@contraforce.com). We're happy to help optimize your incident management process.
+</Note>
