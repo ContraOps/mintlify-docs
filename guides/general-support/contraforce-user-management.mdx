@@ -1,0 +1,33 @@
+---
+title: "ContraForce User Management"
+description: "Users can be added to the ContraForce Portal. Additionally, ContraForce has built in user roles to further control access."
+---
+
+## Adding Users During Onboarding
+
+Once ContraForce modules have been deployed, the ContraForce Onboarding Wizard will provide the first opportunity to add users. The dropdown below the User title will pull users from the Entra ID associated with the tenant that is being onboarded to ContraForce. The first and last name of that user will be shown under the Name title. Finally, the correct role can be assigned to the user. A table showing the different capabilities of each role is shown below and additional information about ContraForce roles can be found [here](https://docs.contraforce.com/knowledge/contraforce-user-roles).
+
+![User management during onboarding](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Mar-26-2024-06-30-48-3781-PM.png)
+
+| User Type | View Incident Data | Manage Users | Run Gamebooks | Manage Data Connectors | Manage Endpoints |
+|-----------|-------------------|--------------|---------------|------------------------|------------------|
+| **Admin** | x | x | x | x | x |
+| **Incident Analyst** | x | | | | |
+| **Incident Responder** | x | | x | | x |
+| **Data Source Admin** | x | | | x | |
+
+## Managing Users After Onboarding
+
+Once onboarding has completed, the first thing to do to manage users within ContraForce is to consent the User Management service principal. This can be found by viewing the tenant on the workspaces page and clicking the "gear" icon on the right side of the row for the workspace. All of the ContraForce Service Principals will be visible. Click Consent for the User Management service principal. Additional information about the User Management service principal can be found [here](https://docs.contraforce.com/knowledge/contraforce-user-management-service-principal).
+
+![Service principal consent](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Mar-26-2024-06-40-11-2231-PM.png)
+
+New users can be added to the ContraForce Portal on the Settings > User Management tab. If your user has the correct permissions the "Add User" button will be available on the top right of the page next to the Search bar.
+
+![Add user button](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Mar-26-2024-06-41-27-9874-PM.png)
+
+![Add user form](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Mar-26-2024-06-41-58-3097-PM.png)
+
+<Warning>
+If you have questions about the user management process in ContraForce, please contact us at support@contraforce.com.
+</Warning>
