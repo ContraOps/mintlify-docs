@@ -1,88 +1,350 @@
 ---
 title: "Entity Insights"
-description: "Text, title, and styling in standard markdown"
-icon: "file-lines"
+description: "Enrich your investigations with detailed entity insights. View sign-in logs, audit trails, threat intelligence, and related incidents for users, devices, IPs, and more."
 ---
 
-## Titles
+Entity Insights provide rich context during incident investigations. Instead of switching between tools to gather information about affected users, devices, or IP addresses, ContraForce surfaces relevant data directly within the incident view.
 
-Best used for section headers.
+<Info>
+  Available insights vary by entity type and your connected data sources. The more integrations you have enabled, the richer your entity insights will be.
+</Info>
 
-```md
-## Titles
-```
+## Why Entity Insights Matter
 
-### Subtitles
+<CardGroup cols={3}>
+  <Card title="Faster Investigations" icon="bolt">
+    Access critical context without leaving ContraForce
+  </Card>
+  <Card title="Complete Picture" icon="magnifying-glass-chart">
+    See related incidents, logs, and threat intel in one place
+  </Card>
+  <Card title="Better Decisions" icon="brain">
+    Make informed response choices with full entity context
+  </Card>
+</CardGroup>
 
-Best used for subsection headers.
+---
 
-```md
-### Subtitles
-```
+## Available Insights by Entity Type
+
+ContraForce provides different insights depending on the entity type associated with an incident.
+
+<Tabs>
+  <Tab title="User">
+    **User entities** include accounts, identities, and mailboxes.
+
+    | Insight               | Description                                                             |
+    | --------------------- | ----------------------------------------------------------------------- |
+    | **Related Incidents** | Other incidents involving this user                                     |
+    | **Sign-In Logs**      | Authentication history including locations, devices, and outcomes       |
+    | **Audit Logs**        | Administrative actions and changes made by or to this user              |
+    | **User Insights**     | Account details, group memberships, risk score, and profile information |
+
+    _Use cases: Investigating compromised accounts, tracking lateral movement, understanding user behavior patterns_
+  </Tab>
+  <Tab title="Device">
+    **Device entities** include endpoints, servers, and mobile devices.
+
+    | Insight               | Description                                                  |
+    | --------------------- | ------------------------------------------------------------ |
+    | **Timeline**          | Chronological view of events and activities on the device    |
+    | **Related Incidents** | Other incidents involving this device                        |
+    | **Device Insights**   | Hardware details, OS version, security state, exposure level |
+
+    _Use cases: Tracking malware spread, understanding attack chains, assessing device health_
+  </Tab>
+  <Tab title="IP Address">
+    **IP entities** include source and destination addresses from network activity.
+
+    | Insight               | Description                                           |
+    | --------------------- | ----------------------------------------------------- |
+    | **Related Incidents** | Other incidents involving this IP address             |
+    | **IP Insight Logs**   | Geolocation, reputation, ASN, and historical activity |
+
+    _Use cases: Identifying malicious infrastructure, tracking C2 communications, investigating data exfiltration_
+  </Tab>
+  <Tab title="Email">
+    **Email entities** include messages, attachments, and sender/recipient information.
+
+    | Insight               | Description                                                     |
+    | --------------------- | --------------------------------------------------------------- |
+    | **Email Insights**    | Message details, headers, attachments, and delivery information |
+    | **Related Incidents** | Other incidents involving this email or sender                  |
+
+    _Use cases: Investigating phishing campaigns, tracking malicious attachments, analyzing email-based attacks_
+  </Tab>
+  <Tab title="File">
+    **File entities** include executables, documents, scripts, and their hashes.
+
+    | Insight               | Description                                                           |
+    | --------------------- | --------------------------------------------------------------------- |
+    | **Related Incidents** | Other incidents involving this file or hash                           |
+    | **File Insights**     | File metadata, hash values, detection ratios, and threat intelligence |
+
+    _Use cases: Tracking malware variants, identifying suspicious files, correlating file-based IOCs_
+  </Tab>
+  <Tab title="URL">
+    **URL entities** include web addresses and domains involved in incidents.
+
+    | Insight               | Description                                                      |
+    | --------------------- | ---------------------------------------------------------------- |
+    | **Related Incidents** | Other incidents involving this URL or domain                     |
+    | **URL Insights**      | Domain reputation, registration details, and threat intelligence |
+
+    _Use cases: Investigating phishing links, blocking malicious domains, tracking web-based threats_
+  </Tab>
+</Tabs>
+
+---
+
+## Accessing Entity Insights
+
+Follow these steps to view insights for any entity in an incident.
+
+<Steps>
+  <Step title="Open the Incident">
+    From the Command Page, click the **Incident ID** in the Incidents table to open the compact incident overview
+  </Step>
+  <Step title="Expand to Detailed View">
+    Click the **diagonal arrows** icon (next to the X) in the top right corner to open the detailed incident view
+  </Step>
+  <Step title="Select Entities Tab">
+    Click the **Entities** tab to see all associated entities
+  </Step>
+  <Step title="Open Entity Menu">
+    Click the **three dots (⋮)** on any entity row to see available insights
+  </Step>
+  <Step title="Select Insight Type">
+    Choose the insight you want to view from the dropdown menu
+  </Step>
+</Steps>
+
+<Frame>
+  ![Entity insights menu for a user](/images/entity-insights-menu.png)
+</Frame>
+
+---
+
+## Working with Insights
+
+### Multiple Insights
+
+You can open multiple insights simultaneously:
+
+- Each insight opens in its own **tab** within the popup window
+- Switch between tabs to compare information
+- The popup window can be **resized** for better viewing
+
+<Frame>
+  ![Multiple entity insight tabs](/images/entity-insights-tabs.png)
+</Frame>
+
+### Insight Details
+
+Each insight type displays relevant information in an organized format:
+
+<AccordionGroup>
+  <Accordion title="Sign-In Logs">
+    **Columns typically include:**
+
+    - Timestamp
+    - Sign-in status (Success/Failure)
+    - IP address and location
+    - Device and browser information
+    - Conditional access results
+    - Risk level
+
+    **Filter by:** Date range, status, location, risk level
+  </Accordion>
+  <Accordion title="Audit Logs">
+    **Columns typically include:**
+
+    - Timestamp
+    - Activity type
+    - Target resource
+    - Initiated by (user/service)
+    - Result (Success/Failure)
+
+    **Filter by:** Date range, activity type, target
+  </Accordion>
+  <Accordion title="User Insights">
+    **Information displayed:**
+
+    - Display name and UPN
+    - Job title and department
+    - Manager
+    - Group memberships
+    - Account status
+    - Risk score
+    - Last sign-in
+  </Accordion>
+  <Accordion title="Device Insights">
+    **Information displayed:**
+
+    - Device name and ID
+    - OS platform and version
+    - Health state
+    - Exposure level
+    - Last seen timestamp
+    - Compliance status
+    - Logged-on users
+  </Accordion>
+  <Accordion title="IP Insight Logs">
+    **Information displayed:**
+
+    - Geolocation (country, city)
+    - ASN and ISP
+    - Reputation score
+    - Associated domains
+    - Historical activity
+    - Threat intelligence matches
+  </Accordion>
+  <Accordion title="File Insights">
+    **Information displayed:**
+
+    - File name and path
+    - SHA256, SHA1, MD5 hashes
+    - File size
+    - First/last seen
+    - Detection ratio
+    - Threat intelligence enrichment
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Related Incidents
+
+The **Related Incidents** insight is available for all entity types and shows other incidents where the same entity appears.
+
+### Why This Matters
+
+- **Pattern Detection** — Identify if an entity is repeatedly involved in security events
+- **Attack Chain Analysis** — Understand how an attacker moved through your environment
+- **Scope Assessment** — Determine the full impact of a compromise
+- **False Positive Identification** — Recognize legitimate activity that triggers multiple alerts
+
+### Using Related Incidents
+
+| Column          | Description                        |
+| --------------- | ---------------------------------- |
+| **Incident ID** | Click to open the related incident |
+| **Title**       | Brief description of the incident  |
+| **Severity**    | High, Medium, Low, Informational   |
+| **Status**      | Current state of the incident      |
+| **Created**     | When the incident was detected     |
 
 <Tip>
-
-Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
-
+  If you see the same entity in multiple high-severity incidents, prioritize investigating that entity—it may indicate an active compromise.
 </Tip>
 
-## Text formatting
+---
 
-We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
+## Threat Intelligence Enrichment
 
-| Style         | How to write it   | Result          |
-| ------------- | ----------------- | --------------- |
-| Bold          | `**bold**`        | **bold**        |
-| Italic        | `_italic_`        | _italic_        |
-| Strikethrough | `~strikethrough~` | ~strikethrough~ |
+Some entity insights include threat intelligence from integrated sources.
 
-You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
+### Supported Enrichments
 
-You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
+| Entity Type    | Threat Intel Data                                        |
+| -------------- | -------------------------------------------------------- |
+| **IP Address** | Reputation, malicious activity history, blocklist status |
+| **File/Hash**  | VirusTotal detections, malware family, first seen date   |
+| **URL/Domain** | Reputation, phishing indicators, domain age              |
+| **User**       | Compromised credential alerts, risk indicators           |
 
-| Text Size   | How to write it          | Result                 |
-| ----------- | ------------------------ | ---------------------- |
-| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
-| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+<Info>
+  Threat intelligence enrichment requires integration with tools like VirusTotal or Microsoft Defender Threat Intelligence. Contact your administrator to enable additional enrichment sources.
+</Info>
 
-## Linking to pages
+---
 
-You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
+## Integration-Specific Insights
 
-Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
+Available insights depend on which integrations are connected to your workspace.
 
-Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
+### Microsoft Defender XDR
 
-## Blockquotes
+- Device timeline and alerts
+- User sign-in and audit logs
+- Email trace and threat detection
+- File and URL analysis
 
-### Singleline
+### Microsoft Sentinel
 
-To create a blockquote, add a `>` in front of a paragraph.
+- Log Analytics query results
+- Custom entity enrichments
+- Watchlist matches
+- Threat intelligence indicators
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
+### Third-Party Integrations
 
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
-```
+Additional insights may be available based on your connected tools:
 
-### Multiline
+- **CrowdStrike** — Device details, detection history
+- **SentinelOne** — Agent status, threat indicators
+- **QRadar** — Offense correlation, log data
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+<Card title="Capabilities Matrix" icon="table" href="/guides/technical/contraforce-capabilities-matrix">
+  See which entity insights are available for each XDR and SIEM integration
+</Card>
 
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-```
+---
 
-### LaTeX
+## Best Practices
 
-Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
+<AccordionGroup>
+  <Accordion title="Start with Related Incidents">
+    Always check Related Incidents first. If an entity appears in multiple incidents, it may be the key to understanding the attack scope.
+  </Accordion>
+  <Accordion title="Correlate sign-in anomalies">
+    Compare sign-in logs with the incident timeline. Look for unusual locations, impossible travel, or authentication failures before the incident.
+  </Accordion>
+  <Accordion title="Use audit logs for privilege escalation">
+    When investigating compromised accounts, review audit logs for privilege changes, group membership modifications, or unusual administrative actions.
+  </Accordion>
+  <Accordion title="Check device timeline for malware">
+    For device-based incidents, the timeline shows the sequence of events leading to detection—crucial for understanding initial access and lateral movement.
+  </Accordion>
+  <Accordion title="Document key findings">
+    Copy important insight data to incident comments for team visibility and post-incident documentation.
+  </Accordion>
+</AccordionGroup>
 
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
+---
 
-```md
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-```
+## Troubleshooting
+
+### Common Issues
+
+| Issue                     | Possible Cause                      | Solution                                               |
+| ------------------------- | ----------------------------------- | ------------------------------------------------------ |
+| **No insights available** | Entity type not supported           | Check the Capabilities Matrix for supported entities   |
+| **Missing sign-in logs**  | Entra ID integration not connected  | Verify Azure AD/Entra ID connector status              |
+| **Empty device timeline** | Defender for Endpoint not onboarded | Confirm MDE integration is enabled                     |
+| **No threat intel data**  | Enrichment source not configured    | Contact admin to enable VirusTotal or other TI sources |
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="Incident Management Guide" icon="book" href="/guides/getting-started/contraforce-incident-management-user-guide">
+    Complete incident investigation workflow
+  </Card>
+  <Card title="Security Workbench" icon="screwdriver-wrench" href="/guides/getting-started/contraforce-security-workbench-overview">
+    Deep dive investigation interface
+  </Card>
+  <Card title="Capabilities Matrix" icon="table" href="/guides/technical/contraforce-capabilities-matrix">
+    Full integration capabilities by tool
+  </Card>
+  <Card title="Gamebooks" icon="bolt" href="/guides/getting-started/what-are-gamebooks">
+    Take action on entities after investigation
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+  Questions about entity insights? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
