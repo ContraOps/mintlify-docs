@@ -1,0 +1,66 @@
+---
+title: "What are Gamebooks in ContraForce?"
+description: "In the ContraForce Portal, users are able to respond to incidents with a single click using Gamebooks."
+---
+
+## Overview
+
+The Gamebook Workbench can be opened through the Incident Summary overview that is accessed by clicking the hyperlinked incident ID shown on the Incidents table. Once the Incident Summary has been opened, click the dropdown next to Edit then Create New Gamebook.
+
+![Open Gamebook Workbench](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Jun-15-2023-04-43-07-7329-PM.png)
+
+![Create new gamebook](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-21-29-3279-PM.png)
+
+## What Gamebook actions are available?
+
+In ContraForce there are multiple entity types, and the operator will see the options change in real time based on the entities selected. The available options are listed below:
+
+**User**
+
+- Invalidate Existing Sessions
+- Lockout User
+- Reset User Password
+- Unlock User
+
+**Endpoint**
+
+- Isolate Endpoint
+- Scan Endpoint
+- Release from Isolation
+- Quarantine File
+
+**Network**
+
+- Block IP
+
+**Email**
+
+- Delete Email
+
+Not all entities are supported with Gamebook actions due to technical limitations. If a Gamebook is not available, an error message will be shown.
+
+![Gamebook not available](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-34-41-5186-PM.png)
+
+## Building a Playbook
+
+Once the Gamebook Workbench is opened, actions can be added to the playbook by clicking the green "+" icon or removed using the red "-" icon. Once all actions have been added, the operator can run the Gamebook by clicking Run Gamebook.
+
+![Building a playbook](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-41-06-3587-PM.png)
+
+## Gamebooks Requiring Approval
+
+If a Gamebook necessitates approval, the Run Gamebook button will shift to a "Waiting Approval" button. An approval message will be displayed when a user attempts to run a gamebook without the appropriate permissions. Furthermore, when the Incident Summary flyout is accessed, the status will indicate Waiting Approval.
+
+![Waiting approval](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-48-49-9546-PM.png)
+
+End-customers or users with the correct permissions will be given the ability to approve the Gamebook sequence, which will initiate the selected actions.
+
+## Where do I see Gamebook History?
+
+Gamebook history can be seen on the Gamebooks page, accessed by clicking on the 2nd triangle icon shown on the navigation bar. If a tenant filter has been applied, only Gamebook history for that selected tenant will be shown.
+
+![Gamebook history page](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-51-36-5496-PM.png)
+
+The Gamebooks page displays completed Gamebooks, those awaiting approval, and any failed Gamebooks. Users can filter the table to delve deeper into the displayed Gamebook history. By clicking on the dropdown for each row, additional details will be revealed regarding the actions that were executed.
+
+![Gamebook details](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-05-53-28-7720-PM.png)
