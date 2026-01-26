@@ -45,6 +45,7 @@
             "group": "Onboarding",
             "pages": [
               "guides/onboarding/notifications-module",
+              "guides/onboarding/onboard-cms",
               "guides/onboarding/defender-xdr-module-deployment"
             ]
           },

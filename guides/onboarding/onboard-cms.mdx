@@ -1,0 +1,475 @@
+---
+title: "Onboard Content Management System"
+---
+
+This guide walks you through setting up and using the Content Management System (CMS) to deploy expert-authored detection rules to your Microsoft Sentinel environments. By the end, you'll have comprehensive threat detection coverage across your workspaces.
+
+<Info>
+  CMS requires the **Microsoft Sentinel module**. If you only have the XDR module deployed, you'll need to upgrade before using CMS. See [Module Overview](/guides/onboarding/contraforce-module-overview) for details.
+</Info>
+
+## Before You Begin
+
+### Prerequisites
+
+Ensure you have the following before starting:
+
+<Steps>
+  <Step title="Microsoft Sentinel Module">
+    Your workspace must have the Microsoft Sentinel module deployed with Microsoft Sentinel connected
+  </Step>
+  <Step title="Required Permissions">
+    You need **Data Source Admin**, **Content Admin**, or **Organization Admin** role in ContraForce
+  </Step>
+  <Step title="Sentinel Access">
+    Your ContraForce service principal must have appropriate permissions in the target Sentinel workspace
+  </Step>
+  <Step title="Active Data Connectors">
+    Data connectors should be configured for the data sources you want detection rules for
+  </Step>
+</Steps>
+
+### Required Roles
+
+| ContraForce Role       | Can Deploy Rules | Can Enable Auto-Update | Can Remove Rules |
+| ---------------------- | :--------------: | :--------------------: | :--------------: |
+| **Organization Admin** | ✓                | ✓                      | ✓                |
+| **Content Admin**      | ✓                | ✓                      | ✓                |
+| **Data Source Admin**  | ✓                | ✓                      | ✓                |
+| **Incident Responder** | —                | —                      | —                |
+| **Incident Analyst**   | —                | —                      | —                |
+
+<Card title="User Roles Reference" icon="users" href="/guides/technical/contraforce-user-roles">
+  View complete permissions for all roles
+</Card>
+
+---
+
+## Step 1: Access the Content Management System
+
+<Steps>
+  <Step title="Navigate to CMS">
+    From the ContraForce navigation menu, click **Content Management** or **CMS**
+  </Step>
+  <Step title="Select Workspace">
+    If you manage multiple workspaces, select the workspace you want to configure from the dropdown
+  </Step>
+  <Step title="View Dashboard">
+    The CMS dashboard displays available data sources and deployment status
+  </Step>
+</Steps>
+
+<Frame>
+  ![CMS dashboard overview](/images/cms-onboarding-dashboard.png)
+</Frame>
+
+---
+
+## Step 2: Understand the CMS Interface
+
+### Dashboard Overview
+
+The CMS interface is organized by data source, with each section showing:
+
+| Element               | Description                                               |
+| --------------------- | --------------------------------------------------------- |
+| **Data Source Name**  | The telemetry source (e.g., Azure AD, Microsoft 365)      |
+| **Available Rules**   | Total number of detection rules available for this source |
+| **Deployed Rules**    | How many rules are currently active in your workspace     |
+| **Updates Available** | Rules with newer versions ready to deploy                 |
+
+### Rule List View
+
+Clicking into a data source shows all available rules:
+
+<Frame>
+  ![CMS rule list view](/images/cms-onboarding-rule-list.png)
+</Frame>
+
+| Column            | Description                                 |
+| ----------------- | ------------------------------------------- |
+| **Toggle**        | Enable/disable switch for the rule          |
+| **Rule Name**     | Detection rule display name                 |
+| **Severity**      | Low, Medium, or High                        |
+| **MITRE Tactics** | ATT&CK framework mapping                    |
+| **Version**       | Current rule version (CalVer format)        |
+| **Status**        | Deployed, Not Deployed, or Update Available |
+| **Auto-Update**   | Whether automatic updates are enabled       |
+
+### Rule Details
+
+Click any rule to view complete details:
+
+- Full description of what the rule detects
+- MITRE ATT&CK tactics and techniques
+- Query frequency and time period
+- The actual KQL query (for transparency)
+- Version history and changelog
+
+---
+
+## Step 3: Review Your Data Connectors
+
+Before deploying rules, verify which data sources are active in your Sentinel workspace.
+
+<Warning>
+  Rules deployed for data sources without active connectors will never trigger. Only enable rules for data sources you have connected.
+</Warning>
+
+### Check Data Connector Status
+
+<Steps>
+  <Step title="Navigate to Data Connectors">
+    Go to the **Data Connectors** page in ContraForce
+  </Step>
+  <Step title="Review Connected Sources">
+    Note which connectors show "Connected" status
+  </Step>
+  <Step title="Match to CMS Categories">
+    Map your connected sources to CMS data source categories
+  </Step>
+</Steps>
+
+### Common Data Source Mappings
+
+| Connector                       | CMS Data Source Category |
+| ------------------------------- | ------------------------ |
+| Azure Active Directory          | Azure AD / Entra ID      |
+| Microsoft 365                   | Microsoft 365            |
+| Microsoft Defender for Endpoint | Windows Security Events  |
+| Azure Activity                  | Azure Activity           |
+| Azure Security Center           | Azure Security Center    |
+| Syslog                          | Linux Syslog             |
+
+---
+
+## Step 4: Deploy Your First Detection Rules
+
+Start with a focused deployment to familiarize yourself with the process.
+
+### Recommended Starting Point
+
+We recommend starting with **Azure AD / Entra ID** rules if you have that connector active. These rules detect:
+
+- Suspicious sign-in activity
+- Privilege escalation attempts
+- Conditional access policy changes
+- Service principal abuse
+- And more identity-based threats
+
+### Deploying Rules
+
+<Steps>
+  <Step title="Select Data Source">
+    Click on **Azure AD** (or your chosen data source) in the CMS dashboard
+  </Step>
+  <Step title="Review Available Rules">
+    Browse the list of available detection rules
+  </Step>
+  <Step title="Check Rule Details">
+    Click on a few rules to understand what they detect and their severity
+  </Step>
+  <Step title="Enable Rules">
+    Toggle the switch to **Enabled** for rules you want to deploy
+  </Step>
+  <Step title="Monitor Deployment">
+    Watch the status indicator—it will show "Deploying" then "Deployed"
+  </Step>
+</Steps>
+
+<Frame>
+  ![Enabling a detection rule](/images/cms-onboarding-enable-rule.png)
+</Frame>
+
+### Deployment Status Indicators
+
+| Status               | Meaning                                             |
+| -------------------- | --------------------------------------------------- |
+| **Not Deployed**     | Rule is available but not active                    |
+| **Deploying**        | Rule deployment in progress                         |
+| **Deployed**         | Rule is active in your Sentinel workspace           |
+| **Failed**           | Deployment encountered an error (click for details) |
+| **Update Available** | Newer version exists for a deployed rule            |
+
+<Tip>
+  Start with 5-10 high-severity rules to validate the deployment process before enabling broader coverage.
+</Tip>
+
+---
+
+## Step 5: Bulk Deployment (Optional)
+
+Once comfortable with individual deployments, you can enable multiple rules at once.
+
+### Enable All Rules for a Data Source
+
+<Steps>
+  <Step title="Select Data Source">
+    Navigate to the data source category
+  </Step>
+  <Step title="Use Bulk Actions">
+    Click **Enable All** or use the bulk selection checkboxes
+  </Step>
+  <Step title="Confirm Deployment">
+    Review the rules to be deployed and confirm
+  </Step>
+  <Step title="Monitor Progress">
+    The dashboard shows deployment progress for all rules
+  </Step>
+</Steps>
+
+### Bulk Deployment Considerations
+
+<AccordionGroup>
+  <Accordion title="Start with high-confidence rules">
+    Consider enabling only High and Medium severity rules initially to minimize noise while you tune your environment.
+  </Accordion>
+  <Accordion title="Deploy in phases">
+    For large deployments, consider enabling one data source category at a time. This makes it easier to identify which rules generate the most valuable alerts.
+  </Accordion>
+  <Accordion title="Monitor for false positives">
+    After bulk deployment, monitor incident volume for a few days. Disable rules that generate excessive false positives while you investigate.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Step 6: Configure Automatic Updates
+
+Keep your detection rules current by enabling automatic updates.
+
+### Understanding Auto-Update
+
+When enabled, CMS automatically deploys new rule versions when they're released:
+
+- **Security improvements** — Updated logic to catch new attack variants
+- **False positive reduction** — Refined queries to reduce noise
+- **Performance optimization** — More efficient queries that run faster
+
+### Enabling Auto-Update
+
+<Tabs>
+  <Tab title="Per-Rule">
+    Enable auto-update for individual rules:
+
+    <Steps>
+      <Step title="Open Rule Details">
+        Click on a deployed rule to view its details
+      </Step>
+      <Step title="Toggle Auto-Update">
+        Enable the **Auto-Update** switch
+      </Step>
+      <Step title="Confirm">
+        The rule will now automatically update when new versions are released
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Bulk Enable">
+    Enable auto-update for multiple rules:
+
+    <Steps>
+      <Step title="Select Rules">
+        Use checkboxes to select multiple deployed rules
+      </Step>
+      <Step title="Bulk Action">
+        Click **Enable Auto-Update** from the bulk actions menu
+      </Step>
+      <Step title="Confirm">
+        All selected rules will auto-update going forward
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Workspace Default">
+    Set auto-update as the default for all new deployments:
+
+    <Steps>
+      <Step title="Open Settings">
+        Navigate to CMS Settings or Workspace Settings
+      </Step>
+      <Step title="Enable Default Auto-Update">
+        Toggle **Auto-Update by Default** to enabled
+      </Step>
+      <Step title="Apply">
+        All newly deployed rules will have auto-update enabled
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+<Info>
+  **When to disable auto-update:** If you have strict change management requirements, disable auto-update and manually review each update before deploying. The "Update Available" indicator will alert you to new versions.
+</Info>
+
+---
+
+## Step 7: Deploy to Additional Workspaces
+
+For MSSPs managing multiple customers, replicate your detection coverage across workspaces.
+
+### Multi-Workspace Deployment
+
+<Steps>
+  <Step title="Return to Dashboard">
+    Go back to the main CMS dashboard
+  </Step>
+  <Step title="Select Different Workspace">
+    Use the workspace selector to switch to another customer
+  </Step>
+  <Step title="Repeat Deployment">
+    Enable the same rules for consistency across your customer base
+  </Step>
+</Steps>
+
+### Deployment Templates (Coming Soon)
+
+<Note>
+  ContraForce is developing deployment templates that let you define a standard rule set and deploy it across multiple workspaces simultaneously. Contact [support@contraforce.com](mailto:support@contraforce.com) to express interest.
+</Note>
+
+---
+
+## Step 8: Verify Deployment in Sentinel
+
+Confirm your rules are active in Microsoft Sentinel.
+
+### Verification Steps
+
+<Steps>
+  <Step title="Open Azure Portal">
+    Navigate to your Microsoft Sentinel workspace in the Azure portal
+  </Step>
+  <Step title="Go to Analytics">
+    Click **Analytics** in the Sentinel navigation
+  </Step>
+  <Step title="View Active Rules">
+    Click the **Active rules** tab
+  </Step>
+  <Step title="Find CMS Rules">
+    Search for rules deployed by CMS—they'll have consistent naming
+  </Step>
+</Steps>
+
+### What to Look For
+
+| Verification Point       | Expected Result                                 |
+| ------------------------ | ----------------------------------------------- |
+| Rule exists in Analytics | Rule appears in Active rules list               |
+| Rule is enabled          | Status shows "Enabled"                          |
+| Rule is running          | "Last run" shows recent timestamp               |
+| Rule configuration       | Query, frequency, and period match CMS settings |
+
+---
+
+## Post-Deployment Checklist
+
+After completing your initial CMS deployment:
+
+<Steps>
+  <Step title="Document Deployed Rules">
+    Record which rules you've enabled for each workspace
+  </Step>
+  <Step title="Set Up Notifications">
+    Configure [incident notifications](/guides/technical/contraforce-notifications) for new Sentinel incidents
+  </Step>
+  <Step title="Monitor Incident Volume">
+    Watch the Command Page for new incidents generated by your rules
+  </Step>
+  <Step title="Review After 7 Days">
+    Assess which rules are generating value vs. noise
+  </Step>
+  <Step title="Tune as Needed">
+    Disable noisy rules or work with ContraForce to improve detections
+  </Step>
+  <Step title="Expand Coverage">
+    Enable additional data sources and rules as you gain confidence
+  </Step>
+</Steps>
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+| Issue                    | Possible Cause         | Solution                                              |
+| ------------------------ | ---------------------- | ----------------------------------------------------- |
+| **Deployment fails**     | Permission issue       | Verify Sentinel API permissions are granted           |
+| **Deployment fails**     | Azure API unavailable  | Wait and retry—temporary outages happen               |
+| **Rule never fires**     | No matching data       | Verify data connector is active and sending logs      |
+| **Rule never fires**     | Query period too short | Check if relevant events occurred in the query window |
+| **Too many incidents**   | Rule too broad         | Consider disabling or requesting rule tuning          |
+| **Can't see CMS option** | Wrong module           | Verify XDR + SIEM module is deployed                  |
+| **Can't deploy rules**   | Insufficient role      | Request Data Source Admin or higher role              |
+
+### Getting Help
+
+If you encounter issues:
+
+1. **Check the error message** — CMS provides detailed error information
+2. **Verify permissions** — Ensure your role allows rule deployment
+3. **Check Sentinel access** — Confirm the ContraForce service principal has API access
+4. **Contact support** — Email [support@contraforce.com](mailto:support@contraforce.com) with workspace details
+
+---
+
+## Recommended Deployment Strategy
+
+### Phase 1: Foundation (Week 1)
+
+Focus on identity and access:
+
+- ✅ Azure AD / Entra ID rules (all severities)
+- ✅ Enable auto-update for these rules
+- ✅ Monitor for 5-7 days
+
+### Phase 2: Expand (Week 2)
+
+Add Microsoft 365 and Azure infrastructure:
+
+- ✅ Microsoft 365 rules
+- ✅ Azure Activity rules
+- ✅ Azure Security Center rules
+
+### Phase 3: Complete (Week 3+)
+
+Enable remaining data sources:
+
+- ✅ Windows Security Events
+- ✅ Linux Syslog
+- ✅ Network Security Groups
+- ✅ DNS Analytics
+- ✅ Any additional connected sources
+
+### Phase 4: Optimize (Ongoing)
+
+Continuous improvement:
+
+- Review incident quality weekly
+- Disable low-value rules
+- Enable new rules as they're released
+- Ensure auto-update is enabled for standard rules
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="CMS Overview" icon="book" href="/guides/technical/content-management-system">
+    Deep dive into CMS capabilities
+  </Card>
+  <Card title="Incident Management" icon="shield-halved" href="/guides/getting-started/contraforce-incident-management-user-guide">
+    Handle incidents generated by CMS rules
+  </Card>
+  <Card title="Notifications" icon="bell" href="/guides/technical/contraforce-notifications">
+    Configure alerts for new incidents
+  </Card>
+  <Card title="Sentinel Threat Hunting" icon="magnifying-glass" href="/guides/technical/sentinel-advanced-threat-hunting">
+    Proactive threat hunting in Sentinel
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+  Questions about CMS onboarding? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
