@@ -1,0 +1,124 @@
+---
+title: "ContraForce Incident Management User Guide"
+description: "This article will cover the workflow that can be used to manage an active incident that populates in ContraForce."
+---
+
+## Overview
+
+ContraForce is a comprehensive platform that empowers analysts to efficiently oversee incidents across various tenants and data sources. This article will outline a suggested workflow for analysts as they begin utilizing ContraForce to manage their end-customers.
+
+<Info>
+This article is designed to provide a framework for analysts to effectively manage their end-customers. If you have any suggestions for features that could enhance ContraForce, please don't hesitate to reach out to us at support@contraforce.com.
+</Info>
+
+The steps outlined in this article include the following:
+
+1. Workspace Filtering
+2. Incident Assignment
+3. Incidents Summary
+4. Gamebook Responses
+5. Incident Closure
+
+## 1. Workspace Filtering
+
+The ContraForce Command page allows analysts to customize the data displayed by applying filters for Workspace, Severity, and Status. These filters remain active as analysts move between different pages within the ContraForce portal, such as Gamebooks or Endpoints.
+
+To choose a workspace, simply click on the dropdown menu located at the top bar of the Command page.
+
+![Workspace selection](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-09-09-54-2517-PM.png)
+
+Once workspaces are selected, the names of the workspace will be displayed in the top bar of the Command page.
+
+![Selected workspaces](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-09-15-00-9912-PM.png)
+
+As workspaces are selected, the Incidents table below will adjust the incidents shown to only include incidents from the workspaces that are selected. Incidents can also be further filtered by Severity and Status.
+
+![Incident filters](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-09-19-56-0478-PM.png)
+
+Please take note that when filtering by status, there will be statuses displayed beneath each module enabled in ContraForce. The module will be in grey text, as shown in the screenshot below. In this example, we are filtering for only Active and New incidents for the Sentinel module. Additionally, the Defender XDR module has also been enabled for this workspace and can be seen below the Sentinel incident statuses.
+
+![Status filter by module](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-09-22-43-1812-PM.png)
+
+## 2. Incident Assignment
+
+To modify the incident status and assignee, you can make individual updates by clicking on the dropdown menu next to the respective fields in the Status or Owner columns. Status options include New, Active, or Closed. The Assignee list will display users who have been added to your ContraForce portal..
+
+To update multiple incidents, simply select the checkboxes next to the incidents you wish to update and then click on the "Update Incidents" button located in the header of the Incidents table.
+
+![Update incidents](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-09-27-35-6881-PM.png)
+
+![Bulk update form](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-09-28-28-5910-PM.png)
+
+## 3. Incidents Summary
+
+To access the Incident Summary overview for an incident, simply click on the incident ID displayed under the ID column. The summary will then open, showcasing tabs for Entities, Threat Intelligence, Timeline, Evidence, and Comments.
+
+Furthermore, users can update the status and assignee for the incident from Summary page as well.
+
+![Incident summary](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-09-32-22-2510-PM.png)
+
+### Associated Entities
+
+The Entities tab shows any entity that is associated with the incident. Clicking the dropdown will show other incidents that the entity has been associated with. Clicking the ID number will also open the incident in a separate tab that will be seen at the top of the popup window.
+
+![Entity details](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-09-50-15-0630-PM.png)
+
+![Entity tabs](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-09-49-53-1622-PM.png)
+
+### Threat Intel
+
+The Threat Intel tab will display relevant information if a tool, like VirusTotal, has been integrated into your ContraForce environment.
+
+### Timeline
+
+The Timeline tab provides a chronological overview of significant events that have taken place during the incident.
+
+### Evidence
+
+The Evidence tab will display any raw logs associated with the incident. It's important to note that not all data connectors contain raw log information.
+
+![Evidence tab](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-09-54-27-4826-PM.png)
+
+### Comments
+
+The Comments tab serves as a platform for analysts to add comments while actively managing an incident. All comments made by any user will be visible here.
+
+## 4. Gamebooks
+
+Gamebooks are response actions integrated into ContraForce, with available actions determined by the entity types present. If a Gamebook has been previously executed for a specific incident, it will be suggested when accessing the Incident Summary.
+
+![Gamebook suggestions](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-09-57-52-6992-PM.png)
+
+To create a customized Gamebook response sequence, click on the dropdown menu next to the Edit field and select "Create New Gamebook." This will open the Gamebook Workbench where you can explore available actions by clicking on entity icons in the Entity Graph.
+
+To access the available actions, click on the arrows to navigate through the options. Add an action to a Playbook by selecting the green "+" icon, and remove an action by clicking on the red "-" icon. Once all actions have been selected, click on the "Run Gamebook" button. The Status will be updated to "Finished" once the Gamebook has finished running.
+
+![Gamebook actions](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-21-2024-04-10-17-0410-PM.png)
+
+If a Gamebook requires approval before execution, you may encounter a red lock icon in the carousel. In this case, the button will change to "Request Gamebook Approval."
+
+![Gamebook approval required](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-28-2024-09-14-07-4795-PM.png)
+
+When reviewing the incident, the user with the correct permissions in the tenant will have the ability to approve and run the gamebook action.
+
+![Approve gamebook](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/undefined-4.png)
+
+Gamebooks can also be approved by the appropriate user from the Gamebook Activity tab in ContraForce.
+
+![Gamebook activity](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/undefined-Feb-28-2024-10-10-52-6555-PM.png)
+
+## 5. Incident Closure
+
+After a Gamebook has completed, a green "Close Incident" button will populate at the bottom of the entity graph allowing the incident to be quickly closed. From this window, the Status, Classification (Benign Positive, False Positive, True Positive, Undetermined), Classification Reason, and Comments can be added. Clicking "Update" will close the incident.
+
+![Close incident](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Feb-20-2024-10-05-57-6986-PM.png)
+
+Additionally, incidents can be closed in bulk or individually from the Incidents table on the Command page.
+
+<Warning>
+If you have any questions about the workflow outlined in this user guide, please reach out to support@contraforce.com.
+</Warning>
+
+## Putting It Together
+
+The ContraForce onboarding process includes a trial period and training sessions. Our objective is to ensure that analysts are equipped with the necessary knowledge to maximize the benefits of ContraForce. Our goal is for the streamlined incident management process outlined in this document to assist analysts in efficiently resolving more incidents, leading to improved service for their end-customers and stakeholders.
