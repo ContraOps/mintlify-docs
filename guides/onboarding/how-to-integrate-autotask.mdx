@@ -1,0 +1,44 @@
+---
+title: "How to integrate Autotask PSA to ContraForce."
+description: "This article outlines the steps required to integrate Autotask PSA with ContraForce."
+---
+
+## Overview
+
+This article outlines how to connect an Autotask instance to the ContraForce Platform. Once connected, users can link an Autotask ticket to an incident or create a new Autotask ticket tied to an incident.
+
+## Creating a Service Account in Autotask
+
+For the integration into ContraForce, a Service Account user needs to be created in Autotask. You will need the details about the created Service Account user when integrating Autotask to ContraForce.
+
+![Autotask service account](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/undefined.jpeg)
+
+*A screen shot of an example Autotask service account user profile*
+
+## Integration Steps
+
+1. Log in to your ContraForce account and navigate to the Workspaces section. Locate the desired workspace you wish to integrate with, then click on the slider icon adjacent to the dropdown arrow.
+
+2. Within the workspace overview page, scroll down to the IT Service Management section and click the blue "+" symbol.
+
+3. Select Autotask and input the following details:
+   - **Endpoint: https://{your-specific-service-instance}.autotask.net/ATServicesRest/**
+     - The endpoint is the URL of your Autotask instance.
+   - **Integration Code**
+     - Select Custom, assign a name, copy the Tracking Identifier value from the Autotask service account user profile.
+   - **Username**
+     - Credentials > Username (Key) from the Autotask service account user profile.
+   - **Secret**
+     - Credentials > Password (Secret) from the Autotask service account user profile.
+
+4. After inputting all details, click the "Test" button to see if any errors populate. After running a successful test, click Save.
+
+5. On the workspace overview page, you will see Autotask under IT Service Management.
+
+![Autotask enabled](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/image-png-Mar-25-2025-06-58-06-2567-PM.png)
+
+*A screen shot showing Autotask enabled in the ContraForce Platform*
+
+## Using Autotask with Multiple ContraForce Workspaces.
+
+The integration for Autotask does not need to be configured within each workspace that is onboarded to ContraForce. To use Autotask with multiple ContraForce workspaces, Autotask should be configured within your Parent workspace.
