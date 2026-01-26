@@ -67,17 +67,19 @@
         ]
       },
       {
-        "tab": "API reference (Hidden)",
-        "hidden": true,
-        "groups": [
+        "tab": "API reference",
+        "pages": [
+          "api-reference-hidden/partner-api",
           {
             "group": "API documentation",
+            "hidden": true,
             "pages": [
               "api-reference/introduction"
             ]
           },
           {
             "group": "Endpoint examples",
+            "hidden": true,
             "pages": [
               "api-reference/endpoint/get",
               "api-reference/endpoint/create",

@@ -1,0 +1,423 @@
+---
+title: "Partner API Overview"
+description: "Integrate ContraForce with your ITSM, SOAR, or custom platforms using the Partner API. Access incidents, entities, and evidence programmatically."
+---
+
+The ContraForce Partner API enables programmatic access to your security data. Build custom integrations, sync incidents with your ITSM, or create automated workflows with your existing tools.
+
+<Info>
+Full API documentation, including detailed request/response schemas, is available on GitHub: [ContraForce API Documentation](https://github.com/ContraForce/contraforce-api)
+</Info>
+
+## Why Use the Partner API?
+
+<CardGroup cols={3}>
+  <Card title="ITSM Integration" icon="ticket">
+    Sync incidents with ServiceNow, Jira, Autotask, or ConnectWise
+  </Card>
+  <Card title="Custom Dashboards" icon="chart-pie">
+    Build internal reporting and visualization tools
+  </Card>
+  <Card title="SOAR Automation" icon="robot">
+    Trigger workflows in your existing SOAR platform
+  </Card>
+</CardGroup>
+
+### Common Use Cases
+
+| Use Case | Description |
+|----------|-------------|
+| **Ticket Creation** | Automatically create tickets in your PSA when incidents are detected |
+| **Bi-directional Sync** | Keep incident status synchronized between ContraForce and your ITSM |
+| **Executive Reporting** | Pull incident data into custom reports and dashboards |
+| **Alert Routing** | Send incident notifications to custom channels (Slack, Teams, PagerDuty) |
+| **Data Warehouse** | Export incident data to your data lake for long-term analysis |
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+Before using the API, you'll need:
+
+<Steps>
+  <Step title="ContraForce Account">
+    An active ContraForce account with API access enabled
+  </Step>
+  <Step title="API Credentials">
+    Client ID and Client Secret from your ContraForce administrator
+  </Step>
+  <Step title="Workspace Access">
+    Appropriate permissions to the workspaces you want to query
+  </Step>
+</Steps>
+
+### Obtaining API Credentials
+
+<Steps>
+  <Step title="Contact Your Administrator">
+    Request API credentials from your ContraForce account administrator
+  </Step>
+  <Step title="Receive Credentials">
+    You'll receive a Client ID and Client Secret
+  </Step>
+  <Step title="Store Securely">
+    Store credentials securely—never commit them to source control
+  </Step>
+</Steps>
+
+<Warning>
+Treat your API credentials like passwords. Never expose them in client-side code, public repositories, or logs.
+</Warning>
+
+---
+
+## Authentication
+
+The ContraForce API uses OAuth 2.0 client credentials flow for authentication.
+
+### Getting an Access Token
+
+```bash
+curl -X POST https://api.contraforce.com/oauth/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=client_credentials" \
+  -d "client_id=YOUR_CLIENT_ID" \
+  -d "client_secret=YOUR_CLIENT_SECRET"
+```
+
+### Response
+
+```json
+{
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token_type": "Bearer",
+  "expires_in": 3600
+}
+```
+
+### Using the Token
+
+Include the access token in the `Authorization` header for all API requests:
+
+```bash
+curl -X GET https://api.contraforce.com/v1/incidents \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+```
+
+<Tip>
+Access tokens expire after 1 hour. Implement token refresh logic in your integration to handle expiration gracefully.
+</Tip>
+
+---
+
+## API Endpoints
+
+The Partner API provides access to incidents and their associated data.
+
+### Base URL
+
+```
+https://api.contraforce.com/v1
+```
+
+### Available Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/incidents` | GET | List all incidents |
+| `/incidents/{id}` | GET | Get incident details |
+| `/incidents/{id}/entities` | GET | List entities for an incident |
+| `/incidents/{id}/evidence` | GET | List evidence for an incident |
+
+---
+
+## API Components
+
+<Tabs>
+  <Tab title="Incident Object">
+    The core data structure representing a security incident.
+    
+    **Key Fields:**
+    | Field | Type | Description |
+    |-------|------|-------------|
+    | `id` | string | Unique incident identifier |
+    | `title` | string | Incident title/name |
+    | `severity` | string | High, Medium, Low, Informational |
+    | `status` | string | New, Active, Closed |
+    | `workspaceId` | string | Associated workspace |
+    | `createdAt` | datetime | When incident was created |
+    | `updatedAt` | datetime | Last modification time |
+    
+    [Full Schema →](https://github.com/ContraForce/contraforce-api/blob/main/Docs/incident-object.md)
+  </Tab>
+  <Tab title="List Incidents">
+    Retrieve a list of incidents with optional filtering.
+    
+    **Endpoint:** `GET /incidents`
+    
+    **Query Parameters:**
+    | Parameter | Type | Description |
+    |-----------|------|-------------|
+    | `workspaceId` | string | Filter by workspace |
+    | `status` | string | Filter by status |
+    | `severity` | string | Filter by severity |
+    | `limit` | integer | Max results (default: 100) |
+    | `offset` | integer | Pagination offset |
+    
+    [Full Documentation →](https://github.com/ContraForce/contraforce-api/blob/main/Docs/list-incidents.md)
+  </Tab>
+  <Tab title="Get Incident Details">
+    Retrieve complete details for a specific incident.
+    
+    **Endpoint:** `GET /incidents/{id}`
+    
+    **Response includes:**
+    - Full incident metadata
+    - Classification information
+    - Assignment details
+    - Timeline data
+    
+    [Full Documentation →](https://github.com/ContraForce/contraforce-api/blob/main/Docs/get-incident-details.md)
+  </Tab>
+  <Tab title="List Entities">
+    Get all entities (users, devices, IPs) associated with an incident.
+    
+    **Endpoint:** `GET /incidents/{id}/entities`
+    
+    **Entity Types:**
+    - Users/Accounts
+    - Devices/Endpoints
+    - IP Addresses
+    - Files/Hashes
+    - URLs/Domains
+    
+    [Full Documentation →](https://github.com/ContraForce/contraforce-api/blob/main/Docs/list-incident-entities.md)
+  </Tab>
+  <Tab title="List Evidence">
+    Retrieve raw evidence and logs associated with an incident.
+    
+    **Endpoint:** `GET /incidents/{id}/evidence`
+    
+    **Evidence includes:**
+    - Raw log entries
+    - Alert details
+    - Forensic artifacts
+    
+    [Full Documentation →](https://github.com/ContraForce/contraforce-api/blob/main/Docs/list-incident-evidence.md)
+  </Tab>
+</Tabs>
+
+---
+
+## Example Requests
+
+### List High Severity Incidents
+
+```bash
+curl -X GET "https://api.contraforce.com/v1/incidents?severity=High&status=Active" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+```
+
+### Get Incident Details
+
+```bash
+curl -X GET "https://api.contraforce.com/v1/incidents/INC-12345" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+```
+
+### List Incident Entities
+
+```bash
+curl -X GET "https://api.contraforce.com/v1/incidents/INC-12345/entities" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+```
+
+### Example Response: List Incidents
+
+```json
+{
+  "data": [
+    {
+      "id": "INC-12345",
+      "title": "Suspicious login activity detected",
+      "severity": "High",
+      "status": "Active",
+      "workspaceId": "ws-abc123",
+      "createdAt": "2024-01-15T10:30:00Z",
+      "updatedAt": "2024-01-15T14:22:00Z"
+    },
+    {
+      "id": "INC-12346",
+      "title": "Malware detected on endpoint",
+      "severity": "High",
+      "status": "Active",
+      "workspaceId": "ws-abc123",
+      "createdAt": "2024-01-15T11:45:00Z",
+      "updatedAt": "2024-01-15T11:45:00Z"
+    }
+  ],
+  "pagination": {
+    "total": 47,
+    "limit": 100,
+    "offset": 0
+  }
+}
+```
+
+---
+
+## Rate Limits
+
+The API implements rate limiting to ensure fair usage and platform stability.
+
+| Limit Type | Value |
+|------------|-------|
+| **Requests per minute** | 60 |
+| **Requests per hour** | 1,000 |
+| **Max results per request** | 100 |
+
+### Rate Limit Headers
+
+Each response includes rate limit information:
+
+```
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 45
+X-RateLimit-Reset: 1705320000
+```
+
+<Warning>
+If you exceed rate limits, you'll receive a `429 Too Many Requests` response. Implement exponential backoff in your integration.
+</Warning>
+
+---
+
+## Error Handling
+
+The API uses standard HTTP status codes and returns detailed error messages.
+
+### HTTP Status Codes
+
+| Code | Meaning | Action |
+|------|---------|--------|
+| `200` | Success | Request completed successfully |
+| `400` | Bad Request | Check request parameters |
+| `401` | Unauthorized | Verify credentials/token |
+| `403` | Forbidden | Check workspace permissions |
+| `404` | Not Found | Verify resource ID exists |
+| `429` | Rate Limited | Implement backoff and retry |
+| `500` | Server Error | Retry after delay; contact support if persistent |
+
+### Error Response Format
+
+```json
+{
+  "error": {
+    "code": "INVALID_PARAMETER",
+    "message": "The 'severity' parameter must be one of: High, Medium, Low, Informational",
+    "details": {
+      "parameter": "severity",
+      "provided": "Critical",
+      "allowed": ["High", "Medium", "Low", "Informational"]
+    }
+  }
+}
+```
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Implement pagination">
+    Always use pagination for list endpoints. Don't assume you'll receive all results in one request. Use `limit` and `offset` parameters to iterate through large result sets.
+  </Accordion>
+  <Accordion title="Handle rate limits gracefully">
+    Monitor `X-RateLimit-Remaining` headers and implement exponential backoff when approaching limits. Don't retry immediately on 429 responses.
+  </Accordion>
+  <Accordion title="Cache when appropriate">
+    Cache incident details that don't change frequently. Use `updatedAt` timestamps to invalidate cache entries when data changes.
+  </Accordion>
+  <Accordion title="Use webhooks for real-time updates">
+    Instead of polling the API frequently, consider using webhooks (if available) or longer polling intervals with status filters.
+  </Accordion>
+  <Accordion title="Secure your credentials">
+    Store API credentials in environment variables or a secrets manager. Never hardcode credentials or commit them to source control.
+  </Accordion>
+  <Accordion title="Log API interactions">
+    Maintain logs of API requests and responses for debugging. Mask sensitive data like tokens in logs.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## SDK & Libraries
+
+While the API can be called directly with HTTP requests, you may find these helpful:
+
+| Language | Option |
+|----------|--------|
+| **Python** | Use `requests` library with OAuth2 session |
+| **JavaScript** | Use `axios` or `fetch` with token management |
+| **PowerShell** | Use `Invoke-RestMethod` cmdlet |
+| **C#** | Use `HttpClient` with `System.Net.Http` |
+
+<Tip>
+Check the [GitHub repository](https://github.com/ContraForce/contraforce-api) for example code and community-contributed libraries.
+</Tip>
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| `401 Unauthorized` | Expired or invalid token | Refresh your access token |
+| `403 Forbidden` | Missing workspace access | Verify API credentials have access to the workspace |
+| `Empty results` | Filter too restrictive | Broaden filter criteria or check workspace ID |
+| `Timeout errors` | Large result set | Use pagination with smaller `limit` values |
+
+---
+
+## API Documentation
+
+<Card title="GitHub: ContraForce API" icon="github" href="https://github.com/ContraForce/contraforce-api">
+  Complete API documentation including schemas, examples, and changelog
+</Card>
+
+### Quick Links
+
+- [Incident Object Schema](https://github.com/ContraForce/contraforce-api/blob/main/Docs/incident-object.md)
+- [List Incidents](https://github.com/ContraForce/contraforce-api/blob/main/Docs/list-incidents.md)
+- [Get Incident Details](https://github.com/ContraForce/contraforce-api/blob/main/Docs/get-incident-details.md)
+- [List Incident Entities](https://github.com/ContraForce/contraforce-api/blob/main/Docs/list-incident-entities.md)
+- [List Incident Evidence](https://github.com/ContraForce/contraforce-api/blob/main/Docs/list-incident-evidence.md)
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="ServiceNow Integration" icon="plug" href="/guides/technical/servicenow-integration">
+    Built-in ServiceNow ticketing integration
+  </Card>
+  <Card title="Jira Integration" icon="jira" href="/guides/technical/how-to-integrate-jira-service-desk-to-contraforce">
+    Connect Jira Service Desk
+  </Card>
+  <Card title="API Enterprise Application" icon="key" href="/guides/technical/contraforce-api-enterprise-application">
+    API permissions and authentication setup
+  </Card>
+  <Card title="Capabilities Matrix" icon="table" href="/guides/technical/contraforce-capabilities-matrix">
+    Full integration capabilities
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about the Partner API? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
