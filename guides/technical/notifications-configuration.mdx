@@ -1,0 +1,472 @@
+---
+title: "Notifications"
+description: "Customize email notifications for Microsoft Sentinel incidents by severity and workspace. Configure alerts for your SOC team with per-customer granularity."
+---
+
+ContraForce provides customizable email notifications for Microsoft Sentinel incidents, allowing you to configure alerts by severity level for each workspace. Keep your team informed about critical security events while filtering out noise.
+
+<Info>
+**Module Requirement:** Full notification customization is available with the **XDR + SIEM module**. The XDR-only module has limited notification capabilities (Gamebook notifications only).
+</Info>
+
+## Notification Capabilities by Module
+
+| Feature | XDR Module | XDR + SIEM Module |
+|---------|:----------:|:-----------------:|
+| Sentinel incident notifications | — | ✓ |
+| Severity-based filtering | — | ✓ |
+| Per-workspace customization | — | ✓ |
+| Gamebook completion notifications | ✓ | ✓ |
+| Distribution group support | — | ✓ |
+
+<Warning>
+**XDR Module Users:** ContraForce does not generate email notifications for Defender XDR incidents. Use Microsoft Defender's built-in notification settings for Defender alerts. Deploying ContraForce will not interrupt your existing Defender notification configuration.
+</Warning>
+
+---
+
+## SIEM Notification Overview
+
+With the XDR + SIEM module, you can:
+
+<CardGroup cols={2}>
+  <Card title="Filter by Severity" icon="filter">
+    Choose which incident severities trigger notifications—High, Medium, Low, or Informational
+  </Card>
+  <Card title="Configure Per Workspace" icon="building">
+    Set different notification preferences for each customer workspace
+  </Card>
+  <Card title="Use Distribution Groups" icon="users">
+    Route notifications to shared mailboxes or team distribution lists
+  </Card>
+  <Card title="Direct Portal Access" icon="arrow-up-right-from-square">
+    One-click access to incidents directly from notification emails
+  </Card>
+</CardGroup>
+
+---
+
+## Configuring Notification Settings
+
+### Accessing Settings
+
+<Steps>
+  <Step title="Open Settings">
+    Click **Settings** in the ContraForce navigation menu
+  </Step>
+  <Step title="Select Notifications">
+    Click the **Notifications** tab
+  </Step>
+  <Step title="Choose Workspace">
+    Select the workspace you want to configure from the dropdown
+  </Step>
+</Steps>
+
+**Direct link:** [portal.contraforce.com/settings/notifications](https://portal.contraforce.com/settings/notifications)
+
+### Notification Settings Interface
+
+<Frame>
+  <img src="/images/notifications-settings-interface.png" alt="ContraForce notification settings interface" />
+</Frame>
+
+The notification settings interface displays:
+
+| Element | Description |
+|---------|-------------|
+| **Workspace Selector** | Choose which workspace to configure |
+| **Severity Toggles** | Enable/disable notifications per severity level |
+| **Recipient Display** | Shows current notification recipients |
+| **Save Button** | Apply changes to the selected workspace |
+
+---
+
+## Severity-Based Filtering
+
+Customize which severity levels generate email notifications for each workspace.
+
+### Default Behavior
+
+By default, notifications are **enabled for all severity levels** when a workspace is onboarded:
+
+- ✅ High severity — Enabled
+- ✅ Medium severity — Enabled
+- ✅ Low severity — Enabled
+- ✅ Informational — Enabled
+
+### Configuring Severities
+
+<Steps>
+  <Step title="Select Workspace">
+    Choose the workspace from the dropdown
+  </Step>
+  <Step title="Toggle Severities">
+    Click the toggle for each severity level to enable or disable
+  </Step>
+  <Step title="Save Changes">
+    Click **Save** to apply your changes
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/notifications-severity-toggles.png" alt="Severity toggle settings" />
+</Frame>
+
+### Severity Level Guidance
+
+<Tabs>
+  <Tab title="High">
+    **High severity incidents** indicate active threats requiring immediate response.
+    
+    **Examples:**
+    - Active malware execution
+    - Credential theft detected
+    - Ransomware activity
+    - Privilege escalation attacks
+    
+    **Recommendation:** Always keep enabled for all workspaces
+  </Tab>
+  <Tab title="Medium">
+    **Medium severity incidents** indicate potential threats needing investigation.
+    
+    **Examples:**
+    - Suspicious sign-in activity
+    - Unusual data access patterns
+    - Policy violations
+    - Reconnaissance activity
+    
+    **Recommendation:** Enable for most workspaces; disable only if generating excessive noise
+  </Tab>
+  <Tab title="Low">
+    **Low severity incidents** are often informational or low-risk events.
+    
+    **Examples:**
+    - Minor policy alerts
+    - Informational detections
+    - Low-confidence alerts
+    
+    **Recommendation:** Enable based on team capacity and customer SLA
+  </Tab>
+  <Tab title="Informational">
+    **Informational incidents** are typically audit events or very low-priority alerts.
+    
+    **Examples:**
+    - Audit log events
+    - Configuration changes
+    - Informational notices
+    
+    **Recommendation:** Disable for most workspaces to reduce noise; enable only for compliance requirements
+  </Tab>
+</Tabs>
+
+---
+
+## Per-Workspace Configuration
+
+MSSPs managing multiple customers can configure different notification settings for each workspace.
+
+### Use Cases
+
+| Scenario | Configuration |
+|----------|---------------|
+| **Premium SLA customer** | All severities enabled |
+| **Standard SLA customer** | High and Medium only |
+| **Development/test workspace** | High only or disabled |
+| **Compliance-focused customer** | All severities including Informational |
+
+### Configuring Multiple Workspaces
+
+<Steps>
+  <Step title="Configure First Workspace">
+    Select workspace, set severity preferences, save
+  </Step>
+  <Step title="Switch Workspace">
+    Use the dropdown to select the next workspace
+  </Step>
+  <Step title="Configure Settings">
+    Adjust severity settings for this workspace
+  </Step>
+  <Step title="Repeat">
+    Continue for all workspaces requiring custom settings
+  </Step>
+</Steps>
+
+<Tip>
+Document your notification configuration for each customer. This helps maintain consistency and simplifies troubleshooting when customers report notification issues.
+</Tip>
+
+---
+
+## Email Notification Details
+
+### Sender Address
+
+All ContraForce notifications are sent from:
+
+```
+noreply@notifications.contraforce.com
+```
+
+<Info>
+Add this address to your email allowlist and your customers' allowlists to ensure notifications aren't blocked by spam filters.
+</Info>
+
+### Email Content
+
+Each incident notification email includes:
+
+| Field | Description |
+|-------|-------------|
+| **Subject Line** | Incident title with severity indicator |
+| **Incident ID** | Unique identifier for tracking |
+| **Severity** | High, Medium, Low, or Informational |
+| **Description** | Summary of the security event |
+| **MITRE Tactics** | Associated ATT&CK techniques |
+| **Entities** | Affected users, devices, IPs, etc. |
+| **View Incident Button** | Direct link to the incident in ContraForce |
+
+### Example Email
+
+<Frame>
+  <img src="/images/notifications-email-example.png" alt="Example ContraForce notification email" />
+</Frame>
+
+The **View Incident** button opens the incident directly in the ContraForce Portal, allowing immediate investigation and response.
+
+---
+
+## Distribution Group Notifications
+
+Route notifications to a team distribution list instead of individual users for better team visibility.
+
+### Benefits
+
+<CardGroup cols={2}>
+  <Card title="Team Visibility" icon="eye">
+    Entire SOC team sees all alerts in a shared inbox
+  </Card>
+  <Card title="No Missed Alerts" icon="bell">
+    Alerts aren't missed when individuals are unavailable
+  </Card>
+  <Card title="On-Call Routing" icon="clock">
+    Route to on-call rotation distribution groups
+  </Card>
+  <Card title="Ticketing Integration" icon="ticket">
+    Use email-to-ticket systems for automatic tracking
+  </Card>
+</CardGroup>
+
+### Setting Up Distribution Groups
+
+Distribution group notifications require setup assistance from ContraForce:
+
+<Steps>
+  <Step title="Identify Email Address">
+    Determine the distribution group email address (e.g., `soc-alerts@yourcompany.com`)
+  </Step>
+  <Step title="Provide During Onboarding">
+    Share the email address during initial workspace onboarding
+  </Step>
+  <Step title="Or Contact Support">
+    For existing workspaces, email [support@contraforce.com](mailto:support@contraforce.com)
+  </Step>
+  <Step title="Engineering Configuration">
+    ContraForce Engineering team configures the distribution group
+  </Step>
+  <Step title="Verification">
+    Test that notifications are reaching the distribution group
+  </Step>
+</Steps>
+
+<Note>
+Distribution group changes require ContraForce support assistance. Self-service distribution group configuration is planned for a future release.
+</Note>
+
+### Common Distribution Group Patterns
+
+| Pattern | Email Example | Use Case |
+|---------|---------------|----------|
+| **SOC Team Inbox** | soc-team@company.com | Shared visibility for all analysts |
+| **Customer-Specific** | customer-alerts@msp.com | Dedicated inbox per customer |
+| **On-Call Rotation** | oncall@company.com | Routes to current on-call analyst |
+| **Ticketing System** | tickets@company.com | Auto-creates tickets in ITSM |
+
+---
+
+## Gamebook Notifications
+
+Gamebook notifications are available for **all modules** (XDR and XDR + SIEM).
+
+### Gamebook Notification Events
+
+| Event | Notification Sent |
+|-------|:-----------------:|
+| Gamebook completed successfully | ✓ |
+| Gamebook execution failed | ✓ |
+| Gamebook requires approval | ✓ |
+| Gamebook approved/rejected | ✓ |
+
+### Gamebook Email Content
+
+- Gamebook name and type
+- Target incident details
+- Actions executed
+- Execution status (Success/Failed/Pending)
+- Workspace name
+- Link to view details
+
+<Tip>
+Gamebook notifications help track automated response actions across your customer base, providing audit trails for compliance and visibility into response activity.
+</Tip>
+
+---
+
+## Integration with External Tools
+
+### Email-to-Ticket Integration
+
+Route notifications to ITSM platforms that support email-based ticket creation:
+
+| Platform | Setup Method |
+|----------|--------------|
+| **ServiceNow** | Configure inbound email actions |
+| **Jira Service Management** | Use email request channel |
+| **Autotask** | Set up email-to-ticket rules |
+| **ConnectWise** | Configure email connector |
+| **Zendesk** | Use support email address |
+
+<Card title="ServiceNow Integration" icon="plug" href="/guides/technical/servicenow-integration">
+  For tighter integration, use our native ServiceNow connector
+</Card>
+
+### Microsoft Teams / Slack
+
+For real-time chat notifications:
+
+<Steps>
+  <Step title="Create Email-Enabled Channel">
+    Set up an email address for your Teams channel or Slack workspace
+  </Step>
+  <Step title="Use as Distribution Group">
+    Provide this email to ContraForce as your notification recipient
+  </Step>
+  <Step title="Receive in Chat">
+    Notifications appear directly in your team chat
+  </Step>
+</Steps>
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Start conservative, then expand">
+    Begin with High severity only, monitor for a week, then gradually enable Medium and Low based on team capacity and incident quality.
+  </Accordion>
+  <Accordion title="Match notifications to SLAs">
+    Configure severity settings to match your SLA with each customer. Premium customers might get all severities; standard customers might only get High and Medium.
+  </Accordion>
+  <Accordion title="Use distribution groups for team visibility">
+    Individual email notifications risk being missed. Distribution groups ensure the entire team has visibility into alerts.
+  </Accordion>
+  <Accordion title="Integrate with ticketing for tracking">
+    Route notifications to your ITSM for automatic ticket creation, SLA tracking, and audit trails.
+  </Accordion>
+  <Accordion title="Allowlist the sender address">
+    Add `noreply@notifications.contraforce.com` to email allowlists for your organization and your customers.
+  </Accordion>
+  <Accordion title="Review and tune periodically">
+    Monthly review notification settings. If a severity level generates too much noise, consider disabling it while you tune detection rules.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| **Not receiving notifications** | Spam filter blocking | Add sender to allowlist |
+| **Not receiving notifications** | Wrong module deployed | Verify XDR + SIEM module is active |
+| **Not receiving notifications** | Severity disabled | Check notification settings |
+| **Not receiving notifications** | Distribution group issue | Contact support to verify configuration |
+| **Too many notifications** | All severities enabled | Disable Informational and Low |
+| **Delayed notifications** | Email server delays | Check your mail server; ContraForce sends in near real-time |
+| **Missing workspaces** | Permissions issue | Verify you have admin access to the workspace |
+
+### Testing Notifications
+
+To verify notifications are working:
+
+<Steps>
+  <Step title="Check Settings">
+    Confirm notification settings are enabled for the workspace
+  </Step>
+  <Step title="Verify Email Allowlist">
+    Ensure the sender address isn't blocked
+  </Step>
+  <Step title="Wait for Incident">
+    Wait for a new Sentinel incident (or ask ContraForce to send a test)
+  </Step>
+  <Step title="Check All Folders">
+    Check inbox, spam, and junk folders
+  </Step>
+  <Step title="Verify Content">
+    Confirm the email contains expected incident details
+  </Step>
+</Steps>
+
+---
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="What email address sends notifications?">
+    All notifications are sent from `noreply@notifications.contraforce.com`
+  </Accordion>
+  <Accordion title="Can I get notifications for Defender XDR incidents?">
+    No, ContraForce does not send notifications for Defender XDR incidents. Use Microsoft Defender's built-in notification settings. ContraForce notifications are for Sentinel incidents (XDR + SIEM module) and Gamebook activity.
+  </Accordion>
+  <Accordion title="How do I add a distribution group?">
+    Contact [support@contraforce.com](mailto:support@contraforce.com) with the email address. The ContraForce Engineering team will configure it for your account.
+  </Accordion>
+  <Accordion title="Can I customize the email template?">
+    Email templates are standardized and cannot be customized. For custom formatting, route emails to a ticketing system that can transform them.
+  </Accordion>
+  <Accordion title="Is there a notification delay?">
+    Notifications are sent in near real-time when Sentinel incidents are processed. Typical delay is under 5 minutes from incident creation.
+  </Accordion>
+  <Accordion title="Can different users get different notifications?">
+    Currently, notifications are configured at the workspace level, not per-user. All recipients for a workspace receive the same notifications based on severity settings.
+  </Accordion>
+  <Accordion title="Can I get SMS or push notifications?">
+    ContraForce currently supports email only. For SMS or push, route email notifications to PagerDuty, Opsgenie, or similar services.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="Module Overview" icon="cubes" href="/guides/onboarding/contraforce-module-overview">
+    XDR vs XDR + SIEM module comparison
+  </Card>
+  <Card title="Sentinel Onboarding" icon="database" href="/guides/onboarding/microsoft-sentinel-onboarding">
+    Deploy the XDR + SIEM module
+  </Card>
+  <Card title="Incident Management" icon="shield-halved" href="/guides/getting-started/contraforce-incident-management-user-guide">
+    Handling incidents from notifications
+  </Card>
+  <Card title="Gamebooks" icon="bolt" href="/guides/getting-started/what-are-gamebooks">
+    Automated response actions
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about notifications? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
