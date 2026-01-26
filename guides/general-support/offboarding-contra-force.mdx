@@ -1,0 +1,501 @@
+---
+title: "Offboarding Procedure"
+description: "Complete guide to removing ContraForce resources from your Microsoft Entra directory and Azure subscription."
+---
+
+This guide covers the steps required to fully offboard ContraForce from your environment. Follow these procedures to remove all ContraForce enterprise applications, Azure resources, and role assignments.
+
+<Warning>
+Offboarding removes all ContraForce functionality from your environment. Ensure you have exported any data you need before proceeding. This action cannot be undone without re-onboarding.
+</Warning>
+
+## Offboarding Overview
+
+During onboarding, ContraForce deploys resources to your environment. Complete offboarding requires removing:
+
+<CardGroup cols={2}>
+  <Card title="Enterprise Applications" icon="key">
+    ContraForce service principals in Microsoft Entra ID
+  </Card>
+  <Card title="Azure Resources" icon="cloud">
+    Resource groups, Logic Apps, and API connections
+  </Card>
+  <Card title="Role Assignments" icon="user-shield">
+    RBAC permissions granted to ContraForce
+  </Card>
+  <Card title="Agent Infrastructure" icon="robot">
+    AI agent resource groups (if deployed)
+  </Card>
+</CardGroup>
+
+---
+
+## Before You Begin
+
+### Prerequisites
+
+<Steps>
+  <Step title="Admin Access">
+    Ensure you have **Global Administrator** access to Microsoft Entra ID
+  </Step>
+  <Step title="Azure Permissions">
+    Ensure you have **Owner** or **Contributor** access to the Azure subscription
+  </Step>
+  <Step title="Document Current State">
+    Note which ContraForce modules and features are currently deployed
+  </Step>
+  <Step title="Export Data">
+    Export any incident data, reports, or configurations you need to retain
+  </Step>
+</Steps>
+
+### What Was Deployed?
+
+The resources you need to remove depend on your deployment:
+
+| Deployment Type | Resources to Remove |
+|-----------------|---------------------|
+| **XDR Module Only** | Enterprise applications only |
+| **XDR + SIEM Module** | Enterprise applications + Apollo resources + Sentinel resources |
+| **With AI Agents** | All above + Agent Center resource groups |
+
+---
+
+## Step 1: Remove Enterprise Applications
+
+Enterprise applications consented during onboarding must be removed from Microsoft Entra ID.
+
+### Accessing Enterprise Applications
+
+<Tabs>
+  <Tab title="Microsoft Entra Admin Center">
+    <Steps>
+      <Step title="Navigate to Admin Center">
+        Go to [entra.microsoft.com](https://entra.microsoft.com)
+      </Step>
+      <Step title="Open Enterprise Applications">
+        Navigate to **Identity** > **Applications** > **Enterprise applications**
+      </Step>
+      <Step title="Search for ContraForce">
+        Use the search box to find "ContraForce"
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Azure Portal">
+    <Steps>
+      <Step title="Open Azure Portal">
+        Go to [portal.azure.com](https://portal.azure.com)
+      </Step>
+      <Step title="Navigate to Entra ID">
+        Click **Microsoft Entra ID** in the left navigation
+      </Step>
+      <Step title="Open Enterprise Applications">
+        Click **Enterprise applications** under Manage
+      </Step>
+      <Step title="Search for ContraForce">
+        Use the search box to find "ContraForce"
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+### Applications to Remove
+
+Remove the following enterprise applications:
+
+| Application Name | Application ID |
+|------------------|----------------|
+| **ContraForce API** | `24d97bc0-8f2b-45d5-8e0b-7fe286732ef2` |
+| **ContraForce Portal** | `8b7cb435-9526-47ee-b79a-34433f0daad2` |
+| **ContraForce Sentinel Hunting** | `6bf1c74d-7ade-4671-a507-166936f89a1f` |
+| **ContraForce for MDE** | `6efccc6a-f0d3-49e5-92d0-17d4afa9ba52` |
+| **ContraForce Gamebooks for MDE** | `ad7b0e79-3c37-4408-bf8f-eb89522cc920` |
+| **ContraForce Gamebooks for Identity** | `36b0d51c-4c0f-4810-9cc4-bfbd40c7dd4a` |
+| **ContraForce User Management** | `460b65b7-3a5e-4a2c-98d0-e48fd35374a9` |
+| **ContraForce Gamebooks for Email** | `44dbf6fe-45e3-48a3-bac3-f8d4cf1dba6d` |
+
+### Deleting an Enterprise Application
+
+For each application in the list above:
+
+<Steps>
+  <Step title="Select the Application">
+    Click on the application name in the list
+  </Step>
+  <Step title="Open Properties">
+    Click **Properties** in the left navigation
+  </Step>
+  <Step title="Delete Application">
+    Click **Delete** at the top of the page
+  </Step>
+  <Step title="Confirm Deletion">
+    Confirm when prompted
+  </Step>
+</Steps>
+
+<Info>
+Not all applications may be present—only delete applications that exist in your directory. The applications present depend on which modules and features were enabled during onboarding.
+</Info>
+
+---
+
+## Step 2: Remove Azure Resources (Sentinel Deployments)
+
+If you deployed the **XDR + SIEM module** with Microsoft Sentinel, remove the following Azure resources.
+
+<Warning>
+Skip this step if you only deployed the XDR module without Sentinel integration.
+</Warning>
+
+### Remove Apollo Resource Group
+
+The Apollo resource group contains the infrastructure for real-time incident notifications.
+
+<Steps>
+  <Step title="Open Azure Portal">
+    Go to [portal.azure.com](https://portal.azure.com)
+  </Step>
+  <Step title="Navigate to Resource Groups">
+    Click **Resource groups** in the left navigation
+  </Step>
+  <Step title="Find Apollo Resource Group">
+    Search for `rg-contraforce-apollo`
+  </Step>
+  <Step title="Delete Resource Group">
+    Click the resource group, then click **Delete resource group**
+  </Step>
+  <Step title="Confirm Deletion">
+    Type the resource group name to confirm, then click **Delete**
+  </Step>
+</Steps>
+
+#### Resources in Apollo Resource Group
+
+The following resources are removed when you delete this resource group:
+
+| Resource Type | Name |
+|---------------|------|
+| Log Analytics Workspace | contraforce-apollo-* |
+| Application Insights | contraforce-apollo-* |
+| Function App | contraforce-apollo-* |
+| App Service Plan | contraforce-apollo-* |
+| Storage Account | contraforceapollo* |
+
+### Remove Sentinel Workspace Resources
+
+Resources were also deployed to the resource group containing your Microsoft Sentinel workspace.
+
+<Steps>
+  <Step title="Navigate to Sentinel Resource Group">
+    Find the resource group containing your Sentinel workspace
+  </Step>
+  <Step title="Delete API Connection">
+    Find and delete: `microsoftsentinel-Publish-Incident-To-Apollo`
+  </Step>
+  <Step title="Delete Logic App">
+    Find and delete: `Publish-Incident-To-Apollo`
+  </Step>
+  <Step title="Delete Automation Rule">
+    In Sentinel, go to **Automation** and delete: `Run-Playbook-Publish-Incident-To-Apollo`
+  </Step>
+</Steps>
+
+#### Deleting Individual Resources
+
+For each resource:
+
+<Steps>
+  <Step title="Select Resource">
+    Click on the resource name
+  </Step>
+  <Step title="Click Delete">
+    Click **Delete** in the toolbar
+  </Step>
+  <Step title="Confirm">
+    Confirm deletion when prompted
+  </Step>
+</Steps>
+
+---
+
+## Step 3: Remove Role Assignments
+
+ContraForce was granted RBAC permissions on your Azure resources. These should be removed.
+
+### Finding Role Assignments
+
+<Steps>
+  <Step title="Navigate to Resource Group">
+    Go to the resource group containing your Sentinel workspace
+  </Step>
+  <Step title="Open Access Control">
+    Click **Access control (IAM)** in the left navigation
+  </Step>
+  <Step title="View Role Assignments">
+    Click the **Role assignments** tab
+  </Step>
+  <Step title="Find ContraForce">
+    Search for "ContraForce" in the list
+  </Step>
+</Steps>
+
+### Role Assignments to Remove
+
+| Service Principal | Role | Scope |
+|-------------------|------|-------|
+| **ContraForce API** | Sentinel Contributor | Sentinel resource group |
+| **ContraForce API** | Reader | Sentinel resource group |
+
+### Removing a Role Assignment
+
+<Steps>
+  <Step title="Select Assignment">
+    Check the box next to the role assignment
+  </Step>
+  <Step title="Click Remove">
+    Click **Remove** in the toolbar
+  </Step>
+  <Step title="Confirm">
+    Click **Yes** to confirm removal
+  </Step>
+</Steps>
+
+<Tip>
+You can also use Azure CLI to remove role assignments:
+```bash
+az role assignment delete --assignee "24d97bc0-8f2b-45d5-8e0b-7fe286732ef2" --resource-group "your-sentinel-rg"
+```
+</Tip>
+
+---
+
+## Step 4: Remove Agent Resource Groups (If Applicable)
+
+If you deployed ContraForce AI Agents, additional resource groups must be removed.
+
+<Warning>
+Skip this step if you did not deploy AI Agents. Most deployments do not include agents.
+</Warning>
+
+### Agent Center Resource Group
+
+<Steps>
+  <Step title="Find Agent Center">
+    Search for resource group: `cf-rg-agent-center`
+  </Step>
+  <Step title="Delete Resource Group">
+    Click **Delete resource group**
+  </Step>
+  <Step title="Confirm">
+    Type the name and confirm deletion
+  </Step>
+</Steps>
+
+#### Resources in Agent Center
+
+| Resource Type | Description |
+|---------------|-------------|
+| AI Foundry | AI model hosting |
+| CosmosDB | Agent data storage |
+| Container Apps Environment | Agent runtime |
+| Virtual Network | Network isolation |
+| Key Vaults | Secret management |
+| Storage Accounts | Agent file storage |
+
+### Per-Agent Resource Groups
+
+Each deployed agent has its own resource group:
+
+<Steps>
+  <Step title="Search for Agent Groups">
+    Search for resource groups matching: `cf-rg-agent-*`
+  </Step>
+  <Step title="Delete Each Group">
+    Delete each agent resource group individually
+  </Step>
+  <Step title="Confirm Each Deletion">
+    Confirm each deletion when prompted
+  </Step>
+</Steps>
+
+---
+
+## Step 5: Remove Azure Lighthouse Delegation (If Applicable)
+
+If Azure Lighthouse was configured for cross-tenant management, remove the delegation.
+
+<Steps>
+  <Step title="Navigate to Service Providers">
+    In Azure Portal, search for **Service providers**
+  </Step>
+  <Step title="View Delegations">
+    Click **Service provider offers** to see active delegations
+  </Step>
+  <Step title="Find ContraForce">
+    Locate the ContraForce delegation
+  </Step>
+  <Step title="Remove Delegation">
+    Click the delegation, then click **Delete**
+  </Step>
+</Steps>
+
+---
+
+## Offboarding Checklist
+
+Use this checklist to ensure complete removal:
+
+### Enterprise Applications
+
+- [ ] ContraForce API removed
+- [ ] ContraForce Portal removed
+- [ ] ContraForce Sentinel Hunting removed
+- [ ] ContraForce for MDE removed
+- [ ] ContraForce Gamebooks for MDE removed
+- [ ] ContraForce Gamebooks for Identity removed
+- [ ] ContraForce User Management removed
+- [ ] ContraForce Gamebooks for Email removed
+
+### Azure Resources (Sentinel Deployments)
+
+- [ ] `rg-contraforce-apollo` resource group deleted
+- [ ] `microsoftsentinel-Publish-Incident-To-Apollo` API connection deleted
+- [ ] `Publish-Incident-To-Apollo` Logic App deleted
+- [ ] `Run-Playbook-Publish-Incident-To-Apollo` Automation Rule deleted
+- [ ] ContraForce API role assignments removed
+
+### Agent Resources (If Applicable)
+
+- [ ] `cf-rg-agent-center` resource group deleted
+- [ ] All `cf-rg-agent-*` resource groups deleted
+
+### Azure Lighthouse (If Applicable)
+
+- [ ] ContraForce delegation removed
+
+---
+
+## Verifying Complete Removal
+
+After completing the offboarding steps, verify removal:
+
+### Check Enterprise Applications
+
+<Steps>
+  <Step title="Search Applications">
+    In Entra ID, search Enterprise applications for "ContraForce"
+  </Step>
+  <Step title="Verify Empty Results">
+    Confirm no ContraForce applications appear
+  </Step>
+</Steps>
+
+### Check Azure Resources
+
+<Steps>
+  <Step title="Search Resources">
+    In Azure Portal, use the global search for "contraforce"
+  </Step>
+  <Step title="Verify Empty Results">
+    Confirm no ContraForce resources appear
+  </Step>
+</Steps>
+
+### Check Role Assignments
+
+<Steps>
+  <Step title="Review IAM">
+    Check Access Control (IAM) on your Sentinel resource group
+  </Step>
+  <Step title="Verify No ContraForce">
+    Confirm no ContraForce service principals have assignments
+  </Step>
+</Steps>
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| **Can't delete enterprise app** | Insufficient permissions | Ensure you have Global Administrator role |
+| **Resource group won't delete** | Resources have locks | Remove resource locks before deleting |
+| **Role assignment won't remove** | Permission denied | Ensure you have Owner access to the subscription |
+| **Can't find Apollo resource group** | Different naming | Search for "contraforce" in all resource groups |
+| **Logic App deletion fails** | Automation rule dependency | Delete the automation rule first |
+
+### Resource Locks
+
+If you encounter "Cannot delete due to resource locks":
+
+<Steps>
+  <Step title="Navigate to Resource Group">
+    Open the resource group in Azure Portal
+  </Step>
+  <Step title="Open Locks">
+    Click **Locks** in the left navigation
+  </Step>
+  <Step title="Delete Locks">
+    Delete any locks on the resource group
+  </Step>
+  <Step title="Retry Deletion">
+    Attempt to delete the resource group again
+  </Step>
+</Steps>
+
+---
+
+## Re-Onboarding After Offboarding
+
+If you need to reconnect ContraForce in the future:
+
+1. Contact the ContraForce team for a new onboarding wizard link
+2. Follow the standard onboarding process
+3. All resources will be recreated
+4. Historical data from before offboarding will not be available
+
+<Note>
+Offboarding is permanent. If you think you may reconnect in the future, consider disabling functionality instead of fully removing it. Contact [support@contraforce.com](mailto:support@contraforce.com) to discuss options.
+</Note>
+
+---
+
+## Getting Help
+
+If you encounter issues during offboarding:
+
+<CardGroup cols={2}>
+  <Card title="Email Support" icon="envelope" href="mailto:support@contraforce.com">
+    support@contraforce.com
+  </Card>
+  <Card title="Submit a Ticket" icon="ticket" href="https://docs.contraforce.com/knowledge/kb-tickets/new">
+    Open a support ticket
+  </Card>
+</CardGroup>
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="Enterprise Applications" icon="key" href="/guides/technical/contraforce-enterprise-applications">
+    Overview of all service principals
+  </Card>
+  <Card title="Azure Resources Deployed" icon="cloud" href="/guides/technical/contraforce-resources-deployed-during-azure-onboarding">
+    Complete resource documentation
+  </Card>
+  <Card title="XDR Onboarding" icon="shield-halved" href="/guides/onboarding/microsoft-defender-xdr-onboarding">
+    Re-onboarding the XDR module
+  </Card>
+  <Card title="Sentinel Onboarding" icon="database" href="/guides/onboarding/microsoft-sentinel-onboarding">
+    Re-onboarding the SIEM module
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about offboarding? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>

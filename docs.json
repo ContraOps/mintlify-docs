@@ -55,7 +55,8 @@
           {
             "group": "General Support",
             "pages": [
-              "user-group-management"
+              "user-group-management",
+              "guides/general-support/offboarding-contra-force"
             ]
           }
         ]
