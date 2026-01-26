@@ -36,7 +36,7 @@
               "incident-management",
               "guides/getting-started/incident-classifications",
               "guides/getting-started/multi-tenant-features",
-              "guides/getting-started/security-workbench",
+              "guides/getting-started/workbench",
               "guides/getting-started/what-are-gamebooks"
             ]
           },
@@ -67,7 +67,7 @@
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
         "pages": [
           "api-reference-hidden/partner-api",
           {

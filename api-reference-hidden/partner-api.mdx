@@ -1,12 +1,12 @@
 ---
-title: "Partner API Overview"
+title: "Partner API"
 description: "Integrate ContraForce with your ITSM, SOAR, or custom platforms using the Partner API. Access incidents, entities, and evidence programmatically."
 ---
 
 The ContraForce Partner API enables programmatic access to your security data. Build custom integrations, sync incidents with your ITSM, or create automated workflows with your existing tools.
 
 <Info>
-Full API documentation, including detailed request/response schemas, is available on GitHub: [ContraForce API Documentation](https://github.com/ContraForce/contraforce-api)
+  Full API documentation, including detailed request/response schemas, is available on GitHub: [ContraForce API Documentation](https://github.com/ContraForce/contraforce-api)
 </Info>
 
 ## Why Use the Partner API?
@@ -25,13 +25,13 @@ Full API documentation, including detailed request/response schemas, is availabl
 
 ### Common Use Cases
 
-| Use Case | Description |
-|----------|-------------|
-| **Ticket Creation** | Automatically create tickets in your PSA when incidents are detected |
-| **Bi-directional Sync** | Keep incident status synchronized between ContraForce and your ITSM |
-| **Executive Reporting** | Pull incident data into custom reports and dashboards |
-| **Alert Routing** | Send incident notifications to custom channels (Slack, Teams, PagerDuty) |
-| **Data Warehouse** | Export incident data to your data lake for long-term analysis |
+| Use Case                | Description                                                              |
+| ----------------------- | ------------------------------------------------------------------------ |
+| **Ticket Creation**     | Automatically create tickets in your PSA when incidents are detected     |
+| **Bi-directional Sync** | Keep incident status synchronized between ContraForce and your ITSM      |
+| **Executive Reporting** | Pull incident data into custom reports and dashboards                    |
+| **Alert Routing**       | Send incident notifications to custom channels (Slack, Teams, PagerDuty) |
+| **Data Warehouse**      | Export incident data to your data lake for long-term analysis            |
 
 ---
 
@@ -68,7 +68,7 @@ Before using the API, you'll need:
 </Steps>
 
 <Warning>
-Treat your API credentials like passwords. Never expose them in client-side code, public repositories, or logs.
+  Treat your API credentials like passwords. Never expose them in client-side code, public repositories, or logs.
 </Warning>
 
 ---
@@ -107,7 +107,7 @@ curl -X GET https://api.contraforce.com/v1/incidents \
 ```
 
 <Tip>
-Access tokens expire after 1 hour. Implement token refresh logic in your integration to handle expiration gracefully.
+  Access tokens expire after 1 hour. Implement token refresh logic in your integration to handle expiration gracefully.
 </Tip>
 
 ---
@@ -124,12 +124,12 @@ https://api.contraforce.com/v1
 
 ### Available Endpoints
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/incidents` | GET | List all incidents |
-| `/incidents/{id}` | GET | Get incident details |
-| `/incidents/{id}/entities` | GET | List entities for an incident |
-| `/incidents/{id}/evidence` | GET | List evidence for an incident |
+| Endpoint                   | Method | Description                   |
+| -------------------------- | ------ | ----------------------------- |
+| `/incidents`               | GET    | List all incidents            |
+| `/incidents/{id}`          | GET    | Get incident details          |
+| `/incidents/{id}/entities` | GET    | List entities for an incident |
+| `/incidents/{id}/evidence` | GET    | List evidence for an incident |
 
 ---
 
@@ -138,73 +138,78 @@ https://api.contraforce.com/v1
 <Tabs>
   <Tab title="Incident Object">
     The core data structure representing a security incident.
-    
+
     **Key Fields:**
-    | Field | Type | Description |
-    |-------|------|-------------|
-    | `id` | string | Unique incident identifier |
-    | `title` | string | Incident title/name |
-    | `severity` | string | High, Medium, Low, Informational |
-    | `status` | string | New, Active, Closed |
-    | `workspaceId` | string | Associated workspace |
-    | `createdAt` | datetime | When incident was created |
-    | `updatedAt` | datetime | Last modification time |
-    
+
+    | Field         | Type     | Description                      |
+    | ------------- | -------- | -------------------------------- |
+    | `id`          | string   | Unique incident identifier       |
+    | `title`       | string   | Incident title/name              |
+    | `severity`    | string   | High, Medium, Low, Informational |
+    | `status`      | string   | New, Active, Closed              |
+    | `workspaceId` | string   | Associated workspace             |
+    | `createdAt`   | datetime | When incident was created        |
+    | `updatedAt`   | datetime | Last modification time           |
+
     [Full Schema →](https://github.com/ContraForce/contraforce-api/blob/main/Docs/incident-object.md)
   </Tab>
   <Tab title="List Incidents">
     Retrieve a list of incidents with optional filtering.
-    
+
     **Endpoint:** `GET /incidents`
-    
+
     **Query Parameters:**
-    | Parameter | Type | Description |
-    |-----------|------|-------------|
-    | `workspaceId` | string | Filter by workspace |
-    | `status` | string | Filter by status |
-    | `severity` | string | Filter by severity |
-    | `limit` | integer | Max results (default: 100) |
-    | `offset` | integer | Pagination offset |
-    
+
+    | Parameter     | Type    | Description                |
+    | ------------- | ------- | -------------------------- |
+    | `workspaceId` | string  | Filter by workspace        |
+    | `status`      | string  | Filter by status           |
+    | `severity`    | string  | Filter by severity         |
+    | `limit`       | integer | Max results (default: 100) |
+    | `offset`      | integer | Pagination offset          |
+
     [Full Documentation →](https://github.com/ContraForce/contraforce-api/blob/main/Docs/list-incidents.md)
   </Tab>
   <Tab title="Get Incident Details">
     Retrieve complete details for a specific incident.
-    
+
     **Endpoint:** `GET /incidents/{id}`
-    
+
     **Response includes:**
+
     - Full incident metadata
     - Classification information
     - Assignment details
     - Timeline data
-    
+
     [Full Documentation →](https://github.com/ContraForce/contraforce-api/blob/main/Docs/get-incident-details.md)
   </Tab>
   <Tab title="List Entities">
     Get all entities (users, devices, IPs) associated with an incident.
-    
+
     **Endpoint:** `GET /incidents/{id}/entities`
-    
+
     **Entity Types:**
+
     - Users/Accounts
     - Devices/Endpoints
     - IP Addresses
     - Files/Hashes
     - URLs/Domains
-    
+
     [Full Documentation →](https://github.com/ContraForce/contraforce-api/blob/main/Docs/list-incident-entities.md)
   </Tab>
   <Tab title="List Evidence">
     Retrieve raw evidence and logs associated with an incident.
-    
+
     **Endpoint:** `GET /incidents/{id}/evidence`
-    
+
     **Evidence includes:**
+
     - Raw log entries
     - Alert details
     - Forensic artifacts
-    
+
     [Full Documentation →](https://github.com/ContraForce/contraforce-api/blob/main/Docs/list-incident-evidence.md)
   </Tab>
 </Tabs>
@@ -272,11 +277,11 @@ curl -X GET "https://api.contraforce.com/v1/incidents/INC-12345/entities" \
 
 The API implements rate limiting to ensure fair usage and platform stability.
 
-| Limit Type | Value |
-|------------|-------|
-| **Requests per minute** | 60 |
-| **Requests per hour** | 1,000 |
-| **Max results per request** | 100 |
+| Limit Type                  | Value |
+| --------------------------- | ----- |
+| **Requests per minute**     | 60    |
+| **Requests per hour**       | 1,000 |
+| **Max results per request** | 100   |
 
 ### Rate Limit Headers
 
@@ -289,7 +294,7 @@ X-RateLimit-Reset: 1705320000
 ```
 
 <Warning>
-If you exceed rate limits, you'll receive a `429 Too Many Requests` response. Implement exponential backoff in your integration.
+  If you exceed rate limits, you'll receive a `429 Too Many Requests` response. Implement exponential backoff in your integration.
 </Warning>
 
 ---
@@ -300,14 +305,14 @@ The API uses standard HTTP status codes and returns detailed error messages.
 
 ### HTTP Status Codes
 
-| Code | Meaning | Action |
-|------|---------|--------|
-| `200` | Success | Request completed successfully |
-| `400` | Bad Request | Check request parameters |
-| `401` | Unauthorized | Verify credentials/token |
-| `403` | Forbidden | Check workspace permissions |
-| `404` | Not Found | Verify resource ID exists |
-| `429` | Rate Limited | Implement backoff and retry |
+| Code  | Meaning      | Action                                           |
+| ----- | ------------ | ------------------------------------------------ |
+| `200` | Success      | Request completed successfully                   |
+| `400` | Bad Request  | Check request parameters                         |
+| `401` | Unauthorized | Verify credentials/token                         |
+| `403` | Forbidden    | Check workspace permissions                      |
+| `404` | Not Found    | Verify resource ID exists                        |
+| `429` | Rate Limited | Implement backoff and retry                      |
 | `500` | Server Error | Retry after delay; contact support if persistent |
 
 ### Error Response Format
@@ -357,15 +362,15 @@ The API uses standard HTTP status codes and returns detailed error messages.
 
 While the API can be called directly with HTTP requests, you may find these helpful:
 
-| Language | Option |
-|----------|--------|
-| **Python** | Use `requests` library with OAuth2 session |
+| Language       | Option                                       |
+| -------------- | -------------------------------------------- |
+| **Python**     | Use `requests` library with OAuth2 session   |
 | **JavaScript** | Use `axios` or `fetch` with token management |
-| **PowerShell** | Use `Invoke-RestMethod` cmdlet |
-| **C#** | Use `HttpClient` with `System.Net.Http` |
+| **PowerShell** | Use `Invoke-RestMethod` cmdlet               |
+| **C#**         | Use `HttpClient` with `System.Net.Http`      |
 
 <Tip>
-Check the [GitHub repository](https://github.com/ContraForce/contraforce-api) for example code and community-contributed libraries.
+  Check the [GitHub repository](https://github.com/ContraForce/contraforce-api) for example code and community-contributed libraries.
 </Tip>
 
 ---
@@ -374,12 +379,12 @@ Check the [GitHub repository](https://github.com/ContraForce/contraforce-api) fo
 
 ### Common Issues
 
-| Issue | Possible Cause | Solution |
-|-------|---------------|----------|
-| `401 Unauthorized` | Expired or invalid token | Refresh your access token |
-| `403 Forbidden` | Missing workspace access | Verify API credentials have access to the workspace |
-| `Empty results` | Filter too restrictive | Broaden filter criteria or check workspace ID |
-| `Timeout errors` | Large result set | Use pagination with smaller `limit` values |
+| Issue              | Possible Cause           | Solution                                            |
+| ------------------ | ------------------------ | --------------------------------------------------- |
+| `401 Unauthorized` | Expired or invalid token | Refresh your access token                           |
+| `403 Forbidden`    | Missing workspace access | Verify API credentials have access to the workspace |
+| `Empty results`    | Filter too restrictive   | Broaden filter criteria or check workspace ID       |
+| `Timeout errors`   | Large result set         | Use pagination with smaller `limit` values          |
 
 ---
 
@@ -419,5 +424,5 @@ Check the [GitHub repository](https://github.com/ContraForce/contraforce-api) fo
 ---
 
 <Note>
-Questions about the Partner API? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+  Questions about the Partner API? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
 </Note>
