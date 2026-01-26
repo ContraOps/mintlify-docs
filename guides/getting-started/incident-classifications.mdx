@@ -1,5 +1,5 @@
 ---
-title: "Understanding Incident Classifications"
+title: "Incident Classifications"
 description: "Learn how to properly classify incidents as True Positive, False Positive, Benign Positive, or Undetermined to improve detection accuracy and reporting."
 ---
 
@@ -12,14 +12,14 @@ Before diving into classifications, it's important to understand the difference 
 <CardGroup cols={2}>
   <Card title="Status" icon="circle-dot">
     **Work state** of the investigation
-    
+
     - **New** — Not yet reviewed
     - **Active** — Under investigation
     - **Closed** — Investigation complete
   </Card>
   <Card title="Classification" icon="tags">
     **Outcome** of the investigation
-    
+
     - True Positive
     - False Positive
     - Benign Positive
@@ -28,7 +28,7 @@ Before diving into classifications, it's important to understand the difference 
 </CardGroup>
 
 <Info>
-**Status** tracks *where you are* in the investigation process. **Classification** documents *what you found* when the investigation is complete.
+  **Status** tracks _where you are_ in the investigation process. **Classification** documents _what you found_ when the investigation is complete.
 </Info>
 
 ---
@@ -38,23 +38,25 @@ Before diving into classifications, it's important to understand the difference 
 ### True Positive
 
 <Card title="True Positive" icon="circle-check" color="#22c55e">
-The incident represents an **actual security threat** that required response.
+  The incident represents an **actual security threat** that required response.
 </Card>
 
 **When to use:**
+
 - Confirmed malicious activity was detected
 - A real attack or compromise occurred
 - Threat actor activity was identified
 - Malware, phishing, or unauthorized access was verified
 
 **Examples:**
+
 - User credentials were actually compromised
 - Malware was confirmed running on an endpoint
 - Data exfiltration attempt was verified
 - Unauthorized access to sensitive resources occurred
 
 <Tip>
-True Positives validate that your detection rules are working correctly. Document the threat details in comments for future reference.
+  True Positives validate that your detection rules are working correctly. Document the threat details in comments for future reference.
 </Tip>
 
 ---
@@ -62,23 +64,25 @@ True Positives validate that your detection rules are working correctly. Documen
 ### Benign Positive
 
 <Card title="Benign Positive" icon="circle-info" color="#3b82f6">
-The detection was **technically correct**, but the activity was **legitimate** and authorized.
+  The detection was **technically correct**, but the activity was **legitimate** and authorized.
 </Card>
 
 **When to use:**
+
 - Suspicious-looking activity was actually authorized
 - A user performed unusual but legitimate actions
 - IT/Admin activities triggered security alerts
 - Penetration testing or security assessments caused alerts
 
 **Examples:**
+
 - Admin legitimately accessed multiple systems during maintenance
 - User traveled and logged in from an unusual location
 - Authorized penetration test triggered alerts
 - New software deployment caused unusual process behavior
 
 <Tip>
-Benign Positives help identify opportunities for tuning. Consider creating exceptions or adjusting detection thresholds for known legitimate activities.
+  Benign Positives help identify opportunities for tuning. Consider creating exceptions or adjusting detection thresholds for known legitimate activities.
 </Tip>
 
 ---
@@ -86,34 +90,36 @@ Benign Positives help identify opportunities for tuning. Consider creating excep
 ### False Positive
 
 <Card title="False Positive" icon="circle-xmark" color="#ef4444">
-The incident was **incorrectly triggered** due to flawed detection logic or bad data.
+  The incident was **incorrectly triggered** due to flawed detection logic or bad data.
 </Card>
 
 **When to use:**
+
 - Detection rule logic is flawed or too broad
 - Inaccurate or corrupted data triggered the alert
 - Misconfiguration caused incorrect detection
 - The alert has no basis in actual activity
 
 <Frame>
-  <img src="/images/false-positive-reasons.png" alt="False Positive classification reasons" />
+  ![False Positive classification reasons](/images/false-positive-reasons.png)
 </Frame>
 
 **Sub-classifications:**
 
-| Reason | Description |
-|--------|-------------|
-| **Inaccurate data** | The data used to generate the alert was incorrect, incomplete, or corrupted |
-| **Incorrect alert logic** | The detection rule itself is flawed and needs to be modified or disabled |
+| Reason                    | Description                                                                 |
+| ------------------------- | --------------------------------------------------------------------------- |
+| **Inaccurate data**       | The data used to generate the alert was incorrect, incomplete, or corrupted |
+| **Incorrect alert logic** | The detection rule itself is flawed and needs to be modified or disabled    |
 
 **Examples:**
+
 - Alert triggered on a non-existent user due to log parsing error
 - Detection rule matches normal business activity too broadly
 - Time zone misconfiguration caused false temporal correlation
 - Deprecated system generated alerts for decommissioned resources
 
 <Warning>
-False Positives indicate detection problems that should be addressed. Report patterns of False Positives to improve detection quality.
+  False Positives indicate detection problems that should be addressed. Report patterns of False Positives to improve detection quality.
 </Warning>
 
 ---
@@ -121,35 +127,37 @@ False Positives indicate detection problems that should be addressed. Report pat
 ### Undetermined
 
 <Card title="Undetermined" icon="circle-question" color="#a855f7">
-The investigation was **inconclusive**—the cause or outcome couldn't be determined.
+  The investigation was **inconclusive**—the cause or outcome couldn't be determined.
 </Card>
 
 **When to use:**
+
 - Insufficient evidence to reach a conclusion
 - Logs or data needed for investigation are unavailable
 - The incident doesn't fit other classification categories
 - Investigation was abandoned due to resource constraints
 
 **Examples:**
+
 - Relevant logs expired before investigation completed
 - Activity was suspicious but couldn't be verified either way
 - Source system was decommissioned, preventing further analysis
 - Alert context was insufficient for determination
 
 <Tip>
-When using Undetermined, always add detailed comments documenting what was discovered during the investigation. This helps if the incident needs to be revisited later.
+  When using Undetermined, always add detailed comments documenting what was discovered during the investigation. This helps if the incident needs to be revisited later.
 </Tip>
 
 ---
 
 ## Quick Reference
 
-| Classification | Meaning | Action |
-|----------------|---------|--------|
-| **True Positive** | Real threat confirmed | Document threat details, validate response actions |
-| **Benign Positive** | Correct detection, authorized activity | Consider tuning or adding exceptions |
-| **False Positive** | Incorrect detection | Report for rule improvement |
-| **Undetermined** | Inconclusive investigation | Document findings in comments |
+| Classification      | Meaning                                | Action                                             |
+| ------------------- | -------------------------------------- | -------------------------------------------------- |
+| **True Positive**   | Real threat confirmed                  | Document threat details, validate response actions |
+| **Benign Positive** | Correct detection, authorized activity | Consider tuning or adding exceptions               |
+| **False Positive**  | Incorrect detection                    | Report for rule improvement                        |
+| **Undetermined**    | Inconclusive investigation             | Document findings in comments                      |
 
 ---
 
@@ -205,5 +213,5 @@ flowchart TD
 ---
 
 <Note>
-Questions about classifications? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+  Questions about classifications? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
 </Note>
