@@ -1,0 +1,48 @@
+---
+title: "How to connect SentinelOne to ContraForce"
+description: "ContraForce can ingest security event information from SentinelOne. This document will provide an overview of what information is needed to connect your SentinelOne environment to ContraForce."
+---
+
+## Overview
+
+In order to connect SentinelOne to ContraForce, a dedicated SentinelOne user should be created. An API token will be generated for the new user. Additionally, the SentinelOne URL for your environment is also required. This article will cover how to accomplish these requirements. Once completed, send the details to the ContraForce team to continue the connection process.
+
+## Required User Role
+
+An important detail of this process is that the user created in SentinelOne needs to have the Admin role. This is standard practice for establishing API connections with SentinelOne. Using the Admin role ensures that all log data will be transferred via API, resulting in the most effective security overview. Additionally, the Admin permission level will allow ContraForce to utilize the endpoint response capabilities of SentinelOne. With this in mind, Admin is recommended to achieve the best possible integration between ContraForce and SentinelOne.
+
+## How to create a new user in SentinelOne
+
+1. Log into the SentinelOne Management Console as an Admin that can create new users.
+
+2. In the Management Console, click Settings. Within Settings, click Users.
+
+3. Click New User
+
+4. Enter the information for the new user to be used with the API connection.
+   - For the email address of the new user, SentinelOne recommends for security and separation of concern to create an email service account to specifically use with the API integration user. The recommended format is sentinelone_contraforce@*<companydomain>*.com
+
+5. In Role, select Admin. Click Save.
+   - Be sure to save the credentials of the newly created user for the API integration.
+
+## How to generate an API token for the new user
+
+1. Log into the SentinelOne Management Console as an Admin.
+
+2. In the Management Console, click Settings. Within Settings, click Users.
+
+3. Navigate to the newly created user.
+
+4. Click Edit, then API Token.
+
+5. Click Generate.
+
+6. Click Copy to record the value of the API token that has been generated.
+
+## What is my SentinelOne domain?
+
+The format of the URL will be https://<SOneINstanceDomain>.sentinelone.net. Please provide this link to ContraForce.
+
+<Warning>
+If you have any questions, don't hesitate to reach out! Please feel free to contact us at support@contraforce.com.
+</Warning>
