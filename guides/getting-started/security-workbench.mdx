@@ -1,0 +1,299 @@
+---
+title: "Security Workbench Overview"
+description: "Create custom incident response workflows with AI-mapped playbooks and one-click actions. Visualize entities, build Gamebooks, and resolve incidents faster."
+---
+
+The Security Workbench is your investigation and response command center. Visualize affected entities, build custom response workflows, and execute remediation actions—all from a single interface.
+
+<Frame>
+  <img src="/images/security-workbench-overview.png" alt="ContraForce Security Workbench" />
+</Frame>
+
+## What is the Security Workbench?
+
+The Security Workbench combines investigation and response into one powerful workspace:
+
+<CardGroup cols={2}>
+  <Card title="AI-Mapped Playbooks" icon="brain">
+    Automatically recommended response actions based on affected entity types
+  </Card>
+  <Card title="Entity Visualization" icon="diagram-project">
+    See all related entities in an interactive graph
+  </Card>
+  <Card title="No-Code Queries" icon="magnifying-glass">
+    Investigate entities further without writing queries
+  </Card>
+  <Card title="Custom Workflows" icon="arrows-split-up-and-left">
+    Chain multiple actions into comprehensive Gamebooks
+  </Card>
+</CardGroup>
+
+<Info>
+The Security Workbench is where investigation meets action. Instead of switching between tools, you can analyze the threat and respond to it in the same place.
+</Info>
+
+---
+
+## Accessing the Security Workbench
+
+<Steps>
+  <Step title="Open an Incident">
+    From the Command Page, click any **Incident ID** in the Incidents table
+  </Step>
+  <Step title="View the Summary">
+    The Incident Summary opens with overview information
+  </Step>
+  <Step title="Open the Workbench">
+    Click the dropdown next to **Edit** and select **Create New Gamebook**
+  </Step>
+</Steps>
+
+---
+
+## Workbench Layout
+
+The Security Workbench is organized into several key areas:
+
+### Incident Header
+
+At the top of the Workbench, you'll find:
+
+| Element | Description |
+|---------|-------------|
+| **Incident Title** | Name and ID of the incident |
+| **Status** | Current state (New, Active, Closed)—editable inline |
+| **Owner** | Assigned analyst—editable inline |
+| **Severity** | Incident severity level |
+
+<Tip>
+You can update the Status and Owner directly from the Workbench without leaving the page.
+</Tip>
+
+### Entity Graph
+
+The central visualization showing all entities involved in the incident:
+
+- **Users** — Accounts that were affected or involved
+- **Devices** — Endpoints implicated in the incident
+- **IPs** — Network addresses related to the activity
+- **Files** — Suspicious files or hashes detected
+- **URLs/Domains** — Web resources involved
+
+Click any entity icon to:
+- View entity details
+- See other incidents involving this entity
+- Access available response actions
+
+### Tabs
+
+<Tabs>
+  <Tab title="Summary">
+    Overview of the incident including description, timeline summary, and key indicators.
+  </Tab>
+  <Tab title="Entities">
+    Detailed list of all affected entities with expandable details and cross-incident correlation.
+  </Tab>
+  <Tab title="Comments">
+    Team collaboration space. Add investigation notes and view comments from other analysts.
+  </Tab>
+  <Tab title="History">
+    Complete audit trail of all actions taken on this incident, including previously run Gamebooks.
+  </Tab>
+</Tabs>
+
+---
+
+## Building a Gamebook
+
+Gamebooks are custom response workflows you build by selecting actions for each affected entity.
+
+### Step 1: Select an Entity
+
+Click an entity icon in the Entity Graph. The **Incident Response Carousel** appears with available actions for that entity type.
+
+<Frame>
+  <img src="/images/entity-action-carousel.png" alt="Entity action carousel" />
+</Frame>
+
+### Step 2: Browse Available Actions
+
+Use the **arrows** on either side of the carousel to rotate through available actions:
+
+| Entity Type | Example Actions |
+|-------------|-----------------|
+| **User** | Disable account, Reset password, Revoke sessions, Block sign-in |
+| **Device** | Isolate device, Run AV scan, Collect investigation package |
+| **IP** | Block IP, Add to watchlist |
+| **File** | Quarantine file, Block hash |
+
+<Info>
+Available actions depend on the entity type and your connected integrations. ContraForce automatically shows only actions that are relevant and executable.
+</Info>
+
+### Step 3: Add Actions to Gamebook
+
+- Click the **green + icon** to add an action to your Gamebook
+- Click the **red - icon** to remove an action
+- Repeat for each entity you want to take action on
+
+<Frame>
+  <img src="/images/gamebook-actions-added.png" alt="Gamebook with actions added" />
+</Frame>
+
+### Step 4: Review Your Gamebook
+
+As you add actions, they appear in the **Gamebook Card** below the carousel:
+
+| Column | Description |
+|--------|-------------|
+| **Action** | What will be performed |
+| **Entity** | Target of the action |
+| **Status** | Shows "Pending" before execution |
+
+### Step 5: Execute the Gamebook
+
+<Steps>
+  <Step title="Review Actions">
+    Verify all actions in the Gamebook Card are correct
+  </Step>
+  <Step title="Click Run Gamebook">
+    Execute all actions in the Gamebook
+  </Step>
+  <Step title="Monitor Progress">
+    Status updates from "Pending" to "Running" to "Finished"
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/gamebook-execution-complete.png" alt="Gamebook execution complete" />
+</Frame>
+
+---
+
+## Gamebook Approval Workflow
+
+Some actions require approval before execution, indicated by a **red lock icon** in the carousel.
+
+<Warning>
+Actions with approval requirements are typically high-impact operations like device isolation or account disablement. This prevents accidental execution.
+</Warning>
+
+### Requesting Approval
+
+1. Build your Gamebook as usual (including locked actions)
+2. Click **Request Gamebook Approval** instead of Run Gamebook
+3. The request is sent to users with approval permissions
+
+### Approving Gamebooks
+
+Approvers can approve requests from:
+
+- **The incident itself** — Open the incident and approve directly
+- **Gamebook Activity tab** — Review all pending approvals in one place
+
+---
+
+## Loading Previous Gamebooks
+
+Don't rebuild from scratch—reuse successful response patterns.
+
+### From the History Tab
+
+<Steps>
+  <Step title="Open History Tab">
+    Click the **History** tab in the Security Workbench
+  </Step>
+  <Step title="Find Previous Gamebook">
+    Browse previously executed Gamebooks for this incident
+  </Step>
+  <Step title="Load Gamebook">
+    Click to load the actions into a new Gamebook
+  </Step>
+  <Step title="Modify if Needed">
+    Add or remove actions before executing
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/gamebook-history-tab.png" alt="Gamebook History tab" />
+</Frame>
+
+<Tip>
+Loading previous Gamebooks is especially useful for recurring incident types. Build a response once, reuse it across similar incidents.
+</Tip>
+
+---
+
+## Gamebook Activity Page
+
+Track all Gamebook executions across your entire environment from the dedicated **Gamebooks Page**.
+
+<Frame>
+  <img src="/images/gamebook-activity-page.png" alt="Gamebook Activity page" />
+</Frame>
+
+### What You Can See
+
+| Column | Description |
+|--------|-------------|
+| **Status** | Success, Failed, Pending Approval |
+| **Incident** | Linked incident ID |
+| **Actions** | What actions were performed |
+| **Time to Run** | Execution duration |
+| **Workspace** | Which tenant the actions ran against |
+
+### Expanding Details
+
+Click any row to expand and see:
+
+- Individual action results
+- Error messages (if any failed)
+- Timestamps for each step
+- Entity details
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Start with high-impact entities">
+    Focus your initial response on the most critical entities—compromised users, infected devices, or malicious IPs that pose immediate risk.
+  </Accordion>
+  <Accordion title="Use comments to document findings">
+    Add comments as you investigate. This creates a record for your team and helps with post-incident review.
+  </Accordion>
+  <Accordion title="Review before executing">
+    Always review the complete Gamebook Card before clicking Run. Verify you're taking action on the correct entities.
+  </Accordion>
+  <Accordion title="Check History for patterns">
+    Before building a new Gamebook, check the History tab. A previous response may already exist that you can reuse or adapt.
+  </Accordion>
+  <Accordion title="Monitor the Gamebook Activity page">
+    Regularly check the Gamebook Activity page to ensure actions completed successfully and catch any failures early.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="What are Gamebooks?" icon="bolt" href="/guides/getting-started/what-are-gamebooks">
+    Deep dive into Gamebook capabilities
+  </Card>
+  <Card title="Incident Management Guide" icon="book" href="/guides/getting-started/contraforce-incident-management-user-guide">
+    Complete incident workflow
+  </Card>
+  <Card title="Entity Insights" icon="lightbulb" href="/guides/technical/entity-insights-available-in-contraforce">
+    Available entity enrichment data
+  </Card>
+  <Card title="Incident Classifications" icon="tags" href="/guides/getting-started/understanding-incident-classifications">
+    Classify incidents after resolution
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Need help with the Security Workbench? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
