@@ -1,0 +1,48 @@
+---
+title: "How to connect Okta SSO to ContraForce."
+description: "ContraForce can ingest data from Okta SSO. This article will provide an overview of what information is needed to connect Okta SSO security data to ContraForce."
+---
+
+In order to connect Okta SSO to ContraForce, a few details are required. ContraForce will need an API Token, an Okta Domain, and an API Authorization URI. This article will cover how to generate and find these details.
+
+<Warning>
+If you have any questions, don't hesitate to reach out! Please feel free to contact us at support@contraforce.com.
+</Warning>
+
+## Generating the API Token
+
+Okta provides great developer documentation around the use of API tokens. That article can be found [here](https://developer.okta.com/docs/guides/create-an-api-token/main/#privilege-level). A step by step guide of how to generate the API token is below.
+
+1. Sign into Okta as an administrator.
+   - For further information around why an administrator is required, please reference the Privilege level section of the Okta developer documentation found [here](https://developer.okta.com/docs/guides/create-an-api-token/main/#privilege-level). The API token needed for the ContraForce connection is administrator.
+
+2. From the Okta Admin Console, select API from the Security dropdown. Then select Tokens.
+   - To navigate to the Admin Console, you can click Admin near the name of your user. You can also edit the URL manually. See the example below:
+   
+   ![Security dropdown](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/Security%20Dropdown.png)
+
+3. Click Create Token
+
+4. Name the API token and click Create Token.
+   - Be sure to record the value of the newly created API token. After you leave the page, you will not be able to copy the token. If you leave the page, you will need to restart on Step 1.
+
+## API Authorization URI
+
+1. Sign into Okta as an administrator.
+
+2. From the Okta Admin Console, select API from the Security dropdown. Select Authorization Servers.
+   - To navigate to the Admin Console, you can click Admin near the name of your user. You can also edit the URL manually. See the example below:
+
+3. Copy the Issuer URI.
+
+![Okta URI](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/Okta%20URI.png)
+
+## Finding your Okta Domain
+
+The last piece of information needed for the API connection to ContraForce is your Okta domain. This is easy to find, and the steps below cover how to find this information. Additionally, Okta has developer documentation around how to find your Okta domain. That information can be found [here](https://developer.okta.com/docs/guides/find-your-domain/main/).
+
+1. Sign into Okta as an administrator.
+
+2. Once signed in, your Okta domain should appear near the name of your user. The screenshot below shows how this should appear.
+
+![Okta domain](https://7831355.fs1.hubspotusercontent-na1.net/hubfs/7831355/Okta%20Domain.png)
