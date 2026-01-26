@@ -12,15 +12,6 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Release Notes",
-          "icon": "book-open-cover",
-          "color": {
-            "light": "#2557F9",
-            "dark": "#2557F9"
-          },
-          "href": "https://mintlify.com/docs"
-        },
-        {
           "anchor": "Blog",
           "icon": "newspaper",
           "href": "https://www.contraforce.com/blog"
