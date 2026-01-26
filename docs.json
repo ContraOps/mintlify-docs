@@ -116,5 +116,17 @@
     "socials": {
       "linkedin": "https://linkedin.com/company/contraforce"
     }
+  },
+  "fonts": {
+    "family": "Inter",
+    "weight": 300,
+    "heading": {
+      "family": "Inter",
+      "weight": 600
+    },
+    "body": {
+      "family": "Inter",
+      "weight": 300
+    }
   }
 }
