@@ -36,14 +36,14 @@
             ]
           },
           {
-            "group": "Customization",
+            "group": "Onboarding",
             "pages": [
               "essentials/settings",
               "essentials/navigation"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Technical",
             "pages": [
               "essentials/markdown",
               "essentials/code",
@@ -52,7 +52,7 @@
             ]
           },
           {
-            "group": "AI tools",
+            "group": "General Support",
             "pages": [
               "ai-tools/cursor",
               "ai-tools/claude-code",
@@ -62,7 +62,8 @@
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API reference (Hidden)",
+        "hidden": true,
         "groups": [
           {
             "group": "API documentation",
