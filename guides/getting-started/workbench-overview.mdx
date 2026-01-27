@@ -6,7 +6,7 @@ description: "Create custom incident response workflows with AI-mapped playbooks
 The Security Workbench is your investigation and response command center. Visualize affected entities, build custom response workflows, and execute remediation actions—all from a single interface.
 
 <Frame>
-  <img src="/images/security-workbench-overview.png" alt="ContraForce Security Workbench" />
+  ![ContraForce Security Workbench](/expanded-incident-workbench.png)
 </Frame>
 
 ## What is the Security Workbench?
@@ -29,7 +29,7 @@ The Security Workbench combines investigation and response into one powerful wor
 </CardGroup>
 
 <Info>
-The Security Workbench is where investigation meets action. Instead of switching between tools, you can analyze the threat and respond to it in the same place.
+  The Security Workbench is where investigation meets action. Instead of switching between tools, you can analyze the threat and respond to it in the same place.
 </Info>
 
 ---
@@ -58,15 +58,15 @@ The Security Workbench is organized into several key areas:
 
 At the top of the Workbench, you'll find:
 
-| Element | Description |
-|---------|-------------|
-| **Incident Title** | Name and ID of the incident |
-| **Status** | Current state (New, Active, Closed)—editable inline |
-| **Owner** | Assigned analyst—editable inline |
-| **Severity** | Incident severity level |
+| Element            | Description                                         |
+| ------------------ | --------------------------------------------------- |
+| **Incident Title** | Name and ID of the incident                         |
+| **Status**         | Current state (New, Active, Closed)—editable inline |
+| **Owner**          | Assigned analyst—editable inline                    |
+| **Severity**       | Incident severity level                             |
 
 <Tip>
-You can update the Status and Owner directly from the Workbench without leaving the page.
+  You can update the Status and Owner directly from the Workbench without leaving the page.
 </Tip>
 
 ### Entity Graph
@@ -80,6 +80,7 @@ The central visualization showing all entities involved in the incident:
 - **URLs/Domains** — Web resources involved
 
 Click any entity icon to:
+
 - View entity details
 - See other incidents involving this entity
 - Access available response actions
@@ -112,22 +113,22 @@ Gamebooks are custom response workflows you build by selecting actions for each 
 Click an entity icon in the Entity Graph. The **Incident Response Carousel** appears with available actions for that entity type.
 
 <Frame>
-  <img src="/images/entity-action-carousel.png" alt="Entity action carousel" />
+  ![Entity action carousel](/images/entity-action-carousel.png)
 </Frame>
 
 ### Step 2: Browse Available Actions
 
 Use the **arrows** on either side of the carousel to rotate through available actions:
 
-| Entity Type | Example Actions |
-|-------------|-----------------|
-| **User** | Disable account, Reset password, Revoke sessions, Block sign-in |
-| **Device** | Isolate device, Run AV scan, Collect investigation package |
-| **IP** | Block IP, Add to watchlist |
-| **File** | Quarantine file, Block hash |
+| Entity Type | Example Actions                                                 |
+| ----------- | --------------------------------------------------------------- |
+| **User**    | Disable account, Reset password, Revoke sessions, Block sign-in |
+| **Device**  | Isolate device, Run AV scan, Collect investigation package      |
+| **IP**      | Block IP, Add to watchlist                                      |
+| **File**    | Quarantine file, Block hash                                     |
 
 <Info>
-Available actions depend on the entity type and your connected integrations. ContraForce automatically shows only actions that are relevant and executable.
+  Available actions depend on the entity type and your connected integrations. ContraForce automatically shows only actions that are relevant and executable.
 </Info>
 
 ### Step 3: Add Actions to Gamebook
@@ -137,17 +138,17 @@ Available actions depend on the entity type and your connected integrations. Con
 - Repeat for each entity you want to take action on
 
 <Frame>
-  <img src="/images/gamebook-actions-added.png" alt="Gamebook with actions added" />
+  ![Gamebook with actions added](/images/gamebook-actions-added.png)
 </Frame>
 
 ### Step 4: Review Your Gamebook
 
 As you add actions, they appear in the **Gamebook Card** below the carousel:
 
-| Column | Description |
-|--------|-------------|
-| **Action** | What will be performed |
-| **Entity** | Target of the action |
+| Column     | Description                      |
+| ---------- | -------------------------------- |
+| **Action** | What will be performed           |
+| **Entity** | Target of the action             |
 | **Status** | Shows "Pending" before execution |
 
 ### Step 5: Execute the Gamebook
@@ -165,7 +166,7 @@ As you add actions, they appear in the **Gamebook Card** below the carousel:
 </Steps>
 
 <Frame>
-  <img src="/images/gamebook-execution-complete.png" alt="Gamebook execution complete" />
+  ![Gamebook execution complete](/images/gamebook-execution-complete.png)
 </Frame>
 
 ---
@@ -175,7 +176,7 @@ As you add actions, they appear in the **Gamebook Card** below the carousel:
 Some actions require approval before execution, indicated by a **red lock icon** in the carousel.
 
 <Warning>
-Actions with approval requirements are typically high-impact operations like device isolation or account disablement. This prevents accidental execution.
+  Actions with approval requirements are typically high-impact operations like device isolation or account disablement. This prevents accidental execution.
 </Warning>
 
 ### Requesting Approval
@@ -215,11 +216,11 @@ Don't rebuild from scratch—reuse successful response patterns.
 </Steps>
 
 <Frame>
-  <img src="/images/gamebook-history-tab.png" alt="Gamebook History tab" />
+  ![Gamebook History tab](/images/gamebook-history-tab.png)
 </Frame>
 
 <Tip>
-Loading previous Gamebooks is especially useful for recurring incident types. Build a response once, reuse it across similar incidents.
+  Loading previous Gamebooks is especially useful for recurring incident types. Build a response once, reuse it across similar incidents.
 </Tip>
 
 ---
@@ -229,18 +230,18 @@ Loading previous Gamebooks is especially useful for recurring incident types. Bu
 Track all Gamebook executions across your entire environment from the dedicated **Gamebooks Page**.
 
 <Frame>
-  <img src="/images/gamebook-activity-page.png" alt="Gamebook Activity page" />
+  ![Gamebook Activity page](/images/gamebook-activity-page.png)
 </Frame>
 
 ### What You Can See
 
-| Column | Description |
-|--------|-------------|
-| **Status** | Success, Failed, Pending Approval |
-| **Incident** | Linked incident ID |
-| **Actions** | What actions were performed |
-| **Time to Run** | Execution duration |
-| **Workspace** | Which tenant the actions ran against |
+| Column          | Description                          |
+| --------------- | ------------------------------------ |
+| **Status**      | Success, Failed, Pending Approval    |
+| **Incident**    | Linked incident ID                   |
+| **Actions**     | What actions were performed          |
+| **Time to Run** | Execution duration                   |
+| **Workspace**   | Which tenant the actions ran against |
 
 ### Expanding Details
 
@@ -295,5 +296,5 @@ Click any row to expand and see:
 ---
 
 <Note>
-Need help with the Security Workbench? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+  Need help with the Security Workbench? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
 </Note>
