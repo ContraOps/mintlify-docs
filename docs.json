@@ -44,7 +44,7 @@
               "guides/onboarding/user-group-management-for-providers",
               "guides/onboarding/notifications-module",
               "guides/technical/notifications-configuration",
-              "guides/onboarding/onboard-cms",
+              "guides/onboarding/cms-module",
               "guides/onboarding/microsoft-sentinel-module",
               "guides/onboarding/defender-xdr-module-deployment"
             ]
