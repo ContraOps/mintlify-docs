@@ -118,51 +118,35 @@ Click any **Incident ID** in the Incidents table to open its Summary view.
   ![Incident Summary overview](/expanded-incident-workbench.png)
 </Frame>
 
-### Summary Tabs
+### Incident Tabs
 
 <Tabs>
-  <Tab title="Entities">
-    **Associated Entities** shows all entities involved in the incident (users, devices, IPs, etc.).
-
-    - Click the dropdown on any entity to see other incidents it's associated with
-    - Click an incident ID to open it in a new tab
-    - Use entity insights to understand the full scope of the threat
+  <Tab title="Summary">
+    **Summary** – Overview of the incident including severity, status, affected assets, and key details at a glance.
   </Tab>
-  <Tab title="Threat Intel">
-    **Threat Intelligence** displays enrichment data from integrated tools like VirusTotal.
-
-    - View reputation scores for IPs, domains, and file hashes
-    - See detection ratios from multiple security vendors
-    - Access detailed threat reports when available
+  <Tab title="Rule">
+    **Rule** – Shows the detection rule that triggered the incident, including rule logic, conditions, and configuration.
+  </Tab>
+  <Tab title="Entities">
+    **Entities** – Lists all related entities (users, devices, IPs, domains, files) involved in or affected by the incident.
   </Tab>
   <Tab title="Timeline">
-    **Timeline** provides a chronological view of all events related to the incident.
-
-    - See when the incident was first detected
-    - Track the progression of the attack
-    - Identify key moments for investigation
+    **Timeline** – Chronological view of all events and actions related to the incident from detection through resolution.
   </Tab>
-  <Tab title="Evidence">
-    **Evidence** displays raw logs and artifacts associated with the incident.
-
-    - Review original log data for detailed analysis
-    - Export evidence for documentation
-    - Note: Not all data connectors provide raw logs
+  <Tab title="Logs">
+    **Logs** – Raw log data and events associated with the incident for deeper investigation.
   </Tab>
   <Tab title="Comments">
-    **Comments** allows analysts to collaborate and document their investigation.
-
-    - Add notes during active investigation
-    - View comments from all team members
-    - Track investigation progress over time
+    **Comments** – Collaboration space for analysts and AI agents to add notes, findings, and communicate about the investigation.
+  </Tab>
+  <Tab title="Audit">
+    **Audit** – Track record of all changes made to the incident (status updates, assignments, modifications) with timestamps and user attribution.
   </Tab>
 </Tabs>
 
----
-
 ## 4. Gamebook Responses
 
-Gamebooks are pre-built and custom response actions that let you remediate threats with a single click.
+Gamebooks SOP driven AI-generated and human created response actions that let you quickly respond to incidents.
 
 <Info>
   Available Gamebook actions are determined by the entity types present in the incident. ContraForce automatically suggests relevant actions based on what it detects.
