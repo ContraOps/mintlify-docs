@@ -6,7 +6,7 @@ description: "A complete workflow for triaging, investigating, and resolving sec
 This guide walks you through the recommended workflow for managing security incidents in ContraForce—from initial triage to resolution.
 
 <Info>
-ContraForce empowers analysts to efficiently manage incidents across multiple tenants and data sources. This workflow is designed to help you resolve incidents faster and deliver better service to your customers.
+  ContraForce empowers analysts to efficiently manage incidents across multiple tenants and data sources. This workflow is designed to help you resolve incidents faster and deliver better service to your customers.
 </Info>
 
 ## Workflow Overview
@@ -50,21 +50,21 @@ The Command Page allows you to customize which incidents are displayed by filter
 </Steps>
 
 <Frame>
-  <img src="/images/workspace-filter-dropdown.png" alt="Workspace filter dropdown" />
+  ![Workspace filter dropdown](/incident-table-workspace-filter.png)
 </Frame>
 
 ### Additional Filters
 
 Beyond workspace filtering, you can further refine your view:
 
-| Filter | Options | Use Case |
-|--------|---------|----------|
-| **Severity** | High, Medium, Low, Informational | Focus on critical incidents first |
-| **Status** | New, Active, Closed | View only incidents requiring action |
-| **Module** | Sentinel, Defender XDR | Filter by security product |
+| Filter       | Options                          | Use Case                             |
+| ------------ | -------------------------------- | ------------------------------------ |
+| **Severity** | High, Medium, Low, Informational | Focus on critical incidents first    |
+| **Status**   | New, Active, Closed              | View only incidents requiring action |
+| **Module**   | Sentinel, Defender XDR           | Filter by security product           |
 
 <Tip>
-When filtering by status, you'll see statuses organized by module (Sentinel, Defender XDR, etc.). This helps you quickly identify incidents by source.
+  When filtering by status, you'll see statuses organized by module (Sentinel, Defender XDR, etc.). This helps you quickly identify incidents by source.
 </Tip>
 
 ---
@@ -101,7 +101,7 @@ To assign multiple incidents at once:
 </Steps>
 
 <Frame>
-  <img src="/images/bulk-incident-assignment.png" alt="Bulk incident assignment" />
+  ![Bulk incident assignment](/images/bulk-incident-assignment.png)
 </Frame>
 
 ---
@@ -115,7 +115,7 @@ The Incident Summary provides a complete view of an incident with all the contex
 Click any **Incident ID** in the Incidents table to open its Summary view.
 
 <Frame>
-  <img src="/images/incident-summary-overview.png" alt="Incident Summary overview" />
+  ![Incident Summary overview](/images/incident-summary-overview.png)
 </Frame>
 
 ### Summary Tabs
@@ -123,35 +123,35 @@ Click any **Incident ID** in the Incidents table to open its Summary view.
 <Tabs>
   <Tab title="Entities">
     **Associated Entities** shows all entities involved in the incident (users, devices, IPs, etc.).
-    
+
     - Click the dropdown on any entity to see other incidents it's associated with
     - Click an incident ID to open it in a new tab
     - Use entity insights to understand the full scope of the threat
   </Tab>
   <Tab title="Threat Intel">
     **Threat Intelligence** displays enrichment data from integrated tools like VirusTotal.
-    
+
     - View reputation scores for IPs, domains, and file hashes
     - See detection ratios from multiple security vendors
     - Access detailed threat reports when available
   </Tab>
   <Tab title="Timeline">
     **Timeline** provides a chronological view of all events related to the incident.
-    
+
     - See when the incident was first detected
     - Track the progression of the attack
     - Identify key moments for investigation
   </Tab>
   <Tab title="Evidence">
     **Evidence** displays raw logs and artifacts associated with the incident.
-    
+
     - Review original log data for detailed analysis
     - Export evidence for documentation
     - Note: Not all data connectors provide raw logs
   </Tab>
   <Tab title="Comments">
     **Comments** allows analysts to collaborate and document their investigation.
-    
+
     - Add notes during active investigation
     - View comments from all team members
     - Track investigation progress over time
@@ -165,7 +165,7 @@ Click any **Incident ID** in the Incidents table to open its Summary view.
 Gamebooks are pre-built and custom response actions that let you remediate threats with a single click.
 
 <Info>
-Available Gamebook actions are determined by the entity types present in the incident. ContraForce automatically suggests relevant actions based on what it detects.
+  Available Gamebook actions are determined by the entity types present in the incident. ContraForce automatically suggests relevant actions based on what it detects.
 </Info>
 
 ### Using Suggested Gamebooks
@@ -173,7 +173,7 @@ Available Gamebook actions are determined by the entity types present in the inc
 If a Gamebook has been previously executed for similar incidents, ContraForce suggests it automatically:
 
 <Frame>
-  <img src="/images/suggested-gamebook.png" alt="Suggested Gamebook" />
+  ![Suggested Gamebook](/images/suggested-gamebook.png)
 </Frame>
 
 ### Creating a Custom Gamebook
@@ -187,7 +187,7 @@ If a Gamebook has been previously executed for similar incidents, ContraForce su
   </Step>
   <Step title="Build Your Response">
     - Use the arrows to navigate through action options
-    - Click the green **+** icon to add an action
+    - Click the green **\+** icon to add an action
     - Click the red **-** icon to remove an action
   </Step>
   <Step title="Execute">
@@ -196,7 +196,7 @@ If a Gamebook has been previously executed for similar incidents, ContraForce su
 </Steps>
 
 <Frame>
-  <img src="/images/gamebook-workbench.png" alt="Gamebook Workbench" />
+  ![Gamebook Workbench](/images/gamebook-workbench.png)
 </Frame>
 
 ### Gamebook Approval Workflow
@@ -204,15 +204,17 @@ If a Gamebook has been previously executed for similar incidents, ContraForce su
 Some Gamebook actions require approval before execution:
 
 <Warning>
-Actions with a **red lock icon** require approval from a user with appropriate permissions in the tenant.
+  Actions with a **red lock icon** require approval from a user with appropriate permissions in the tenant.
 </Warning>
 
 **To request approval:**
+
 1. Build your Gamebook as usual
 2. Click **Request Gamebook Approval** (instead of Run Gamebook)
 3. The request is sent to authorized approvers
 
 **To approve a Gamebook:**
+
 - Approvers can approve directly from the incident, or
 - Use the **Gamebook Activity** tab to review and approve pending requests
 
@@ -227,20 +229,20 @@ After completing your investigation and response, close the incident with proper
 After a Gamebook completes, a green **Close Incident** button appears at the bottom of the entity graph:
 
 <Frame>
-  <img src="/images/close-incident-dialog.png" alt="Close Incident dialog" />
+  ![Close Incident dialog](/images/close-incident-dialog.png)
 </Frame>
 
 ### Closure Fields
 
-| Field | Options | Purpose |
-|-------|---------|---------|
-| **Status** | Closed | Marks the incident as resolved |
-| **Classification** | True Positive, False Positive, Benign Positive, Undetermined | Categorizes the incident outcome |
-| **Classification Reason** | Free text | Documents why this classification was chosen |
-| **Comments** | Free text | Final notes on resolution |
+| Field                     | Options                                                      | Purpose                                      |
+| ------------------------- | ------------------------------------------------------------ | -------------------------------------------- |
+| **Status**                | Closed                                                       | Marks the incident as resolved               |
+| **Classification**        | True Positive, False Positive, Benign Positive, Undetermined | Categorizes the incident outcome             |
+| **Classification Reason** | Free text                                                    | Documents why this classification was chosen |
+| **Comments**              | Free text                                                    | Final notes on resolution                    |
 
 <Tip>
-Need help understanding classifications? See [Understanding Incident Classifications](/guides/getting-started/understanding-incident-classifications) for detailed guidance.
+  Need help understanding classifications? See [Understanding Incident Classifications](/guides/getting-started/understanding-incident-classifications) for detailed guidance.
 </Tip>
 
 ### Bulk Closure
@@ -292,5 +294,5 @@ The ContraForce incident management workflow is designed to help you:
 ---
 
 <Note>
-Questions about this workflow? Contact us at [support@contraforce.com](mailto:support@contraforce.com). We're happy to help optimize your incident management process.
+  Questions about this workflow? Contact us at [support@contraforce.com](mailto:support@contraforce.com). We're happy to help optimize your incident management process.
 </Note>
