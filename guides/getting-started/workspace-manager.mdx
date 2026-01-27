@@ -223,10 +223,10 @@ When ready to fully deploy:
     </Warning>
     Microsoft Sentinel Notificaitons Settings Based on Severity:
 
-    - <kbd>High</kbd>
-    - <kbd>Medium</kbd>
-    - <kbd>Low</kbd>
-    - <kbd>Info</kbd>
+    - High
+    - Medium
+    - Low
+    - Info
   </Tab>
 </Tabs>
 
@@ -236,10 +236,12 @@ Each workspace can have different modules enabled based on customer needs.
 
 ### Available Modules
 
-| Module          | Description                    | Key Features                                            |
-| --------------- | ------------------------------ | ------------------------------------------------------- |
-| **XDR Module**  | Microsoft Defender integration | Endpoint detection, response actions, device management |
-| **SIEM Module** | Microsoft Sentinel integration | Log analysis, custom alerts, threat hunting             |
+| Module                 | Description                    | Key Features                                                                             |
+| ---------------------- | ------------------------------ | ---------------------------------------------------------------------------------------- |
+| Microsoft Defender XDR | Microsoft Defender integration | Endpoint detection, response actions, device management                                  |
+| Microsoft Sentinel     | Microsoft Sentinel integration | Log analysis, custom alerts, threat hunting                                              |
+| SentinelOne XDR        | SentinelOne XDR integration    | Read SentinelOne alerts and respond to SentinelOne endpoints                             |
+| Notifications          | Incident notification engine   | Deploy your notification engine for Microsoft Sentinel incidents based on severity level |
 
 ### Configuring Modules
 
@@ -261,10 +263,6 @@ Each workspace can have different modules enabled based on customer needs.
   </Step>
 </Steps>
 
-<Frame>
-  ![Module configuration options](/images/workspace-module-config.png)
-</Frame>
-
 ### Module-Specific Settings
 
 Different modules expose different configuration options:
@@ -281,11 +279,6 @@ Different modules expose different configuration options:
     - **Log Analytics** — Query permissions
     - **Custom Rules** — Alert configuration
     - **Notifications** — Alert routing settings
-  </Accordion>
-  <Accordion title="QRadar Settings">
-    - **QRadar Console** — Connection URL
-    - **API Credentials** — Authentication details
-    - **Offense Mapping** — How QRadar offenses map to ContraForce incidents
   </Accordion>
 </AccordionGroup>
 
@@ -394,5 +387,5 @@ These permissions must be granted by a tenant administrator.
 ---
 
 <Note>
-  Questions about the Workspaces Page? Contact us at [support@contraforce.com](mailto:support@contraforce.com).aa
+  Questions about the Workspaces Page? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
 </Note>
