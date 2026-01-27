@@ -62,7 +62,7 @@
             "group": "General Support",
             "pages": [
               "guides/general-support/roles-and-permissions-reference",
-              "user-group-management",
+              "guides/general-support/user-group-management",
               "guides/general-support/offboarding-contra-force"
             ]
           }
