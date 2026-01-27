@@ -163,16 +163,37 @@ When ready to fully deploy:
   <Tab title="Modules">
     **Enable/disable ContraForce modules:**
 
-    - Microsoft Defender XDR Modules (Detection + Response)
     - Microsoft Sentinel Modules (Detection + Response)
+
+      <Warning>
+        Prerequisites to Manage Module:
+        - Azure Role for Microsoft Tenant: Global Admin
+        - ContraForce Workspace Role: Owner
+        - Microsoft Subscription Permission: Owner
+      </Warning>
+      <Tip>
+        You can access the Content Management System for Microsoft Sentinel by clickig the icon in the MIcrosoft Sentinel module.
+      </Tip>
+    - Microsoft Defender XDR Modules (Detection + Response)
+
+      <Warning>
+        Prerequisites to Manage Module:
+        - Azure Role for Microsoft Tenant: Global Admin
+        - ContraForce Workspace Role: Owner
+      </Warning>
     - SentinelOne XDR (Detection + Response)
 
-    <Tip>
-      You can access the Content Management System for Microsoft Sentinel by clickig the icon in MIcrosoft Sentinel module.
-    </Tip>
-    - Microsoft O365 Module (Response for emails)
-    - Microsoft Entra ID Module (Response for users)
-    - Microsoft Azure Module (Response for Azure NSG)
+      <Warning>
+        Prerequisites to Manage Module:
+        - ContraForce Workspace Role: Owner
+      </Warning>
+
+
+    - Gamebooks for Defneder XDR (Response for endpoints)
+    - Gamebooks for Identity Module (Response for users)
+    - Gamebooks for Microsoft 365 (Response for emails)
+    - Gamebooks for Azure (Response for Azure NSG)
+    - Gamebooks for SentinelOne (Response for endpoints)
   </Tab>
   <Tab title="IAM">
     **Group Management**
@@ -194,10 +215,11 @@ When ready to fully deploy:
     - Incident Analyst
   </Tab>
   <Tab title="Notifications">
-    **Data connector configuration:**
+    **Notification Settings:**
 
-    Connected sources
-
+    <Warning>
+      Prerequisties
+    </Warning>
     API credentials
 
     Connection settings
