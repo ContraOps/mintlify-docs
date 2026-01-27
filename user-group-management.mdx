@@ -5,8 +5,22 @@ description: "Add users to ContraForce, assign roles, and control access permiss
 
 ContraForce provides flexible user management with role-based access control. Add users from your Entra ID directory, assign organizational and workspace roles, and control exactly what each team member can access.
 
+## **Recommended Default Groups**
+
+Setting up default groups during initial configuration saves time and ensures consistent access patterns.
+
+ **Suggested Partner Groups**
+
+| Group Name            | Description                                 | Suggested Workspace Role     |
+| :-------------------- | :------------------------------------------ | :--------------------------- |
+| SOC Tier 1            | Front-line analysts handling initial triage | Incident Analyst             |
+| SOC Tier 2            | Senior analysts with response capabilities  | Incident Responder           |
+| SOC Managers          | Team leads overseeing operations            | Admin                        |
+| Integration Engineers | Technical staff managing connectors         | Data Source Admin            |
+| Account Managers      | Customer relationship managers              | Incident Analyst (read-only) |
+
 <Info>
-ContraForce integrates with Microsoft Entra ID (formerly Azure AD) to pull user identities. Users must exist in Entra ID before they can be added to ContraForce.
+  ContraForce integrates with Microsoft Entra ID (formerly Azure AD) to pull user identities. Users must exist in Entra ID before they can be added to ContraForce.
 </Info>
 
 ## User Management Overview
@@ -28,12 +42,12 @@ ContraForce uses a two-tier role system: **Organizational Roles** control admini
 
 ### Workspace Roles Quick Reference
 
-| Role | View Incidents | Run Gamebooks | Manage Endpoints | Manage Data Connectors | Manage Users |
-|------|:-------------:|:-------------:|:----------------:|:---------------------:|:------------:|
-| **Admin** | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **Incident Responder** | ✓ | ✓ | ✓ | — | — |
-| **Incident Analyst** | ✓ | — | — | — | — |
-| **Data Source Admin** | ✓ | — | — | ✓ | — |
+| Role                   | View Incidents | Run Gamebooks | Manage Endpoints | Manage Data Connectors | Manage Users |
+| ---------------------- | :------------: | :-----------: | :--------------: | :--------------------: | :----------: |
+| **Admin**              | ✓              | ✓             | ✓                | ✓                      | ✓            |
+| **Incident Responder** | ✓              | ✓             | ✓                | —                      | —            |
+| **Incident Analyst**   | ✓              | —             | —                | —                      | —            |
+| **Data Source Admin**  | ✓              | —             | —                | ✓                      | —            |
 
 <Card title="Complete Role Reference" icon="users-gear" href="/guides/technical/contraforce-user-roles">
   View detailed permissions for all organizational and workspace roles
@@ -50,7 +64,7 @@ The easiest time to add users is during the initial ContraForce onboarding proce
 When you deploy ContraForce modules, the Onboarding Wizard provides the first opportunity to add users:
 
 <Frame>
-  <img src="/images/user-management-onboarding-wizard.png" alt="User management in onboarding wizard" />
+  ![User management in onboarding wizard](/images/user-management-onboarding-wizard.png)
 </Frame>
 
 <Steps>
@@ -69,7 +83,7 @@ When you deploy ContraForce modules, the Onboarding Wizard provides the first op
 </Steps>
 
 <Tip>
-Add at least one Admin user during onboarding. This ensures you have full access to manage the workspace after setup is complete.
+  Add at least one Admin user during onboarding. This ensures you have full access to manage the workspace after setup is complete.
 </Tip>
 
 ---
@@ -98,11 +112,11 @@ Before you can manage users post-onboarding, you must consent the User Managemen
 </Steps>
 
 <Frame>
-  <img src="/images/user-management-consent.png" alt="User Management service principal consent" />
+  ![User Management service principal consent](/images/user-management-consent.png)
 </Frame>
 
 <Warning>
-You must have Global Administrator or appropriate admin privileges in the Microsoft tenant to complete the consent flow.
+  You must have Global Administrator or appropriate admin privileges in the Microsoft tenant to complete the consent flow.
 </Warning>
 
 ### Step 2: Access User Management
@@ -120,7 +134,7 @@ You must have Global Administrator or appropriate admin privileges in the Micros
 </Steps>
 
 <Frame>
-  <img src="/images/user-management-settings-page.png" alt="User Management settings page" />
+  ![User Management settings page](/images/user-management-settings-page.png)
 </Frame>
 
 ### Step 3: Add New Users
@@ -144,11 +158,11 @@ You must have Global Administrator or appropriate admin privileges in the Micros
 </Steps>
 
 <Frame>
-  <img src="/images/user-management-add-user.png" alt="Add user dialog" />
+  ![Add user dialog](/images/user-management-add-user.png)
 </Frame>
 
 <Info>
-The **Add User** button only appears if your account has User Admin or Org Admin permissions.
+  The **Add User** button only appears if your account has User Admin or Org Admin permissions.
 </Info>
 
 ---
@@ -159,12 +173,12 @@ The **Add User** button only appears if your account has User Admin or Org Admin
 
 Organizational roles control administrative functions across your entire ContraForce instance:
 
-| Role | Add/Manage Users | Add/Manage Groups | Add Workspaces | View All Workspaces |
-|------|:----------------:|:-----------------:|:--------------:|:-------------------:|
-| **Org Admin** | ✓ | ✓ | ✓ | ✓ |
-| **User Admin** | ✓ | ✓ | — | — |
-| **Workspace Admin** | — | — | ✓ | ✓ |
-| **Org Member** | — | — | — | — |
+| Role                | Add/Manage Users | Add/Manage Groups | Add Workspaces | View All Workspaces |
+| ------------------- | :--------------: | :---------------: | :------------: | :-----------------: |
+| **Org Admin**       | ✓                | ✓                 | ✓              | ✓                   |
+| **User Admin**      | ✓                | ✓                 | —              | —                   |
+| **Workspace Admin** | —                | —                 | ✓              | ✓                   |
+| **Org Member**      | —                | —                 | —              | —                   |
 
 ### Workspace Roles
 
@@ -173,44 +187,44 @@ Workspace roles control what users can do within specific customer workspaces:
 <Tabs>
   <Tab title="Admin">
     **Full access to all workspace features**
-    
+
     - View and manage all incidents
     - Run any Gamebook action
     - Manage endpoints and data connectors
     - Configure workspace settings
     - Manage workspace users
-    
-    *Best for: Team leads, senior analysts, workspace owners*
+
+    _Best for: Team leads, senior analysts, workspace owners_
   </Tab>
   <Tab title="Incident Responder">
     **Operational access for active response**
-    
+
     - View all incidents
     - Run Gamebook response actions
     - Manage endpoints (isolate, scan, etc.)
     - Cannot manage data connectors or users
-    
-    *Best for: SOC analysts who need to take action*
+
+    _Best for: SOC analysts who need to take action_
   </Tab>
   <Tab title="Incident Analyst">
     **Read-only access for investigation**
-    
+
     - View all incidents
     - Cannot run Gamebooks
     - Cannot manage endpoints
     - Cannot modify configurations
-    
-    *Best for: Junior analysts, read-only stakeholders*
+
+    _Best for: Junior analysts, read-only stakeholders_
   </Tab>
   <Tab title="Data Source Admin">
     **Integration management focus**
-    
+
     - View all incidents
     - Manage data connectors
     - Cannot run Gamebooks
     - Cannot manage endpoints
-    
-    *Best for: Integration specialists, IT administrators*
+
+    _Best for: Integration specialists, IT administrators_
   </Tab>
 </Tabs>
 
@@ -238,7 +252,7 @@ Simplify access management by organizing users into groups.
 
 <Steps>
   <Step title="Navigate to Groups">
-    Go to **Settings** > **Groups**
+    Go to **Settings** \> **Groups**
   </Step>
   <Step title="Create New Group">
     Click **Add Group** and enter a name
@@ -274,7 +288,7 @@ Users need workspace assignments to access customer data.
 5. All group members inherit access
 
 <Tip>
-Use groups for teams that need access to the same set of workspaces. This makes onboarding new team members faster—just add them to the appropriate group.
+  Use groups for teams that need access to the same set of workspaces. This makes onboarding new team members faster—just add them to the appropriate group.
 </Tip>
 
 ---
@@ -319,7 +333,7 @@ Click any user in the User Management list to view:
 </Steps>
 
 <Warning>
-Removing a user revokes all their access to ContraForce immediately. This action cannot be undone—you'll need to re-add the user if you want to restore access.
+  Removing a user revokes all their access to ContraForce immediately. This action cannot be undone—you'll need to re-add the user if you want to restore access.
 </Warning>
 
 ---
@@ -350,13 +364,13 @@ Removing a user revokes all their access to ContraForce immediately. This action
 
 ### Common Issues
 
-| Issue | Possible Cause | Solution |
-|-------|---------------|----------|
-| **Can't see Add User button** | Missing User Admin or Org Admin role | Contact your administrator for elevated permissions |
-| **User not found in dropdown** | User doesn't exist in Entra ID | Verify user exists in Microsoft Entra ID |
-| **Consent flow fails** | Insufficient admin privileges | Use Global Administrator or appropriate admin account |
-| **User can't access workspace** | No workspace assignment | Assign user directly or via group to the workspace |
-| **User has wrong permissions** | Incorrect role assignment | Edit user and assign correct workspace role |
+| Issue                           | Possible Cause                       | Solution                                              |
+| ------------------------------- | ------------------------------------ | ----------------------------------------------------- |
+| **Can't see Add User button**   | Missing User Admin or Org Admin role | Contact your administrator for elevated permissions   |
+| **User not found in dropdown**  | User doesn't exist in Entra ID       | Verify user exists in Microsoft Entra ID              |
+| **Consent flow fails**          | Insufficient admin privileges        | Use Global Administrator or appropriate admin account |
+| **User can't access workspace** | No workspace assignment              | Assign user directly or via group to the workspace    |
+| **User has wrong permissions**  | Incorrect role assignment            | Edit user and assign correct workspace role           |
 
 ---
 
@@ -380,5 +394,5 @@ Removing a user revokes all their access to ContraForce immediately. This action
 ---
 
 <Note>
-Questions about user management? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+  Questions about user management? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
 </Note>

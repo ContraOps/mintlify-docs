@@ -5,8 +5,34 @@ description: "Comprehensive guide for MSP/MSSP partners to understand and config
 
 This guide addresses the most common challenges MSP/MSSP partners face when setting up user and group management in ContraForce. Understanding the relationship between parent (partner) and child (customer) workspaces is essential for a smooth onboarding experience.
 
+## **Recommended Default Groups**
+
+Setting up default groups during initial configuration saves time and ensures consistent access patterns.
+
+**Suggested Partner Groups**
+
+| Group Name            | Description                                 | Suggested Workspace Role     |
+| :-------------------- | :------------------------------------------ | :--------------------------- |
+| SOC Tier 1            | Front-line analysts handling initial triage | Incident Analyst             |
+| SOC Tier 2            | Senior analysts with response capabilities  | Incident Responder           |
+| SOC Managers          | Team leads overseeing operations            | Admin                        |
+| Integration Engineers | Technical staff managing connectors         | Data Source Admin            |
+| Account Managers      | Customer relationship managers              | Incident Analyst (read-only) |
+
+> ## For Azure Administrators
+>
+> For MSP/MSSP teams already fluent in Azure and Entra administration, ContraForce's user and group management model will feel intuitive once you establish these mental mappings:
+>
+> 1. Organization = Root Management Group: The top-level scope where you establish identities that can flow down
+> 2. Workspace = Subscription / Administrative Unit: The isolation boundary where customer-specific access lives
+> 3. Organization Groups = Inherited RBAC: Create once, assign many times, automatic access when group membership changes
+> 4. Workspace Users = AU-scoped delegation: Strictly bounded to one customer's data
+> 5. Two locations = Two scopes: Just like Azure has IAM blades at different levels, ContraForce has Organization Settings and Workspace Settings
+>
+> The key transferable skill is **thinking hierarchically about access scope**—a discipline your team has already developed managing Azure governance at scale.
+
 <Info>
-This guide is specifically designed for **MSP/MSSP partners** managing multiple customer workspaces. If you're a single-tenant customer, see the standard [User Management](/guides/general-support/user-management) guide.
+  This guide is specifically designed for **MSP/MSSP partners** managing multiple customer workspaces. If you're a single-tenant customer, see the standard [User Management](/guides/general-support/user-management) guide.
 </Info>
 
 ## Understanding the Two-Tier Model
@@ -40,7 +66,7 @@ flowchart TD
 ```
 
 <Warning>
-**Key Insight:** Users and groups created at the **child (customer) level** are only visible within that specific workspace. Users and groups created at the **parent (partner) level** can be assigned access across ALL workspaces.
+  **Key Insight:** Users and groups created at the **child (customer) level** are only visible within that specific workspace. Users and groups created at the **parent (partner) level** can be assigned access across ALL workspaces.
 </Warning>
 
 ---
@@ -55,14 +81,14 @@ One of the most common points of confusion is that there are **two different loc
 
 This is where you manage users and groups for your **partner organization**:
 
-| What You Manage | Scope |
-|-----------------|-------|
-| Partner team members | Access to all workspaces |
-| Partner user groups | Cross-workspace permissions |
-| Organizational roles | Partner-level capabilities |
+| What You Manage      | Scope                       |
+| -------------------- | --------------------------- |
+| Partner team members | Access to all workspaces    |
+| Partner user groups  | Cross-workspace permissions |
+| Organizational roles | Partner-level capabilities  |
 
 <Frame>
-  <img src="/images/user-management-org-settings.png" alt="Organization-level user management" />
+  ![Organization-level user management](/images/user-management-org-settings.png)
 </Frame>
 
 ### Location 2: Workspace Settings (Customer Level)
@@ -71,26 +97,26 @@ This is where you manage users and groups for your **partner organization**:
 
 This is where you manage users and groups for a **specific customer workspace**:
 
-| What You Manage | Scope |
-|-----------------|-------|
-| Customer users | This workspace only |
-| Customer groups | This workspace only |
+| What You Manage          | Scope               |
+| ------------------------ | ------------------- |
+| Customer users           | This workspace only |
+| Customer groups          | This workspace only |
 | Workspace-specific roles | This workspace only |
 
 <Frame>
-  <img src="/images/user-management-workspace-settings.png" alt="Workspace-level user management" />
+  ![Workspace-level user management](/images/user-management-workspace-settings.png)
 </Frame>
 
 ### Quick Reference: Where to Go
 
-| I Want To... | Go To |
-|--------------|-------|
+| I Want To...                                                 | Go To                 |
+| ------------------------------------------------------------ | --------------------- |
 | Add a partner analyst who needs access to multiple customers | Organization Settings |
-| Create a group for your SOC team to access all workspaces | Organization Settings |
-| Add a customer's IT admin to view their own workspace | Workspace Settings |
-| Create a customer-specific group | Workspace Settings |
-| Manage your own organization's users | Organization Settings |
-| Grant a customer limited access to their incidents | Workspace Settings |
+| Create a group for your SOC team to access all workspaces    | Organization Settings |
+| Add a customer's IT admin to view their own workspace        | Workspace Settings    |
+| Create a customer-specific group                             | Workspace Settings    |
+| Manage your own organization's users                         | Organization Settings |
+| Grant a customer limited access to their incidents           | Workspace Settings    |
 
 ---
 
@@ -101,17 +127,17 @@ This is where you manage users and groups for a **specific customer workspace**:
 <AccordionGroup>
   <Accordion title="Adding your own team members (SOC analysts, engineers)">
     Your internal team needs access to multiple or all customer workspaces. Adding them at the organization level lets you assign them to any workspace without recreating their account.
-    
+
     **Example:** Adding a new SOC analyst who will handle incidents for 10 customers.
   </Accordion>
   <Accordion title="Creating groups for your internal teams">
     Create groups like "Tier 1 Analysts," "Tier 2 Engineers," or "Account Managers" at the organization level, then assign these groups to relevant workspaces.
-    
+
     **Example:** Create a "SOC Team" group, add your analysts, then assign this group to all customer workspaces.
   </Accordion>
   <Accordion title="Setting up cross-workspace permissions">
     When you need consistent permissions across multiple customers, define them at the organization level.
-    
+
     **Example:** All Tier 1 analysts should have "Incident Responder" role across all customer workspaces.
   </Accordion>
 </AccordionGroup>
@@ -121,17 +147,17 @@ This is where you manage users and groups for a **specific customer workspace**:
 <AccordionGroup>
   <Accordion title="Adding customer users who only access their own data">
     Customers who need to view their own incidents, reports, or dashboards should be added at the workspace level.
-    
+
     **Example:** Adding a customer's CISO who wants to review their security incidents.
   </Accordion>
   <Accordion title="Creating customer-specific groups">
     Groups that only make sense for a specific customer should be created at the workspace level.
-    
+
     **Example:** A customer's "Security Committee" group that reviews monthly reports.
   </Accordion>
   <Accordion title="Granting limited access to customer stakeholders">
     When customers need read-only or limited access to their workspace.
-    
+
     **Example:** A customer's compliance officer who needs incident audit access.
   </Accordion>
 </AccordionGroup>
@@ -154,6 +180,7 @@ This is where you manage users and groups for a **specific customer workspace**:
   </Step>
   <Step title="Assign Organizational Role">
     Select the appropriate organization-level role:
+
     - **Organization Admin** — Full platform access
     - **Organization Member** — Standard access
   </Step>
@@ -187,6 +214,7 @@ After creating a user at the organization level, grant them access to customer w
   </Step>
   <Step title="Assign Workspace Role">
     Select the role for this specific workspace:
+
     - **Admin** — Full workspace control
     - **Incident Responder** — Investigate and respond
     - **Incident Analyst** — View and analyze
@@ -241,7 +269,7 @@ Groups simplify permission management by letting you assign roles to multiple us
 </Steps>
 
 <Tip>
-**Best Practice:** Create groups at the organization level and assign them to workspaces. This way, when you add a new team member to a group, they automatically get access to all workspaces that group is assigned to.
+  **Best Practice:** Create groups at the organization level and assign them to workspaces. This way, when you add a new team member to a group, they automatically get access to all workspaces that group is assigned to.
 </Tip>
 
 ---
@@ -252,13 +280,13 @@ Setting up default groups during initial configuration saves time and ensures co
 
 ### Suggested Partner Groups
 
-| Group Name | Description | Suggested Workspace Role |
-|------------|-------------|-------------------------|
-| **SOC Tier 1** | Front-line analysts handling initial triage | Incident Analyst |
-| **SOC Tier 2** | Senior analysts with response capabilities | Incident Responder |
-| **SOC Managers** | Team leads overseeing operations | Admin |
-| **Integration Engineers** | Technical staff managing connectors | Data Source Admin |
-| **Account Managers** | Customer relationship managers | Incident Analyst (read-only) |
+| Group Name                | Description                                 | Suggested Workspace Role     |
+| ------------------------- | ------------------------------------------- | ---------------------------- |
+| **SOC Tier 1**            | Front-line analysts handling initial triage | Incident Analyst             |
+| **SOC Tier 2**            | Senior analysts with response capabilities  | Incident Responder           |
+| **SOC Managers**          | Team leads overseeing operations            | Admin                        |
+| **Integration Engineers** | Technical staff managing connectors         | Data Source Admin            |
+| **Account Managers**      | Customer relationship managers              | Incident Analyst (read-only) |
 
 ### Setting Up Default Groups
 
@@ -278,7 +306,7 @@ Setting up default groups during initial configuration saves time and ensures co
 </Steps>
 
 <Info>
-**Pro Tip:** Create a simple spreadsheet mapping your groups to workspace roles. This becomes your "template" for onboarding new customers and ensures consistency.
+  **Pro Tip:** Create a simple spreadsheet mapping your groups to workspace roles. This becomes your "template" for onboarding new customers and ensures consistency.
 </Info>
 
 ---
@@ -361,13 +389,13 @@ Setting up default groups during initial configuration saves time and ensures co
 
 ## Workspace Roles Reference
 
-| Role | View Incidents | Respond to Incidents | Manage Gamebooks | Configure Modules | Manage Users |
-|------|:--------------:|:-------------------:|:----------------:|:-----------------:|:------------:|
-| **Admin** | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **Incident Responder** | ✓ | ✓ | ✓ | — | — |
-| **Incident Analyst** | ✓ | — | — | — | — |
-| **Data Source Admin** | ✓ | — | — | ✓ | — |
-| **Content Admin** | ✓ | — | — | CMS Only | — |
+| Role                   | View Incidents | Respond to Incidents | Manage Gamebooks | Configure Modules | Manage Users |
+| ---------------------- | :------------: | :------------------: | :--------------: | :---------------: | :----------: |
+| **Admin**              | ✓              | ✓                    | ✓                | ✓                 | ✓            |
+| **Incident Responder** | ✓              | ✓                    | ✓                | —                 | —            |
+| **Incident Analyst**   | ✓              | —                    | —                | —                 | —            |
+| **Data Source Admin**  | ✓              | —                    | —                | ✓                 | —            |
+| **Content Admin**      | ✓              | —                    | —                | CMS Only          | —            |
 
 <Card title="Full Roles Reference" icon="users" href="/guides/technical/contraforce-user-roles">
   View complete permissions for all roles
@@ -379,14 +407,14 @@ Setting up default groups during initial configuration saves time and ensures co
 
 ### Common Issues
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| **User can't see any workspaces** | Not assigned to any workspace | Add user/group to workspaces in workspace settings |
-| **User can see workspace but can't do anything** | No role assigned | Assign a workspace role to the user or their group |
-| **User can't add modules** | Insufficient role | User needs Admin or Data Source Admin role |
-| **Can't add users to workspace** | Not a workspace Admin | Need Admin role on that workspace |
-| **Group changes not reflected** | Caching | Refresh browser; changes may take a few minutes |
-| **Customer user sees other customers' data** | Added at wrong level | Remove from org level, add only at workspace level |
+| Issue                                            | Cause                         | Solution                                           |
+| ------------------------------------------------ | ----------------------------- | -------------------------------------------------- |
+| **User can't see any workspaces**                | Not assigned to any workspace | Add user/group to workspaces in workspace settings |
+| **User can see workspace but can't do anything** | No role assigned              | Assign a workspace role to the user or their group |
+| **User can't add modules**                       | Insufficient role             | User needs Admin or Data Source Admin role         |
+| **Can't add users to workspace**                 | Not a workspace Admin         | Need Admin role on that workspace                  |
+| **Group changes not reflected**                  | Caching                       | Refresh browser; changes may take a few minutes    |
+| **Customer user sees other customers' data**     | Added at wrong level          | Remove from org level, add only at workspace level |
 
 ### Permission Troubleshooting Flow
 
@@ -441,19 +469,19 @@ Use this checklist when onboarding a new customer workspace:
 
 ### Pre-Onboarding (One-Time Setup)
 
-- [ ] Create standard organization groups (SOC Tier 1, Tier 2, etc.)
-- [ ] Add your team members to appropriate groups
-- [ ] Document group-to-role mappings
+- Create standard organization groups (SOC Tier 1, Tier 2, etc.)
+- Add your team members to appropriate groups
+- Document group-to-role mappings
 
 ### Per-Customer Onboarding
 
-- [ ] Create/configure customer workspace
-- [ ] Assign organization groups to workspace with appropriate roles
-- [ ] Verify partner team can access the workspace
-- [ ] Add customer users at workspace level (if needed)
-- [ ] Create customer-specific groups (if needed)
-- [ ] Test access with a non-admin account
-- [ ] Document any customer-specific permission requirements
+- Create/configure customer workspace
+- Assign organization groups to workspace with appropriate roles
+- Verify partner team can access the workspace
+- Add customer users at workspace level (if needed)
+- Create customer-specific groups (if needed)
+- Test access with a non-admin account
+- Document any customer-specific permission requirements
 
 ---
 
@@ -502,5 +530,5 @@ Use this checklist when onboarding a new customer workspace:
 ---
 
 <Note>
-Questions about user and group management? Contact us at [support@contraforce.com](mailto:support@contraforce.com) or request hands-on onboarding support for your first few customer deployments.
+  Questions about user and group management? Contact us at [support@contraforce.com](mailto:support@contraforce.com) or request hands-on onboarding support for your first few customer deployments.
 </Note>
