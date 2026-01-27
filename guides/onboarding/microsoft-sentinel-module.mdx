@@ -1,0 +1,447 @@
+---
+title: "Microsoft Sentinel Module"
+description: "Deploy the Microsoft Sentinel module to enable SIEM integration, real-time incident streaming, detection rules via CMS, and advanced threat hunting capabilities."
+---
+
+The Microsoft Sentinel module connects ContraForce to your Microsoft Sentinel workspace, enabling centralized monitoring, real-time incident streaming, and the ability to act on Sentinel security data directly from the ContraForce platform.
+
+<Info>
+  **What this module adds:** Sentinel incident ingestion, Content Management System (CMS) for detection rules, email notifications, log search, and Azure Lighthouse cross-tenant management.
+</Info>
+
+---
+
+## Prerequisites
+
+Before starting, ensure you have the following:
+
+<CardGroup cols={3}>
+  <Card title="Global Administrator" icon="user-shield">
+    Azure Role for Microsoft Tenant: **Global Admin** or **Security Admin**
+  </Card>
+  <Card title="Workspace Owner" icon="building">
+    ContraForce Workspace Role: **Owner** or **Admin**
+  </Card>
+  <Card title="Subscription Owner" icon="cloud">
+    Microsoft Subscription Permission: **Owner**
+  </Card>
+</CardGroup>
+
+### Additional Requirements
+
+| Requirement                 | Details                                              |
+| --------------------------- | ---------------------------------------------------- |
+| **Microsoft Sentinel**      | Active Sentinel workspace in your Azure subscription |
+| **Log Analytics Workspace** | The workspace linked to your Sentinel deployment     |
+| **Resource Group Access**   | Ability to create resources in the subscription      |
+| **No Conflicting Policies** | Azure Policy must allow Lighthouse delegations       |
+
+<Warning>
+  If you don't have Subscription Owner permissions, the Azure deployment step will fail. Contact your Azure administrator to obtain the necessary access or have them complete the deployment steps with you.
+</Warning>
+
+---
+
+## What Gets Deployed
+
+The Sentinel module deploys several Azure resources to enable integration:
+
+| Component                 | Purpose                                                   |
+| ------------------------- | --------------------------------------------------------- |
+| **Azure Lighthouse**      | Cross-tenant delegation for multi-tenant management       |
+| **Apollo Resource Group** | Infrastructure for incident streaming                     |
+| **Logic App**             | Streams Sentinel incidents to ContraForce in real-time    |
+| **Automation Rule**       | Triggers the Logic App when incidents are created/updated |
+| **Role Assignments**      | Grants ContraForce service principals access to Sentinel  |
+
+<Card title="Azure Resources Reference" icon="server" href="/guides/technical/contraforce-resources-deployed-during-azure-onboarding">
+  Complete list of all deployed resources with details
+</Card>
+
+---
+
+## Step 1: Navigate to Sentinel Configuration
+
+<Steps>
+  <Step title="Open Your Workspace">
+    From the ContraForce portal, navigate to **Workspaces** and select the workspace you want to configure
+  </Step>
+  <Step title="Go to Settings">
+    Click the **gear icon** to open workspace settings
+  </Step>
+  <Step title="Select Modules Tab">
+    Click the **Modules** tab in the settings panel
+  </Step>
+  <Step title="Click Configure on Microsoft Sentinel">
+    Find the Microsoft Sentinel module and click **Configure**
+  </Step>
+</Steps>
+
+You'll see the Microsoft Sentinel Configuration screen:
+
+<Frame>
+  ![Microsoft Sentinel Configuration screen](/images/Sentinel-Configuration-Page.png)
+</Frame>
+
+---
+
+## Step 2: Verify Prerequisites
+
+The configuration screen displays prerequisite checks. Ensure all items show a green checkmark:
+
+| Prerequisite                      | Required Value |
+| --------------------------------- | -------------- |
+| Azure Role for Microsoft Tenant   | Global Admin   |
+| ContraForce Workspace Role        | Owner          |
+| Microsoft Subscription Permission | Owner          |
+
+<Note>
+  If any prerequisite shows a red X, you'll need to obtain the required permissions before proceeding. The deployment will fail without proper access.
+</Note>
+
+---
+
+## Step 3: Provide Configuration Information
+
+Enter your Azure environment details:
+
+<Steps>
+  <Step title="Select Azure Subscription">
+    From the **Azure Subscription** dropdown, select the subscription containing your Sentinel workspace
+
+    <Tip>
+      If you don't see your subscription, ensure you're signed in with an account that has Owner permissions on the subscription.
+    </Tip>
+  </Step>
+  <Step title="Select Resource Group">
+    From the **Resource Group** dropdown, select the resource group containing your Sentinel/Log Analytics workspace
+  </Step>
+  <Step title="Select Log Analytics Workspace">
+    From the **Log Analytics Workspace** dropdown, select your Sentinel workspace
+
+    <Warning>
+      Select the correct workspace—this is where ContraForce will read incidents from and where Lighthouse delegation will be established.
+    </Warning>
+  </Step>
+</Steps>
+
+### Configuration Fields
+
+| Field                       | Description                                 | Example                 |
+| --------------------------- | ------------------------------------------- | ----------------------- |
+| **Azure Subscription**      | The subscription containing Sentinel        | "Production-Security"   |
+| **Resource Group**          | Resource group with your Sentinel workspace | "rg-sentinel-prod"      |
+| **Log Analytics Workspace** | Your Sentinel/Log Analytics workspace       | "la-sentinel-workspace" |
+
+---
+
+## Step 4: Configure and Save
+
+<Steps>
+  <Step title="Review Your Selections">
+    Double-check the subscription, resource group, and workspace selections
+  </Step>
+  <Step title="Click Configure and Save">
+    Click the **CONFIGURE AND SAVE** button to begin deployment
+  </Step>
+  <Step title="Authenticate if Prompted">
+    You may be prompted to sign in with your Azure credentials. Use an account with Subscription Owner permissions.
+  </Step>
+  <Step title="Wait for Deployment">
+    Deployment typically takes 2-5 minutes. Do not close the browser window.
+  </Step>
+</Steps>
+
+---
+
+## Step 5: Deploy Azure Lighthouse
+
+After the initial configuration, you'll need to deploy Azure Lighthouse for cross-tenant management.
+
+<Steps>
+  <Step title="Navigate to Lighthouse Deployment">
+    The wizard will automatically proceed to the Lighthouse deployment step, or you can find it in the Modules tab
+  </Step>
+  <Step title="Click Deploy Lighthouse">
+    Click **Deploy** to initiate the Azure Lighthouse delegation
+  </Step>
+  <Step title="Authorize in Azure">
+    A new window will open to the Azure portal. Review the delegation details and click **Create**
+  </Step>
+  <Step title="Verify Delegation">
+    Return to ContraForce and verify the Lighthouse status shows **Active**
+  </Step>
+</Steps>
+
+### What Lighthouse Enables
+
+| Capability                  | Description                                          |
+| --------------------------- | ---------------------------------------------------- |
+| **Cross-tenant visibility** | View and manage Sentinel from the ContraForce portal |
+| **Incident access**         | Read and update incidents across tenants             |
+| **Query execution**         | Run Log Analytics queries for threat hunting         |
+| **Rule deployment**         | Deploy detection rules via CMS                       |
+
+---
+
+## Step 6: Deploy Apollo Infrastructure
+
+Apollo is the incident streaming infrastructure that enables real-time incident notifications.
+
+<Steps>
+  <Step title="Navigate to Apollo Deployment">
+    In the Modules tab, find the Apollo deployment section
+  </Step>
+  <Step title="Click Deploy Apollo">
+    Click **Deploy** to provision the Apollo resource group and Logic App
+  </Step>
+  <Step title="Wait for Resources">
+    Deployment takes 2-3 minutes. Resources are created in your Azure subscription.
+  </Step>
+  <Step title="Verify Deployment">
+    Confirm Apollo shows **Active** status in the ContraForce portal
+  </Step>
+</Steps>
+
+### Apollo Resources Created
+
+| Resource                   | Type            | Purpose                           |
+| -------------------------- | --------------- | --------------------------------- |
+| **cf-apollo-[workspace]**  | Resource Group  | Container for streaming resources |
+| **cf-incident-stream**     | Logic App       | Processes and forwards incidents  |
+| **cf-sentinel-connection** | API Connection  | Authenticates to Sentinel         |
+| **cf-incident-trigger**    | Automation Rule | Triggers on incident changes      |
+
+<Note>
+  Apollo resources are created in the customer's Azure subscription. Standard Azure charges may apply for Logic App executions.
+</Note>
+
+---
+
+## Step 7: Consent Sentinel Enterprise Applications
+
+The Sentinel module requires additional enterprise application consent.
+
+<Steps>
+  <Step title="Navigate to Enterprise Apps Section">
+    In the onboarding wizard, proceed to the enterprise application consent step
+  </Step>
+  <Step title="Consent ContraForce Sentinel Hunting">
+    Click **Consent** next to "ContraForce Sentinel Hunting"
+  </Step>
+  <Step title="Authenticate as Global Admin">
+    Sign in with Global Administrator credentials
+  </Step>
+  <Step title="Accept Permissions">
+    Review the permissions and click **Accept** to consent on behalf of your organization
+  </Step>
+</Steps>
+
+### Sentinel Application Permissions
+
+| Application                      | Permissions          | Purpose                                |
+| -------------------------------- | -------------------- | -------------------------------------- |
+| **ContraForce Sentinel Hunting** | Log Analytics Reader | Execute KQL queries for threat hunting |
+
+---
+
+## Step 8: Verify Module Status
+
+Confirm the Sentinel module is fully configured:
+
+### Module Status Checklist
+
+- Microsoft Sentinel module shows **Active**
+- Azure Lighthouse shows **Active**
+- Apollo shows **Active**
+- ContraForce Sentinel Hunting shows **Consented**
+
+### Test Incident Sync
+
+<Steps>
+  <Step title="Open Command Page">
+    Navigate to the Command Page in ContraForce
+  </Step>
+  <Step title="Check for Sentinel Incidents">
+    Look for incidents with the Sentinel source indicator
+  </Step>
+  <Step title="Verify Incident Details">
+    Click an incident to confirm entity enrichment and details are loading
+  </Step>
+</Steps>
+
+<Tip>
+  Incidents may take 5-15 minutes to appear initially. If you have existing incidents in Sentinel, they should sync automatically.
+</Tip>
+
+---
+
+## Post-Configuration Steps
+
+### Configure Notifications
+
+With the Sentinel module active, you can now configure email notifications:
+
+<Steps>
+  <Step title="Go to Notifications Settings">
+    Navigate to workspace Settings → Notifications
+  </Step>
+  <Step title="Enable Severity Filters">
+    Select which severity levels should trigger notifications
+  </Step>
+  <Step title="Save Settings">
+    Click **Save** to apply your notification preferences
+  </Step>
+</Steps>
+
+<Card title="Notifications Configuration" icon="bell" href="/guides/onboarding/notifications-configuration">
+  Complete guide to notification setup
+</Card>
+
+### Deploy Detection Rules
+
+Use the Content Management System to deploy detection rules to your Sentinel workspace:
+
+<Steps>
+  <Step title="Navigate to CMS">
+    Go to **Content Management System** in the left navigation
+  </Step>
+  <Step title="Select Your Workspace">
+    Choose the workspace you just configured
+  </Step>
+  <Step title="Browse and Deploy Rules">
+    Review available detection rules and enable those matching your data sources
+  </Step>
+</Steps>
+
+<Card title="CMS Onboarding" icon="file-code" href="/guides/onboarding/content-management-system-onboarding">
+  Deploy detection rules to your Sentinel workspace
+</Card>
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+| Issue                       | Cause                     | Solution                                                    |
+| --------------------------- | ------------------------- | ----------------------------------------------------------- |
+| Subscription not visible    | Insufficient permissions  | Sign in with Subscription Owner account                     |
+| Deployment fails            | Azure Policy restrictions | Check for policies blocking Lighthouse or resource creation |
+| Lighthouse deployment fails | Existing delegation       | Remove existing Lighthouse delegation and retry             |
+| No incidents appearing      | No incidents in Sentinel  | Verify incidents exist in the Sentinel portal               |
+| Apollo Logic App disabled   | Deployment issue          | Manually enable the Logic App in Azure portal               |
+| Consent popup blocked       | Browser settings          | Allow popups from portal.contraforce.com                    |
+
+### Verifying Azure Resources
+
+To verify resources deployed correctly:
+
+<Steps>
+  <Step title="Open Azure Portal">
+    Navigate to [portal.azure.com](https://portal.azure.com)
+  </Step>
+  <Step title="Check Resource Group">
+    Search for the Apollo resource group (cf-apollo-[workspace])
+  </Step>
+  <Step title="Verify Logic App">
+    Confirm the Logic App exists and is **Enabled**
+  </Step>
+  <Step title="Check Automation Rule">
+    In Sentinel, go to Automation → Automation Rules and verify the ContraForce rule exists
+  </Step>
+</Steps>
+
+### Lighthouse Troubleshooting
+
+If Lighthouse delegation fails:
+
+1. **Check Azure Policy** — Some organizations restrict Lighthouse delegations
+2. **Remove existing delegations** — Conflicting delegations can cause failures
+3. **Verify permissions** — Subscription Owner is required
+4. **Check tenant settings** — Ensure cross-tenant access isn't blocked
+
+<AccordionGroup>
+  <Accordion title="How to remove existing Lighthouse delegation">
+    1. Go to Azure Portal → Service providers
+    2. Find any existing ContraForce delegations
+    3. Click on the delegation and select **Delete**
+    4. Wait for deletion to complete
+    5. Retry the deployment in ContraForce
+  </Accordion>
+  <Accordion title="How to enable Logic App manually">
+    1. Go to Azure Portal → Resource Groups
+    2. Open the cf-apollo-[workspace] resource group
+    3. Click on the Logic App resource
+    4. Click **Enable** if the Logic App is disabled
+    5. Verify the Logic App shows "Enabled" status
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Module Capabilities Unlocked
+
+With the Sentinel module configured, you now have access to:
+
+<CardGroup cols={2}>
+  <Card title="Sentinel Incidents" icon="shield-halved">
+    Real-time incident ingestion from Microsoft Sentinel
+  </Card>
+  <Card title="Email Notifications" icon="bell">
+    Instant alerts when new incidents are created
+  </Card>
+  <Card title="Content Management System" icon="file-code">
+    Deploy and manage detection rules at scale
+  </Card>
+  <Card title="Log Search" icon="magnifying-glass">
+    Query Log Analytics for threat hunting
+  </Card>
+  <Card title="Cross-Tenant Management" icon="buildings">
+    Manage multiple Sentinel workspaces from one portal
+  </Card>
+  <Card title="Advanced Threat Hunting" icon="crosshairs">
+    Execute KQL queries across customer environments
+  </Card>
+</CardGroup>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Configure Notifications" icon="bell" href="/guides/onboarding/notifications-configuration">
+    Set up email alerts for incidents
+  </Card>
+  <Card title="Deploy Detection Rules" icon="file-code" href="/guides/onboarding/content-management-system-onboarding">
+    Use CMS to deploy Sentinel rules
+  </Card>
+  <Card title="Add Users" icon="users" href="/guides/onboarding/user-group-management-for-partners">
+    Grant team access to the workspace
+  </Card>
+  <Card title="Incident Management" icon="shield-halved" href="/guides/getting-started/incident-management">
+    Start triaging Sentinel incidents
+  </Card>
+</CardGroup>
+
+---
+
+## Related Guides
+
+<CardGroup cols={3}>
+  <Card title="XDR Module" icon="shield" href="/guides/onboarding/microsoft-defender-xdr-module">
+    Defender XDR integration
+  </Card>
+  <Card title="Azure Resources" icon="cloud" href="/guides/technical/contraforce-resources-deployed-during-azure-onboarding">
+    Complete resource reference
+  </Card>
+  <Card title="CMS Overview" icon="database" href="/guides/getting-started/content-management-system">
+    Detection rule management
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+  Need help with Sentinel module deployment? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>

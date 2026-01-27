@@ -45,6 +45,7 @@
               "guides/onboarding/notifications-module",
               "guides/technical/notifications-configuration",
               "guides/onboarding/onboard-cms",
+              "guides/onboarding/microsoft-sentinel-module",
               "guides/onboarding/defender-xdr-module-deployment"
             ]
           },
