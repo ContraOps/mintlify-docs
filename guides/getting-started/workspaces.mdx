@@ -1,12 +1,13 @@
 ---
 title: "Workspace Manager"
 description: "Manage customer tenants, pre-onboard new customers, configure modules, and control workspace settings from one central location."
+url: "https://docs.contraforce.com/guides/getting-started/workspaces#workspace-manager"
 ---
 
 The Workspaces Page is your administrative control center for managing customer tenants. Pre-onboard new customers before deployment, configure module settings, and manage integrations—all from one place.
 
 <Info>
-Workspaces represent individual customer tenants in ContraForce. Each workspace has its own data, configurations, and user permissions.
+  Workspaces represent individual customer tenants in ContraForce. Each workspace has its own data, configurations, and user permissions.
 </Info>
 
 ## What Can You Do Here?
@@ -40,7 +41,7 @@ Workspaces represent individual customer tenants in ContraForce. Each workspace 
 </Steps>
 
 <Frame>
-  <img src="/images/workspaces-navigation-icon.png" alt="Workspaces navigation icon" />
+  ![Workspaces navigation icon](/images/workspaces-navigation-icon.png)
 </Frame>
 
 ---
@@ -50,26 +51,26 @@ Workspaces represent individual customer tenants in ContraForce. Each workspace 
 The Workspaces Page displays all your customer tenants in a filterable table.
 
 <Frame>
-  <img src="/images/workspaces-page-overview.png" alt="Workspaces page overview" />
+  ![Workspaces page overview](/images/workspaces-page-overview.png)
 </Frame>
 
 ### Filter Options
 
-| Filter | Description |
-|--------|-------------|
-| **All** | Shows all workspaces regardless of status |
-| **Onboarded** | Shows only fully onboarded, active tenants |
+| Filter            | Description                                         |
+| ----------------- | --------------------------------------------------- |
+| **All**           | Shows all workspaces regardless of status           |
+| **Onboarded**     | Shows only fully onboarded, active tenants          |
 | **Pre-Onboarded** | Shows workspaces created but not yet fully deployed |
 
 ### Table Columns
 
-| Column | Description |
-|--------|-------------|
-| **Workspace Name** | Customer/tenant identifier |
-| **Status** | Onboarded or Pre-Onboarded |
-| **Modules** | Which ContraForce modules are enabled |
-| **Created** | When the workspace was created |
-| **Actions** | Edit and expand controls |
+| Column             | Description                           |
+| ------------------ | ------------------------------------- |
+| **Workspace Name** | Customer/tenant identifier            |
+| **Status**         | Onboarded or Pre-Onboarded            |
+| **Modules**        | Which ContraForce modules are enabled |
+| **Created**        | When the workspace was created        |
+| **Actions**        | Edit and expand controls              |
 
 ---
 
@@ -78,7 +79,7 @@ The Workspaces Page displays all your customer tenants in a filterable table.
 Click the **dropdown arrow** on any workspace row to expand and view additional details:
 
 <Frame>
-  <img src="/images/workspace-expanded-details.png" alt="Workspace expanded details" />
+  ![Workspace expanded details](/images/workspace-expanded-details.png)
 </Frame>
 
 ### Expanded Information
@@ -90,7 +91,7 @@ Click the **dropdown arrow** on any workspace row to expand and view additional 
 - **Last Activity** — Most recent data received
 
 <Tip>
-Use the expanded view to quickly verify a workspace's configuration without opening the full edit panel.
+  Use the expanded view to quickly verify a workspace's configuration without opening the full edit panel.
 </Tip>
 
 ---
@@ -154,7 +155,7 @@ Modify settings for any workspace using the edit function.
 Click the **edit icon** (pencil) next to any workspace's dropdown arrow.
 
 <Frame>
-  <img src="/images/workspace-edit-icon.png" alt="Workspace edit icon" />
+  ![Workspace edit icon](/images/workspace-edit-icon.png)
 </Frame>
 
 ### Configuration Panel
@@ -162,30 +163,34 @@ Click the **edit icon** (pencil) next to any workspace's dropdown arrow.
 The edit panel opens with all configurable options:
 
 <Frame>
-  <img src="/images/workspace-edit-panel.png" alt="Workspace configuration panel" />
+  ![Workspace configuration panel](/images/workspace-edit-panel.png)
 </Frame>
 
 <Tabs>
   <Tab title="General">
     **Basic workspace settings:**
+
     - Workspace name
     - Display preferences
     - Notification settings
   </Tab>
   <Tab title="Modules">
     **Enable/disable ContraForce modules:**
+
     - XDR Module
     - SIEM Module
     - Response capabilities
   </Tab>
   <Tab title="Permissions">
     **Manage consent and access:**
+
     - Enterprise application consents
     - API permissions
     - Response action authorizations
   </Tab>
   <Tab title="Integrations">
     **Data connector configuration:**
+
     - Connected sources
     - API credentials
     - Connection settings
@@ -200,10 +205,10 @@ Each workspace can have different modules enabled based on customer needs.
 
 ### Available Modules
 
-| Module | Description | Key Features |
-|--------|-------------|--------------|
-| **XDR Module** | Microsoft Defender integration | Endpoint detection, response actions, device management |
-| **SIEM Module** | Microsoft Sentinel integration | Log analysis, custom alerts, threat hunting |
+| Module          | Description                    | Key Features                                            |
+| --------------- | ------------------------------ | ------------------------------------------------------- |
+| **XDR Module**  | Microsoft Defender integration | Endpoint detection, response actions, device management |
+| **SIEM Module** | Microsoft Sentinel integration | Log analysis, custom alerts, threat hunting             |
 
 ### Configuring Modules
 
@@ -226,7 +231,7 @@ Each workspace can have different modules enabled based on customer needs.
 </Steps>
 
 <Frame>
-  <img src="/images/workspace-module-config.png" alt="Module configuration options" />
+  ![Module configuration options](/images/workspace-module-config.png)
 </Frame>
 
 ### Module-Specific Settings
@@ -262,6 +267,7 @@ Some features require explicit consent to Microsoft enterprise applications.
 ### Why Consent is Required
 
 ContraForce uses Microsoft Graph API and other APIs to:
+
 - Read security alerts and incidents
 - Execute response actions (isolate devices, disable users)
 - Access log data for analysis
@@ -289,7 +295,7 @@ These permissions must be granted by a tenant administrator.
 </Steps>
 
 <Warning>
-Consent requires administrator privileges in the customer's Microsoft tenant. Work with your customer's IT team if you don't have admin access.
+  Consent requires administrator privileges in the customer's Microsoft tenant. Work with your customer's IT team if you don't have admin access.
 </Warning>
 
 <Card title="Learn More" icon="key" href="/guides/technical/contraforce-enterprise-applications">
@@ -324,15 +330,15 @@ Consent requires administrator privileges in the customer's Microsoft tenant. Wo
 
 ### Common Issues
 
-| Issue | Possible Cause | Solution |
-|-------|---------------|----------|
-| Workspace shows no data | Consent not completed | Re-run consent flow with admin credentials |
-| Module won't enable | Missing permissions | Verify required permissions are granted |
-| Pre-onboarded stuck | Consent incomplete | Complete all required consent steps |
-| Configuration won't save | Validation error | Check for required fields or invalid values |
+| Issue                    | Possible Cause        | Solution                                    |
+| ------------------------ | --------------------- | ------------------------------------------- |
+| Workspace shows no data  | Consent not completed | Re-run consent flow with admin credentials  |
+| Module won't enable      | Missing permissions   | Verify required permissions are granted     |
+| Pre-onboarded stuck      | Consent incomplete    | Complete all required consent steps         |
+| Configuration won't save | Validation error      | Check for required fields or invalid values |
 
 <Note>
-If you encounter persistent issues with workspace configuration, contact [support@contraforce.com](mailto:support@contraforce.com) with the workspace name and error details.
+  If you encounter persistent issues with workspace configuration, contact [support@contraforce.com](mailto:support@contraforce.com) with the workspace name and error details.
 </Note>
 
 ---
@@ -357,5 +363,5 @@ If you encounter persistent issues with workspace configuration, contact [suppor
 ---
 
 <Note>
-Questions about the Workspaces Page? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+  Questions about the Workspaces Page? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
 </Note>
