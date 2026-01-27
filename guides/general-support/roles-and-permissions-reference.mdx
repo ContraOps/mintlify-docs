@@ -1,0 +1,604 @@
+---
+title: "Roles & Permissions Reference"
+description: "Complete reference for all ContraForce roles including organization-level and workspace-level permissions, use cases, and assignment best practices."
+---
+
+This reference provides complete details on all ContraForce roles, their permissions, and guidance on when to use each role.
+
+<Info>
+ContraForce uses a two-tier role system: **Organization Roles** control platform-wide access, while **Workspace Roles** control what users can do within specific customer workspaces.
+</Info>
+
+---
+
+## Role System Overview
+
+ContraForce roles operate at two levels:
+
+<CardGroup cols={2}>
+  <Card title="Organization Roles" icon="building">
+    Control who can access the platform and manage organization-wide settings. Assigned in **Settings → User Management**.
+  </Card>
+  <Card title="Workspace Roles" icon="shield-halved">
+    Control what actions users can perform within a specific customer workspace. Assigned per-workspace in **Workspace Settings**.
+  </Card>
+</CardGroup>
+
+### How Roles Work Together
+
+A user needs **both** an organization role AND a workspace role to work effectively:
+
+```
+Organization Role → Grants platform access
+        +
+Workspace Role → Grants workspace-specific permissions
+        =
+Complete user access
+```
+
+<Warning>
+A user with an organization role but no workspace role can log in but won't see any customer data. A user must be assigned to at least one workspace with a workspace role to be useful.
+</Warning>
+
+---
+
+## Organization Roles
+
+Organization roles are assigned at the partner/organization level and determine platform-wide capabilities.
+
+### Organization Roles Summary
+
+| Role | Description | Typical Users |
+|------|-------------|---------------|
+| **Organization Admin** | Full platform control including billing, settings, and user management | Business owners, IT directors, platform administrators |
+| **Organization Member** | Standard platform access, can be assigned to workspaces | SOC analysts, engineers, account managers |
+
+### Organization Admin
+
+Full administrative control over the ContraForce platform.
+
+<AccordionGroup>
+  <Accordion title="Permissions">
+    | Capability | Access |
+    |------------|--------|
+    | View organization dashboard | ✓ |
+    | Manage organization settings | ✓ |
+    | Create and delete workspaces | ✓ |
+    | Add and remove organization users | ✓ |
+    | Create and manage organization groups | ✓ |
+    | Assign users to workspaces | ✓ |
+    | View billing and usage | ✓ |
+    | Manage API keys | ✓ |
+    | Configure SSO/authentication | ✓ |
+    | Access all workspaces (with workspace role) | ✓ |
+  </Accordion>
+  <Accordion title="Use Cases">
+    - Platform administrators responsible for ContraForce setup
+    - Business owners who need full visibility
+    - IT directors managing the security operations team
+    - Personnel responsible for billing and licensing
+  </Accordion>
+  <Accordion title="Assignment Guidelines">
+    - Limit to 2-3 trusted individuals
+    - Ensure at least two Organization Admins for continuity
+    - Document who has this role and why
+    - Review quarterly for appropriateness
+  </Accordion>
+</AccordionGroup>
+
+### Organization Member
+
+Standard platform access for team members who work within workspaces.
+
+<AccordionGroup>
+  <Accordion title="Permissions">
+    | Capability | Access |
+    |------------|--------|
+    | View organization dashboard | ✓ |
+    | Manage organization settings | — |
+    | Create and delete workspaces | — |
+    | Add and remove organization users | — |
+    | Create and manage organization groups | — |
+    | Assign users to workspaces | — |
+    | View billing and usage | — |
+    | Manage API keys | — |
+    | Configure SSO/authentication | — |
+    | Access assigned workspaces (with workspace role) | ✓ |
+  </Accordion>
+  <Accordion title="Use Cases">
+    - SOC analysts handling daily incident triage
+    - Security engineers managing integrations
+    - Account managers reviewing customer status
+    - Any team member who doesn't need admin capabilities
+  </Accordion>
+  <Accordion title="Assignment Guidelines">
+    - Default role for most team members
+    - Combine with appropriate workspace roles
+    - Add to organization groups for easier workspace assignment
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Workspace Roles
+
+Workspace roles control what a user can do within a specific customer workspace. Users can have different roles in different workspaces.
+
+### Workspace Roles Summary
+
+| Role | View Incidents | Respond to Incidents | Manage Gamebooks | Configure Modules | Manage Users |
+|------|:--------------:|:-------------------:|:----------------:|:-----------------:|:------------:|
+| **Admin** | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **Incident Responder** | ✓ | ✓ | ✓ | — | — |
+| **Incident Analyst** | ✓ | — | — | — | — |
+| **Data Source Admin** | ✓ | — | — | ✓ | — |
+| **Content Admin** | ✓ | — | — | CMS Only | — |
+
+---
+
+### Admin
+
+Full control over a workspace including user management and configuration.
+
+<AccordionGroup>
+  <Accordion title="Complete Permissions">
+    **Incident Management**
+    | Capability | Access |
+    |------------|--------|
+    | View incidents | ✓ |
+    | View incident details and entities | ✓ |
+    | Update incident status | ✓ |
+    | Update incident severity | ✓ |
+    | Assign incidents | ✓ |
+    | Add comments | ✓ |
+    | Close incidents | ✓ |
+    | Delete incidents | ✓ |
+
+    **Response Actions**
+    | Capability | Access |
+    |------------|--------|
+    | Run Gamebooks | ✓ |
+    | Create custom Gamebooks | ✓ |
+    | Execute response actions | ✓ |
+    | Isolate endpoints | ✓ |
+    | Disable user accounts | ✓ |
+    | Block IPs/URLs | ✓ |
+
+    **Configuration**
+    | Capability | Access |
+    |------------|--------|
+    | Configure modules | ✓ |
+    | Manage data connectors | ✓ |
+    | Configure notifications | ✓ |
+    | Manage CMS rules | ✓ |
+    | Deploy detection rules | ✓ |
+
+    **Administration**
+    | Capability | Access |
+    |------------|--------|
+    | Add users to workspace | ✓ |
+    | Remove users from workspace | ✓ |
+    | Assign workspace roles | ✓ |
+    | Add groups to workspace | ✓ |
+    | View workspace settings | ✓ |
+    | Modify workspace settings | ✓ |
+  </Accordion>
+  <Accordion title="Use Cases">
+    - SOC managers overseeing a specific customer
+    - Lead analysts with full responsibility for a workspace
+    - Customer success managers who need to configure workspaces
+    - Technical account managers during onboarding
+  </Accordion>
+  <Accordion title="Assignment Guidelines">
+    - Assign to SOC managers and team leads
+    - Limit to personnel who need user management capabilities
+    - Consider using Incident Responder instead if user management isn't needed
+    - Appropriate for your most senior analysts on premium customers
+  </Accordion>
+</AccordionGroup>
+
+---
+
+### Incident Responder
+
+Can investigate incidents and execute response actions, but cannot configure the workspace.
+
+<AccordionGroup>
+  <Accordion title="Complete Permissions">
+    **Incident Management**
+    | Capability | Access |
+    |------------|--------|
+    | View incidents | ✓ |
+    | View incident details and entities | ✓ |
+    | Update incident status | ✓ |
+    | Update incident severity | ✓ |
+    | Assign incidents | ✓ |
+    | Add comments | ✓ |
+    | Close incidents | ✓ |
+    | Delete incidents | — |
+
+    **Response Actions**
+    | Capability | Access |
+    |------------|--------|
+    | Run Gamebooks | ✓ |
+    | Create custom Gamebooks | ✓ |
+    | Execute response actions | ✓ |
+    | Isolate endpoints | ✓ |
+    | Disable user accounts | ✓ |
+    | Block IPs/URLs | ✓ |
+
+    **Configuration**
+    | Capability | Access |
+    |------------|--------|
+    | Configure modules | — |
+    | Manage data connectors | — |
+    | Configure notifications | — |
+    | Manage CMS rules | — |
+    | Deploy detection rules | — |
+
+    **Administration**
+    | Capability | Access |
+    |------------|--------|
+    | Add users to workspace | — |
+    | Remove users from workspace | — |
+    | Assign workspace roles | — |
+    | Add groups to workspace | — |
+    | View workspace settings | Limited |
+    | Modify workspace settings | — |
+  </Accordion>
+  <Accordion title="Use Cases">
+    - Tier 2 SOC analysts who handle escalations
+    - Senior analysts who need to take response actions
+    - Incident handlers during active investigations
+    - On-call personnel who may need to respond after hours
+  </Accordion>
+  <Accordion title="Assignment Guidelines">
+    - Default role for experienced SOC analysts
+    - Appropriate for personnel who need response capabilities
+    - Use for Tier 2 and above analysts
+    - Consider for on-call rotation members
+  </Accordion>
+</AccordionGroup>
+
+---
+
+### Incident Analyst
+
+Read-only access to incidents for monitoring and analysis without response capabilities.
+
+<AccordionGroup>
+  <Accordion title="Complete Permissions">
+    **Incident Management**
+    | Capability | Access |
+    |------------|--------|
+    | View incidents | ✓ |
+    | View incident details and entities | ✓ |
+    | Update incident status | — |
+    | Update incident severity | — |
+    | Assign incidents | — |
+    | Add comments | ✓ |
+    | Close incidents | — |
+    | Delete incidents | — |
+
+    **Response Actions**
+    | Capability | Access |
+    |------------|--------|
+    | Run Gamebooks | — |
+    | Create custom Gamebooks | — |
+    | Execute response actions | — |
+    | Isolate endpoints | — |
+    | Disable user accounts | — |
+    | Block IPs/URLs | — |
+
+    **Configuration**
+    | Capability | Access |
+    |------------|--------|
+    | Configure modules | — |
+    | Manage data connectors | — |
+    | Configure notifications | — |
+    | Manage CMS rules | — |
+    | Deploy detection rules | — |
+
+    **Administration**
+    | Capability | Access |
+    |------------|--------|
+    | Add users to workspace | — |
+    | Remove users from workspace | — |
+    | Assign workspace roles | — |
+    | Add groups to workspace | — |
+    | View workspace settings | — |
+    | Modify workspace settings | — |
+  </Accordion>
+  <Accordion title="Use Cases">
+    - Tier 1 SOC analysts who triage and escalate
+    - Customer stakeholders who want visibility into their incidents
+    - Compliance officers reviewing security events
+    - Account managers monitoring customer status
+    - Junior analysts in training
+  </Accordion>
+  <Accordion title="Assignment Guidelines">
+    - Use for Tier 1 analysts who escalate rather than respond
+    - Appropriate for customer users who need read-only access
+    - Good for personnel in training before promoting to Responder
+    - Use for account managers who need visibility without action capability
+  </Accordion>
+</AccordionGroup>
+
+---
+
+### Data Source Admin
+
+Can configure modules and data connectors but cannot respond to incidents.
+
+<AccordionGroup>
+  <Accordion title="Complete Permissions">
+    **Incident Management**
+    | Capability | Access |
+    |------------|--------|
+    | View incidents | ✓ |
+    | View incident details and entities | ✓ |
+    | Update incident status | — |
+    | Update incident severity | — |
+    | Assign incidents | — |
+    | Add comments | ✓ |
+    | Close incidents | — |
+    | Delete incidents | — |
+
+    **Response Actions**
+    | Capability | Access |
+    |------------|--------|
+    | Run Gamebooks | — |
+    | Create custom Gamebooks | — |
+    | Execute response actions | — |
+    | Isolate endpoints | — |
+    | Disable user accounts | — |
+    | Block IPs/URLs | — |
+
+    **Configuration**
+    | Capability | Access |
+    |------------|--------|
+    | Configure modules | ✓ |
+    | Manage data connectors | ✓ |
+    | Configure notifications | ✓ |
+    | Manage CMS rules | — |
+    | Deploy detection rules | — |
+
+    **Administration**
+    | Capability | Access |
+    |------------|--------|
+    | Add users to workspace | — |
+    | Remove users from workspace | — |
+    | Assign workspace roles | — |
+    | Add groups to workspace | — |
+    | View workspace settings | ✓ |
+    | Modify workspace settings | Limited |
+  </Accordion>
+  <Accordion title="Use Cases">
+    - Integration engineers setting up data connectors
+    - Technical onboarding specialists
+    - Engineers troubleshooting data flow issues
+    - Personnel responsible for module configuration
+  </Accordion>
+  <Accordion title="Assignment Guidelines">
+    - Use for technical staff who configure but don't respond
+    - Appropriate for onboarding and integration work
+    - Good for separation of duties (config vs. response)
+    - Consider for customer IT admins managing their own connectors
+  </Accordion>
+</AccordionGroup>
+
+---
+
+### Content Admin
+
+Can manage CMS detection rules but cannot configure other modules or respond to incidents.
+
+<AccordionGroup>
+  <Accordion title="Complete Permissions">
+    **Incident Management**
+    | Capability | Access |
+    |------------|--------|
+    | View incidents | ✓ |
+    | View incident details and entities | ✓ |
+    | Update incident status | — |
+    | Update incident severity | — |
+    | Assign incidents | — |
+    | Add comments | ✓ |
+    | Close incidents | — |
+    | Delete incidents | — |
+
+    **Response Actions**
+    | Capability | Access |
+    |------------|--------|
+    | Run Gamebooks | — |
+    | Create custom Gamebooks | — |
+    | Execute response actions | — |
+    | Isolate endpoints | — |
+    | Disable user accounts | — |
+    | Block IPs/URLs | — |
+
+    **Configuration**
+    | Capability | Access |
+    |------------|--------|
+    | Configure modules | — |
+    | Manage data connectors | — |
+    | Configure notifications | — |
+    | Manage CMS rules | ✓ |
+    | Deploy detection rules | ✓ |
+    | Enable/disable rules | ✓ |
+    | Configure auto-updates | ✓ |
+
+    **Administration**
+    | Capability | Access |
+    |------------|--------|
+    | Add users to workspace | — |
+    | Remove users from workspace | — |
+    | Assign workspace roles | — |
+    | Add groups to workspace | — |
+    | View workspace settings | Limited |
+    | Modify workspace settings | — |
+  </Accordion>
+  <Accordion title="Use Cases">
+    - Detection engineers managing rule deployments
+    - Security engineers tuning detection coverage
+    - Personnel responsible for Sentinel rule management
+    - Content specialists focused on detection quality
+  </Accordion>
+  <Accordion title="Assignment Guidelines">
+    - Use for personnel focused specifically on detection rules
+    - Good for separation of duties (detection vs. response)
+    - Appropriate for detection engineering teams
+    - Consider pairing with Incident Analyst for visibility
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Role Comparison Matrix
+
+### By Functional Area
+
+<Tabs>
+  <Tab title="Incident Operations">
+    | Capability | Admin | Responder | Analyst | Data Source | Content |
+    |------------|:-----:|:---------:|:-------:|:-----------:|:-------:|
+    | View incidents | ✓ | ✓ | ✓ | ✓ | ✓ |
+    | View details/entities | ✓ | ✓ | ✓ | ✓ | ✓ |
+    | Update status | ✓ | ✓ | — | — | — |
+    | Update severity | ✓ | ✓ | — | — | — |
+    | Assign incidents | ✓ | ✓ | — | — | — |
+    | Add comments | ✓ | ✓ | ✓ | ✓ | ✓ |
+    | Close incidents | ✓ | ✓ | — | — | — |
+    | Delete incidents | ✓ | — | — | — | — |
+  </Tab>
+  <Tab title="Response Actions">
+    | Capability | Admin | Responder | Analyst | Data Source | Content |
+    |------------|:-----:|:---------:|:-------:|:-----------:|:-------:|
+    | Run Gamebooks | ✓ | ✓ | — | — | — |
+    | Create Gamebooks | ✓ | ✓ | — | — | — |
+    | Isolate endpoints | ✓ | ✓ | — | — | — |
+    | Disable users | ✓ | ✓ | — | — | — |
+    | Block IPs/URLs | ✓ | ✓ | — | — | — |
+    | Quarantine files | ✓ | ✓ | — | — | — |
+    | Reset passwords | ✓ | ✓ | — | — | — |
+  </Tab>
+  <Tab title="Configuration">
+    | Capability | Admin | Responder | Analyst | Data Source | Content |
+    |------------|:-----:|:---------:|:-------:|:-----------:|:-------:|
+    | Configure modules | ✓ | — | — | ✓ | — |
+    | Manage connectors | ✓ | — | — | ✓ | — |
+    | Configure notifications | ✓ | — | — | ✓ | — |
+    | Manage CMS rules | ✓ | — | — | — | ✓ |
+    | Deploy detection rules | ✓ | — | — | — | ✓ |
+  </Tab>
+  <Tab title="Administration">
+    | Capability | Admin | Responder | Analyst | Data Source | Content |
+    |------------|:-----:|:---------:|:-------:|:-----------:|:-------:|
+    | Add workspace users | ✓ | — | — | — | — |
+    | Remove workspace users | ✓ | — | — | — | — |
+    | Assign roles | ✓ | — | — | — | — |
+    | Add groups | ✓ | — | — | — | — |
+    | View settings | ✓ | Limited | — | ✓ | Limited |
+    | Modify settings | ✓ | — | — | Limited | — |
+  </Tab>
+</Tabs>
+
+---
+
+## Common Role Assignments
+
+### By Team Structure
+
+| Team Member | Org Role | Typical Workspace Role |
+|-------------|----------|------------------------|
+| SOC Manager | Organization Admin | Admin |
+| Tier 2 Analyst | Organization Member | Incident Responder |
+| Tier 1 Analyst | Organization Member | Incident Analyst |
+| Detection Engineer | Organization Member | Content Admin |
+| Integration Engineer | Organization Member | Data Source Admin |
+| Account Manager | Organization Member | Incident Analyst |
+| Customer CISO | — (workspace only) | Incident Analyst |
+| Customer IT Admin | — (workspace only) | Data Source Admin |
+
+### By Customer SLA
+
+| SLA Tier | Recommended Team Roles |
+|----------|------------------------|
+| **Premium** | Admin (manager) + Incident Responder (analysts) |
+| **Standard** | Incident Responder (lead) + Incident Analyst (analysts) |
+| **Basic** | Incident Analyst (monitoring only) |
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Apply principle of least privilege">
+    Assign the minimum role needed for each user's responsibilities. Start with Incident Analyst and promote to Responder only when response capabilities are needed.
+  </Accordion>
+  <Accordion title="Use groups for consistent assignment">
+    Create organization groups like "SOC Tier 1" and "SOC Tier 2" with predetermined workspace roles. This ensures consistency across all customer workspaces.
+  </Accordion>
+  <Accordion title="Separate configuration from response">
+    Consider separating Data Source Admin and Content Admin roles from incident response roles. This provides better audit trails and separation of duties.
+  </Accordion>
+  <Accordion title="Limit Admin role assignments">
+    Reserve the Admin role for personnel who genuinely need user management capabilities. Most analysts should be Incident Responders or Incident Analysts.
+  </Accordion>
+  <Accordion title="Document role assignments">
+    Maintain a record of who has what role and why. Review quarterly to ensure assignments are still appropriate.
+  </Accordion>
+  <Accordion title="Use different roles for different workspaces">
+    A user can have different roles in different workspaces. A senior analyst might be Admin for a premium customer but Incident Responder for standard customers.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="Can a user have multiple workspace roles?">
+    No, each user has one role per workspace. However, they can have different roles in different workspaces. If a user needs capabilities from multiple roles, assign the higher-privilege role.
+  </Accordion>
+  <Accordion title="What's the difference between Admin and Incident Responder?">
+    Admin can manage users and modify workspace settings. Incident Responder has the same operational capabilities (investigating, responding) but cannot add/remove users or change configuration.
+  </Accordion>
+  <Accordion title="Should customer users be Organization Members?">
+    Generally no. Customer users should only be added at the workspace level (not organization level) to ensure they can only see their own data.
+  </Accordion>
+  <Accordion title="Can I create custom roles?">
+    Custom roles are not currently supported. Use the predefined roles that best match your needs. Contact support if you have specific requirements not met by existing roles.
+  </Accordion>
+  <Accordion title="How do I promote a user from Analyst to Responder?">
+    Go to the workspace settings, find the user in Users & Groups, edit their assignment, and change their role from Incident Analyst to Incident Responder.
+  </Accordion>
+  <Accordion title="What role should customer stakeholders have?">
+    Incident Analyst is typically appropriate for customer stakeholders who need visibility into their security posture without the ability to take response actions.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="User & Group Management" icon="users" href="/guides/onboarding/user-group-management-for-partners">
+    Setting up users and groups for partners
+  </Card>
+  <Card title="Workspace Manager" icon="building" href="/guides/getting-started/workspace-manager">
+    Managing customer workspaces
+  </Card>
+  <Card title="Gamebooks" icon="bolt" href="/guides/getting-started/what-are-gamebooks">
+    Automated response actions (requires Responder role)
+  </Card>
+  <Card title="Content Management System" icon="database" href="/guides/getting-started/content-management-system">
+    Detection rule management (requires Content Admin role)
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about roles and permissions? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
