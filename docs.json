@@ -26,13 +26,13 @@
             "group": "Getting started",
             "pages": [
               "overview",
-              "command-dashboard",
+              "guides/getting-started/command-dashboard",
               "guides/getting-started/workspaces",
-              "incident-management",
+              "guides/getting-started/incident-management",
               "guides/getting-started/incident-classifications",
               "guides/getting-started/multi-tenant-features",
-              "workbench-overview",
-              "what-are-gamebooks",
+              "guides/getting-started/workbench-overview",
+              "guides/getting-started/what-are-gamebooks",
               "guides/getting-started/content-management-system"
             ]
           },
