@@ -27,7 +27,7 @@
             "pages": [
               "overview",
               "guides/getting-started/command-dashboard",
-              "guides/getting-started/workspaces",
+              "guides/getting-started/workspace-manager",
               "guides/getting-started/incident-management",
               "guides/getting-started/incident-classifications",
               "guides/getting-started/multi-tenant-features",
