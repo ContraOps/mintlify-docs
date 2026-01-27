@@ -26,7 +26,7 @@
             "group": "Getting started",
             "pages": [
               "overview",
-              "quickstart",
+              "command-dashboard",
               "guides/getting-started/workspaces",
               "incident-management",
               "guides/getting-started/incident-classifications",
