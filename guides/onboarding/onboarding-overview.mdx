@@ -1,0 +1,445 @@
+---
+title: "Onboarding Overview"
+description: "Complete guide to onboarding customers to ContraForce. Understand prerequisites, module options, deployment steps, and timeline expectations."
+---
+
+This guide provides a complete overview of the ContraForce onboarding process. Whether you're onboarding your first customer or your fiftieth, use this as your roadmap to successful deployments.
+
+<Info>
+**Estimated Time:** A typical onboarding takes 30-60 minutes depending on module selection and environment complexity.
+</Info>
+
+---
+
+## Before You Begin
+
+### Prerequisites Checklist
+
+Ensure you have the following before starting:
+
+<CardGroup cols={2}>
+  <Card title="Microsoft Credentials" icon="key">
+    Global Administrator or Security Administrator access to the customer's Microsoft 365 tenant
+  </Card>
+  <Card title="Licensing" icon="file-contract">
+    Active Microsoft 365 license (Business Premium, E3, or E5) with Defender capabilities
+  </Card>
+  <Card title="ContraForce Access" icon="user-check">
+    Organization Admin or Admin role in ContraForce to create workspaces
+  </Card>
+  <Card title="Azure Access" icon="cloud">
+    For SIEM module: Subscription Owner access to deploy Azure resources
+  </Card>
+</CardGroup>
+
+### Information to Gather
+
+Collect this information from your customer before the onboarding call:
+
+| Information | Required For | Example |
+|-------------|--------------|---------|
+| Microsoft 365 tenant domain | All deployments | acmecorp.onmicrosoft.com |
+| Global Admin credentials | Consent flow | admin@acmecorp.com |
+| Microsoft 365 license tier | Capability planning | E5, E3, Business Premium |
+| Azure subscription ID | SIEM module only | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx |
+| Sentinel workspace name | SIEM module only | acme-sentinel-workspace |
+| Notification email | All deployments | soc-alerts@yourcompany.com |
+
+---
+
+## Choose Your Module
+
+ContraForce offers two deployment modules. Select based on your customer's environment and your service offering.
+
+<Tabs>
+  <Tab title="XDR Module">
+    ### Microsoft Defender XDR Module
+    
+    **Best for:** Customers with Microsoft 365 Business Premium, E3, or E5 who want centralized incident management without Sentinel.
+    
+    **What's Included:**
+    - Incident ingestion from Microsoft Defender XDR
+    - Entity enrichment (users, devices, IPs, files, emails)
+    - Gamebook response actions
+    - Multi-tenant management
+    
+    **What's NOT Included:**
+    - Microsoft Sentinel integration
+    - Custom detection rules (CMS)
+    - SIEM-based incident notifications
+    - Log search capabilities
+    
+    **Deployment Time:** ~15-20 minutes
+    
+    **Azure Resources:** None (no Azure deployment required)
+  </Tab>
+  <Tab title="XDR + SIEM Module">
+    ### Microsoft Defender XDR + SIEM Module
+    
+    **Best for:** Customers with Microsoft Sentinel who want full SIEM integration and custom detection rules.
+    
+    **What's Included:**
+    - Everything in XDR Module, plus:
+    - Microsoft Sentinel incident ingestion
+    - Content Management System (CMS) for detection rules
+    - Real-time incident notifications
+    - Log search and threat hunting
+    - Azure Lighthouse cross-tenant management
+    
+    **Requirements:**
+    - Active Microsoft Sentinel workspace
+    - Azure subscription with Owner permissions
+    - Appropriate Azure RBAC roles
+    
+    **Deployment Time:** ~30-45 minutes
+    
+    **Azure Resources:** Apollo resource group, Logic Apps, role assignments
+  </Tab>
+</Tabs>
+
+### Module Comparison
+
+| Capability | XDR | XDR + SIEM |
+|------------|:---:|:----------:|
+| Defender XDR incidents | ✓ | ✓ |
+| Entity enrichment | ✓ | ✓ |
+| Gamebook response actions | ✓ | ✓ |
+| Multi-tenant management | ✓ | ✓ |
+| Sentinel incidents | — | ✓ |
+| Detection rules (CMS) | — | ✓ |
+| Email notifications | — | ✓ |
+| Log search | — | ✓ |
+| Azure Lighthouse | — | ✓ |
+
+<Card title="Module Selection Guide" icon="compass" href="/guides/getting-started/module-overview">
+  Detailed comparison to help you choose the right module
+</Card>
+
+---
+
+## Onboarding Process
+
+### High-Level Steps
+
+```mermaid
+flowchart LR
+    A[Create Workspace] --> B[Consent Apps]
+    B --> C[Select Module]
+    C --> D[Configure Module]
+    D --> E[Add Users]
+    E --> F[Verify Setup]
+```
+
+### Step-by-Step Overview
+
+<Steps>
+  <Step title="Create Customer Workspace">
+    Create a new workspace in ContraForce for the customer. This establishes their isolated environment.
+    
+    **Where:** Workspaces → Create Workspace
+  </Step>
+  <Step title="Launch Onboarding Wizard">
+    Open the onboarding wizard from the workspace settings to begin the guided setup.
+    
+    **Where:** Workspace → Settings → Onboarding Wizard
+  </Step>
+  <Step title="Consent Core Enterprise Applications">
+    Sign in with customer Global Admin credentials to consent the ContraForce API and Portal applications.
+    
+    **Applications:**
+    - ContraForce API
+    - ContraForce Portal
+  </Step>
+  <Step title="Select Module">
+    Choose either XDR or XDR + SIEM based on customer requirements and environment.
+  </Step>
+  <Step title="Consent Module Applications">
+    Consent additional enterprise applications required for the selected module.
+    
+    **XDR Applications:**
+    - ContraForce for MDE
+    - ContraForce Gamebooks for MDE
+    - ContraForce Gamebooks for Identity
+    - ContraForce Gamebooks for Email
+    
+    **SIEM Applications (additional):**
+    - ContraForce Sentinel Hunting
+  </Step>
+  <Step title="Configure Azure Resources (SIEM Only)">
+    For XDR + SIEM module, deploy Azure resources including Lighthouse delegation and Apollo infrastructure.
+    
+    **Resources Deployed:**
+    - Azure Lighthouse delegation
+    - Apollo resource group
+    - Logic Apps for incident streaming
+  </Step>
+  <Step title="Add Users and Groups">
+    Assign your team members to the workspace with appropriate roles.
+    
+    **Recommended:**
+    - Assign organization groups (SOC Tier 1, Tier 2, etc.)
+    - Add customer users if they need portal access
+  </Step>
+  <Step title="Configure Notifications">
+    Set up email notifications for incident alerts (SIEM module only).
+    
+    **Options:**
+    - Configure severity filters
+    - Set up distribution group notifications
+  </Step>
+  <Step title="Verify Deployment">
+    Confirm everything is working correctly before going live.
+    
+    **Verification:**
+    - Check incidents are syncing
+    - Test Gamebook execution
+    - Verify user access
+  </Step>
+</Steps>
+
+---
+
+## Detailed Guides by Module
+
+### XDR Module Onboarding
+
+<CardGroup cols={2}>
+  <Card title="XDR Deployment Guide" icon="shield" href="/guides/onboarding/microsoft-defender-xdr-onboarding">
+    Complete step-by-step guide for XDR module deployment
+  </Card>
+  <Card title="XDR Enterprise Application" icon="key" href="/guides/technical/microsoft-defender-xdr-enterprise-application">
+    Permissions and consent details for XDR apps
+  </Card>
+</CardGroup>
+
+### XDR + SIEM Module Onboarding
+
+<CardGroup cols={2}>
+  <Card title="Sentinel Deployment Guide" icon="database" href="/guides/onboarding/microsoft-sentinel-onboarding">
+    Complete step-by-step guide for SIEM module deployment
+  </Card>
+  <Card title="Azure Resources Reference" icon="cloud" href="/guides/technical/contraforce-resources-deployed-during-azure-onboarding">
+    What gets deployed in Azure during onboarding
+  </Card>
+</CardGroup>
+
+### Post-Onboarding Configuration
+
+<CardGroup cols={2}>
+  <Card title="CMS Onboarding" icon="file-code" href="/guides/onboarding/content-management-system-onboarding">
+    Deploy detection rules after SIEM onboarding
+  </Card>
+  <Card title="Notifications Setup" icon="bell" href="/guides/onboarding/notifications-configuration">
+    Configure email notifications for incidents
+  </Card>
+</CardGroup>
+
+---
+
+## User and Access Setup
+
+### Adding Your Team
+
+After onboarding the workspace, assign your team members:
+
+| Step | Action | Details |
+|------|--------|---------|
+| 1 | Navigate to workspace | Select the newly onboarded workspace |
+| 2 | Open settings | Click the gear icon |
+| 3 | Go to Users & Groups | Select the Users & Groups tab |
+| 4 | Add organization groups | Assign groups like "SOC Tier 1" with appropriate roles |
+| 5 | Verify access | Confirm team members can see the workspace |
+
+### Recommended Role Assignments
+
+| Team Member | Workspace Role | Capabilities |
+|-------------|----------------|--------------|
+| SOC Manager | Admin | Full control including user management |
+| Tier 2 Analyst | Incident Responder | Investigate and respond to incidents |
+| Tier 1 Analyst | Incident Analyst | View and triage incidents |
+| Integration Engineer | Data Source Admin | Configure modules and connectors |
+
+<Card title="User & Group Management Guide" icon="users" href="/guides/onboarding/user-group-management-for-partners">
+  Complete guide to setting up users and groups
+</Card>
+
+---
+
+## Post-Onboarding Checklist
+
+Use this checklist to verify a successful deployment:
+
+### Immediate Verification
+
+- [ ] Workspace appears in your workspace list
+- [ ] Enterprise applications show "Consented" status
+- [ ] Module shows "Active" in workspace settings
+- [ ] Your team can access the workspace
+- [ ] Incidents are appearing (may take 5-15 minutes)
+
+### XDR Module Verification
+
+- [ ] Defender XDR incidents syncing to Command Page
+- [ ] Entity enrichment working (click an incident to verify)
+- [ ] Gamebook actions available on entities
+- [ ] Endpoints visible in Endpoints page (if applicable)
+
+### SIEM Module Verification (Additional)
+
+- [ ] Sentinel incidents syncing to Command Page
+- [ ] Azure Lighthouse delegation active
+- [ ] Apollo Logic App is enabled and running
+- [ ] CMS shows available detection rules
+- [ ] Notifications being received (test with severity filter)
+
+### User Access Verification
+
+- [ ] Organization groups assigned to workspace
+- [ ] Team members can view incidents
+- [ ] Roles are appropriate for each user
+- [ ] Customer users added (if applicable)
+
+---
+
+## Timeline Expectations
+
+### Typical Onboarding Timeline
+
+| Phase | Duration | Activities |
+|-------|----------|------------|
+| **Pre-call preparation** | 15-30 min | Gather credentials, verify prerequisites |
+| **XDR onboarding** | 15-20 min | Consent apps, configure module |
+| **SIEM onboarding** | 30-45 min | Above + Azure deployment, Lighthouse setup |
+| **User setup** | 10-15 min | Assign groups, configure roles |
+| **CMS deployment** | 15-30 min | Deploy initial detection rules |
+| **Verification** | 10-15 min | Confirm incidents flowing, test actions |
+
+### First Incidents
+
+| Module | Expected Time to First Incident |
+|--------|--------------------------------|
+| XDR | 5-15 minutes (depends on Defender activity) |
+| SIEM | 5-15 minutes (depends on Sentinel activity) |
+
+<Note>
+If no incidents appear within 30 minutes, verify the customer has active incidents in their Defender/Sentinel console. ContraForce syncs existing incidents, so if there are none in the source system, none will appear in ContraForce.
+</Note>
+
+---
+
+## Common Onboarding Issues
+
+### Troubleshooting Quick Reference
+
+| Issue | Likely Cause | Solution |
+|-------|--------------|----------|
+| Consent popup doesn't appear | Pop-up blocker | Disable pop-up blocker for ContraForce |
+| Consent fails with permissions error | Not Global Admin | Use Global Admin or Security Admin credentials |
+| Azure deployment fails | Insufficient permissions | Verify Subscription Owner access |
+| No incidents appearing | No incidents in source system | Check Defender/Sentinel for active incidents |
+| Module shows "Not Configured" | Consent incomplete | Re-run consent flow from workspace settings |
+| User can't see workspace | No workspace role assigned | Add user/group to workspace with a role |
+| Lighthouse delegation failed | Subscription restrictions | Check for Azure Policy restrictions |
+
+### Getting Help
+
+If you encounter issues during onboarding:
+
+1. **Check the troubleshooting guide** for your specific module
+2. **Review Azure deployment logs** (SIEM module) in the Azure Portal
+3. **Contact ContraForce support** at [support@contraforce.com](mailto:support@contraforce.com)
+
+<Tip>
+For your first few customer onboardings, consider scheduling a joint call with ContraForce support for real-time assistance.
+</Tip>
+
+---
+
+## Onboarding Multiple Customers
+
+### Scaling Best Practices
+
+<AccordionGroup>
+  <Accordion title="Create organization groups before onboarding">
+    Set up your standard groups (SOC Tier 1, Tier 2, Managers) at the organization level first. Then you can quickly assign them to each new workspace with consistent roles.
+  </Accordion>
+  <Accordion title="Document your standard configuration">
+    Create a template documenting your standard module selection, notification settings, and user assignments. This ensures consistency across all customer deployments.
+  </Accordion>
+  <Accordion title="Batch similar customers together">
+    If you're onboarding multiple customers with the same module, batch them together. You'll get faster as you repeat the same steps.
+  </Accordion>
+  <Accordion title="Use a pre-onboarding checklist">
+    Send customers a pre-onboarding checklist to gather credentials and verify prerequisites before the call. This reduces onboarding time significantly.
+  </Accordion>
+  <Accordion title="Consider CMS deployment strategy">
+    For SIEM customers, decide upfront which detection rules to deploy. A standard "starter pack" of rules saves decision time during onboarding.
+  </Accordion>
+</AccordionGroup>
+
+### Onboarding Checklist Template
+
+Use this checklist for each customer onboarding:
+
+**Pre-Onboarding:**
+- [ ] Customer domain confirmed
+- [ ] Global Admin credentials available
+- [ ] License tier verified
+- [ ] Azure subscription ID (SIEM only)
+- [ ] Sentinel workspace name (SIEM only)
+- [ ] Notification email confirmed
+
+**Onboarding:**
+- [ ] Workspace created
+- [ ] Core apps consented
+- [ ] Module selected and configured
+- [ ] Azure resources deployed (SIEM only)
+- [ ] Users/groups assigned
+
+**Post-Onboarding:**
+- [ ] Incidents syncing verified
+- [ ] Gamebooks tested
+- [ ] Notifications configured (SIEM only)
+- [ ] CMS rules deployed (SIEM only)
+- [ ] Customer notified of go-live
+
+---
+
+## Next Steps After Onboarding
+
+<CardGroup cols={2}>
+  <Card title="Incident Management" icon="shield-halved" href="/guides/getting-started/incident-management">
+    Learn how to triage and manage incidents
+  </Card>
+  <Card title="Gamebooks" icon="bolt" href="/guides/getting-started/what-are-gamebooks">
+    Automate response actions with Gamebooks
+  </Card>
+  <Card title="Command Dashboard" icon="chart-line" href="/guides/getting-started/command-dashboard">
+    Monitor security posture across workspaces
+  </Card>
+  <Card title="Content Management System" icon="file-code" href="/guides/getting-started/content-management-system">
+    Manage detection rules at scale
+  </Card>
+</CardGroup>
+
+---
+
+## Related Guides
+
+<CardGroup cols={3}>
+  <Card title="XDR Onboarding" icon="shield" href="/guides/onboarding/microsoft-defender-xdr-onboarding">
+    XDR module deployment
+  </Card>
+  <Card title="Sentinel Onboarding" icon="database" href="/guides/onboarding/microsoft-sentinel-onboarding">
+    SIEM module deployment
+  </Card>
+  <Card title="User Management" icon="users" href="/guides/onboarding/user-group-management-for-partners">
+    Users and groups setup
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+Questions about onboarding? Contact us at [support@contraforce.com](mailto:support@contraforce.com) or request hands-on support for your first deployments.
+</Note>
