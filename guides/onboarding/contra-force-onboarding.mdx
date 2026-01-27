@@ -1,3 +1,492 @@
 ---
-title: "Configure Notficiations"
+title: "Platform Onboarding"
+description: "Get started with ContraForce by connecting your organization's Microsoft environment. For internal security teams and partners setting up their parent tenant."
 ---
+
+This guide walks you through the initial ContraForce platform setup. Complete these steps to connect your organization's Microsoft environment before onboarding customer workspaces (partners) or beginning security operations (internal teams).
+
+<Info>
+  **Who is this for?**
+
+  - **Internal security teams** deploying ContraForce for your own organization
+  - **MSP/MSSP partners** setting up your parent tenant before onboarding customers
+</Info>
+
+---
+
+## What You'll Accomplish
+
+By the end of this guide, you'll have:
+
+<CardGroup cols={2}>
+  <Card title="Connected Microsoft Environment" icon="plug">
+    ContraForce linked to your Microsoft 365 and Azure environment
+  </Card>
+  <Card title="Active Workspace" icon="building">
+    Your organization's workspace configured and receiving incidents
+  </Card>
+  <Card title="Team Access" icon="users">
+    Your team members added with appropriate roles
+  </Card>
+  <Card title="Response Capabilities" icon="bolt">
+    Gamebook actions authorized and ready to use
+  </Card>
+</CardGroup>
+
+---
+
+## Prerequisites
+
+### Required Access
+
+| Requirement                  | Details                                                |
+| ---------------------------- | ------------------------------------------------------ |
+| **Microsoft 365 License**    | Business Premium, E3, or E5 with Defender capabilities |
+| **Global Administrator**     | Or Security Administrator role in Microsoft Entra ID   |
+| **Azure Subscription Owner** | Required only for XDR + SIEM module                    |
+| **ContraForce Account**      | Provided by ContraForce during contract setup          |
+
+### For XDR + SIEM Module (Optional)
+
+| Requirement               | Details                                               |
+| ------------------------- | ----------------------------------------------------- |
+| **Microsoft Sentinel**    | Active Sentinel workspace in your Azure subscription  |
+| **Subscription Owner**    | To deploy Azure Lighthouse and Apollo resources       |
+| **Resource Group Access** | Ability to create resource groups in the subscription |
+
+<Warning>
+  If you don't have Global Administrator access, contact your IT team. The consent process requires admin-level permissions to authorize ContraForce enterprise applications.
+</Warning>
+
+---
+
+## Step 1: Sign In to ContraForce
+
+<Steps>
+  <Step title="Navigate to ContraForce's Onboarding Workflow">
+    Go to https://onboard.contraforce.com/welcome
+  </Step>
+  <Step title="Sign In with Microsoft">
+    Click **Sign in with Microsoft** and use your organization credentials
+  </Step>
+  <Step title="Complete MFA">
+    Complete any multi-factor authentication prompts
+  </Step>
+  <Step title="Accept Initial Permissions">
+    Accept the basic sign-in permissions for the ContraForce Portal
+  </Step>
+</Steps>
+
+<Note>
+  First-time sign-in uses delegated permissions. Full platform access requires completing the onboarding wizard in the next steps.
+</Note>
+
+---
+
+## Step 2: Create Your Organization Workspace
+
+Your organization workspace is where your own security data lives—separate from any customer workspaces you may create later.
+
+<Steps>
+  <Step title="Navigate to Workspaces">
+    Click **Workspaces** in the left navigation
+  </Step>
+  <Step title="Create New Workspace">
+    Click **Create Workspace**
+  </Step>
+  <Step title="Enter Workspace Details">
+    - **Name:** Your organization name (e.g., "Acme Security Operations")
+    - **Description:** Optional description
+    - **Type:** Select "Internal" for your own organization
+  </Step>
+  <Step title="Save Workspace">
+    Click **Create** to provision the workspace
+  </Step>
+</Steps>
+
+---
+
+## Step 3: Launch Onboarding Wizard
+
+<Steps>
+  <Step title="Open Workspace Settings">
+    Click the **gear icon** on your new workspace
+  </Step>
+  <Step title="Go to Modules">
+    Select the **Modules** tab
+  </Step>
+  <Step title="Start Onboarding">
+    Click **Configure** or **Start Onboarding Wizard**
+  </Step>
+</Steps>
+
+---
+
+## Step 4: Consent Core Enterprise Applications
+
+The first consent step authorizes ContraForce to access your Microsoft environment.
+
+<Steps>
+  <Step title="Click Consent for ContraForce API">
+    Click the **Consent** button next to ContraForce API
+  </Step>
+  <Step title="Sign In as Global Admin">
+    Sign in with your Global Administrator credentials
+  </Step>
+  <Step title="Review Permissions">
+    Review the requested permissions:
+
+    - Read security events
+    - Read user profiles
+    - Read directory data
+  </Step>
+  <Step title="Accept on Behalf of Organization">
+    Check **Consent on behalf of your organization** and click **Accept**
+  </Step>
+  <Step title="Repeat for ContraForce Portal">
+    Complete the same consent flow for the ContraForce Portal application
+  </Step>
+</Steps>
+
+### Core Applications
+
+| Application            | Purpose                                       |
+| ---------------------- | --------------------------------------------- |
+| **ContraForce API**    | Platform backend access to your security data |
+| **ContraForce Portal** | User authentication and portal access         |
+
+---
+
+## Step 5: Select Your Module
+
+Choose the module that matches your environment:
+
+<Tabs>
+  <Tab title="XDR Module">
+    ### Choose XDR If:
+
+    - You have Microsoft 365 with Defender but no Sentinel
+    - You want the fastest deployment (~15 minutes)
+    - You don't need custom detection rules or log search
+
+    ### What You Get:
+
+    - Defender XDR incident ingestion
+    - Entity enrichment (users, devices, IPs, files, emails)
+    - Gamebook response actions
+    - Endpoint visibility
+
+    ### Click "XDR" to continue
+  </Tab>
+  <Tab title="XDR + SIEM Module">
+    ### Choose XDR + SIEM If:
+
+    - You have Microsoft Sentinel deployed
+    - You want custom detection rules via CMS
+    - You need email notifications for incidents
+    - You want log search and threat hunting capabilities
+
+    ### What You Get:
+
+    - Everything in XDR, plus:
+    - Sentinel incident ingestion
+    - Content Management System (CMS)
+    - Real-time email notifications
+    - Log search capabilities
+    - Azure Lighthouse integration
+
+    ### Click "XDR + SIEM" to continue
+  </Tab>
+</Tabs>
+
+---
+
+## Step 6: Consent Module Applications
+
+Based on your module selection, consent the required enterprise applications.
+
+### Microsoft Defender Applications
+
+| Application                            | Purpose                           | Required For      |
+| -------------------------------------- | --------------------------------- | ----------------- |
+| **ContraForce for MDE**                | Read endpoint and incident data   | All deployments   |
+| **ContraForce Gamebooks for MDE**      | Execute endpoint response actions | Gamebook actions  |
+| **ContraForce Gamebooks for Identity** | Disable users, reset passwords    | Identity response |
+| **ContraForce Gamebooks for Email**    | Quarantine/release emails         | Email response    |
+
+### Microsoft Sentinel Applications (SIEM Module Only)
+
+| Application                      | Purpose                                |
+| -------------------------------- | -------------------------------------- |
+| **ContraForce Sentinel Hunting** | Query Log Analytics for threat hunting |
+
+<Steps>
+  <Step title="Consent Each Application">
+    Click **Consent** next to each application
+  </Step>
+  <Step title="Authenticate as Admin">
+    Sign in with Global Admin credentials for each consent
+  </Step>
+  <Step title="Accept Permissions">
+    Review and accept the requested permissions
+  </Step>
+  <Step title="Verify Green Checkmarks">
+    Ensure all applications show a green checkmark indicating successful consent
+  </Step>
+</Steps>
+
+---
+
+## Step 7: Deploy Azure Resources (Microsoft Sentinel Module Only)
+
+<Note>
+  Skip this step if you selected the XDR-only module.
+</Note>
+
+For the XDR + SIEM module, ContraForce deploys Azure resources to enable Sentinel integration.
+
+<Steps>
+  <Step title="Select Azure Subscription">
+    Choose the subscription containing your Sentinel workspace
+  </Step>
+  <Step title="Select Sentinel Workspace">
+    Choose your Microsoft Sentinel workspace from the dropdown
+  </Step>
+  <Step title="Deploy Apollo Infrastructure">
+    Click **Deploy** to create the incident streaming infrastructure
+  </Step>
+  <Step title="Wait for Deployment">
+    Deployment takes 2-5 minutes. Do not close the browser.
+  </Step>
+</Steps>
+
+### What Gets Deployed
+
+| Resource                  | Purpose                               |
+| ------------------------- | ------------------------------------- |
+| **Azure Lighthouse**      | Cross-tenant management delegation    |
+| **Apollo Resource Group** | Incident notification infrastructure  |
+| **Logic App**             | Streams incidents to ContraForce      |
+| **Role Assignments**      | Grants ContraForce access to Sentinel |
+
+<Card title="Azure Resources Reference" icon="cloud" href="/guides/technical/contraforce-resources-deployed-during-azure-onboarding">
+  Complete list of deployed resources
+</Card>
+
+---
+
+## Step 8: Authorize Gamebook Service Principals
+
+Gamebooks require additional authorization to execute response actions in your environment.
+
+<Steps>
+  <Step title="Navigate to Gamebook Authorization">
+    In the onboarding wizard, proceed to the Gamebook authorization step
+  </Step>
+  <Step title="Click Authorize">
+    Click **Authorize** for each Gamebook service principal
+  </Step>
+  <Step title="Consent as Admin">
+    Complete the admin consent flow for each authorization
+  </Step>
+</Steps>
+
+### Gamebook Capabilities by Authorization
+
+| Service Principal      | Enables                                                    |
+| ---------------------- | ---------------------------------------------------------- |
+| **MDE Gamebooks**      | Isolate device, run AV scan, collect investigation package |
+| **Identity Gamebooks** | Disable user, reset password, revoke sessions              |
+| **Email Gamebooks**    | Soft delete email, release from quarantine                 |
+
+---
+
+## Step 9: Add Your Team
+
+Now add your team members so they can access the platform.
+
+### For Internal Security Teams
+
+<Steps>
+  <Step title="Go to Settings → User Management">
+    Navigate to organization-level user management
+  </Step>
+  <Step title="Add Users">
+    Click **Add User** and enter team member email addresses
+  </Step>
+  <Step title="Assign Organization Role">
+    - **Organization Admin** for platform administrators
+    - **Organization Member** for analysts and engineers
+  </Step>
+  <Step title="Assign to Workspace">
+    Go to your workspace settings → Users & Groups → Add each user with a workspace role
+  </Step>
+</Steps>
+
+### For Partners (Setting Up Parent Tenant)
+
+<Steps>
+  <Step title="Create Organization Groups">
+    Go to Settings → User Management → Groups → Create groups like:
+
+    - SOC Tier 1
+    - SOC Tier 2
+    - SOC Managers
+  </Step>
+  <Step title="Add Team to Groups">
+    Add your analysts and engineers to the appropriate groups
+  </Step>
+  <Step title="Assign Groups to Workspace">
+    Go to your workspace → Settings → Users & Groups → Add your groups with roles
+  </Step>
+</Steps>
+
+### Recommended Roles
+
+| Team Member                 | Workspace Role     |
+| --------------------------- | ------------------ |
+| Security Director / Manager | Admin              |
+| Senior Analyst              | Incident Responder |
+| Analyst                     | Incident Analyst   |
+| Security Engineer           | Data Source Admin  |
+
+<Card title="Roles & Permissions Reference" icon="shield-halved" href="/guides/general-support/roles-permissions-reference">
+  Complete role capabilities and permissions
+</Card>
+
+---
+
+## Step 10: Verify Your Deployment
+
+Confirm everything is working correctly.
+
+### Verification Checklist
+
+- Workspace shows "Active" status
+- All enterprise applications show green checkmarks
+- Module shows "Configured" status
+- Team members can sign in and see the workspace
+- Incidents are appearing on the Command Page (may take 5-15 minutes)
+
+### Test Gamebook Actions
+
+<Steps>
+  <Step title="Open an Incident">
+    Click on any incident from the Command Page
+  </Step>
+  <Step title="Select an Entity">
+    Click on a user, device, or IP entity
+  </Step>
+  <Step title="View Available Actions">
+    Confirm Gamebook actions are available in the actions menu
+  </Step>
+</Steps>
+
+<Warning>
+  **Don't test response actions on production entities!** Gamebook actions like "Isolate Device" or "Disable User" execute immediately. Use a test account or device if you want to verify functionality.
+</Warning>
+
+---
+
+## Configure Notifications (SIEM Module)
+
+If you deployed the SIEM module, configure email notifications:
+
+<Steps>
+  <Step title="Go to Workspace Settings">
+    Open your workspace → Settings → Notifications
+  </Step>
+  <Step title="Configure Severity Filters">
+    Select which severity levels should trigger notifications
+  </Step>
+  <Step title="Save Settings">
+    Click **Save** to apply notification preferences
+  </Step>
+</Steps>
+
+### Distribution Group Setup
+
+To send notifications to a team inbox:
+
+1. Contact [support@contraforce.com](mailto:support@contraforce.com)
+2. Provide the distribution group email address
+3. ContraForce Engineering will configure the routing
+
+<Card title="Notifications Configuration" icon="bell" href="/guides/onboarding/notifications-configuration">
+  Complete notification setup guide
+</Card>
+
+---
+
+## Next Steps
+
+<Tabs>
+  <Tab title="Internal Teams">
+    Your platform is ready! Here's what to do next:
+
+    <CardGroup cols={2}>
+      <Card title="Learn Incident Management" icon="shield-halved" href="/guides/getting-started/incident-management">
+        Triage and investigate incidents
+      </Card>
+      <Card title="Explore Gamebooks" icon="bolt" href="/guides/getting-started/what-are-gamebooks">
+        Automate response actions
+      </Card>
+      <Card title="Deploy Detection Rules" icon="file-code" href="/guides/onboarding/content-management-system-onboarding">
+        Set up CMS (SIEM module)
+      </Card>
+      <Card title="Command Dashboard" icon="chart-line" href="/guides/getting-started/command-dashboard">
+        Monitor your security posture
+      </Card>
+    </CardGroup>
+  </Tab>
+  <Tab title="Partners">
+    Your parent tenant is ready! Now prepare for customer onboarding:
+
+    <CardGroup cols={2}>
+      <Card title="User & Group Management" icon="users" href="/guides/onboarding/user-group-management-for-partners">
+        Set up groups before onboarding customers
+      </Card>
+      <Card title="Customer Onboarding Overview" icon="rocket" href="/guides/onboarding/onboarding-overview">
+        Onboard your first customer workspace
+      </Card>
+      <Card title="Multi-Tenant Features" icon="buildings" href="/guides/getting-started/multi-tenant-features">
+        Manage multiple customers efficiently
+      </Card>
+      <Card title="Roles Reference" icon="shield-halved" href="/guides/general-support/roles-permissions-reference">
+        Plan role assignments for your team
+      </Card>
+    </CardGroup>
+  </Tab>
+</Tabs>
+
+---
+
+## Troubleshooting
+
+| Issue                           | Cause                            | Solution                                       |
+| ------------------------------- | -------------------------------- | ---------------------------------------------- |
+| Consent popup blocked           | Browser popup blocker            | Allow popups for portal.contraforce.com        |
+| Consent fails                   | Not Global Admin                 | Use Global Admin credentials                   |
+| Azure deployment fails          | Insufficient permissions         | Verify Subscription Owner access               |
+| No incidents appearing          | No active incidents in source    | Check Defender/Sentinel for existing incidents |
+| Team member can't see workspace | No workspace role                | Assign user to workspace with a role           |
+| Gamebook actions unavailable    | Service principal not authorized | Complete Gamebook authorization step           |
+
+---
+
+## Getting Help
+
+<CardGroup cols={2}>
+  <Card title="Contact Support" icon="envelope">
+    Email [support@contraforce.com](mailto:support@contraforce.com) for assistance
+  </Card>
+  <Card title="Request Onboarding Support" icon="headset">
+    Schedule a call for hands-on help with your first deployment
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+  Questions about platform onboarding? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
