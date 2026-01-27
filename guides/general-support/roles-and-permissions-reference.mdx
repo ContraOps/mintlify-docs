@@ -6,7 +6,7 @@ description: "Complete reference for all ContraForce roles including organizatio
 This reference provides complete details on all ContraForce roles, their permissions, and guidance on when to use each role.
 
 <Info>
-ContraForce uses a two-tier role system: **Organization Roles** control platform-wide access, while **Workspace Roles** control what users can do within specific customer workspaces.
+  ContraForce uses a two-tier role system: **Organization Roles** control platform-wide access, while **Workspace Roles** control what users can do within specific customer workspaces.
 </Info>
 
 ---
@@ -37,7 +37,7 @@ Complete user access
 ```
 
 <Warning>
-A user with an organization role but no workspace role can log in but won't see any customer data. A user must be assigned to at least one workspace with a workspace role to be useful.
+  A user with an organization role but no workspace role can log in but won't see any customer data. A user must be assigned to at least one workspace with a workspace role to be useful.
 </Warning>
 
 ---
@@ -48,10 +48,10 @@ Organization roles are assigned at the partner/organization level and determine 
 
 ### Organization Roles Summary
 
-| Role | Description | Typical Users |
-|------|-------------|---------------|
-| **Organization Admin** | Full platform control including billing, settings, and user management | Business owners, IT directors, platform administrators |
-| **Organization Member** | Standard platform access, can be assigned to workspaces | SOC analysts, engineers, account managers |
+| Role                    | Description                                                            | Typical Users                                          |
+| ----------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------ |
+| **Organization Admin**  | Full platform control including billing, settings, and user management | Business owners, IT directors, platform administrators |
+| **Organization Member** | Standard platform access, can be assigned to workspaces                | SOC analysts, engineers, account managers              |
 
 ### Organization Admin
 
@@ -59,18 +59,18 @@ Full administrative control over the ContraForce platform.
 
 <AccordionGroup>
   <Accordion title="Permissions">
-    | Capability | Access |
-    |------------|--------|
-    | View organization dashboard | ✓ |
-    | Manage organization settings | ✓ |
-    | Create and delete workspaces | ✓ |
-    | Add and remove organization users | ✓ |
-    | Create and manage organization groups | ✓ |
-    | Assign users to workspaces | ✓ |
-    | View billing and usage | ✓ |
-    | Manage API keys | ✓ |
-    | Configure SSO/authentication | ✓ |
-    | Access all workspaces (with workspace role) | ✓ |
+    | Capability                                  | Access |
+    | ------------------------------------------- | ------ |
+    | View organization dashboard                 | ✓      |
+    | Manage organization settings                | ✓      |
+    | Create and delete workspaces                | ✓      |
+    | Add and remove organization users           | ✓      |
+    | Create and manage organization groups       | ✓      |
+    | Assign users to workspaces                  | ✓      |
+    | View billing and usage                      | ✓      |
+    | Manage API keys                             | ✓      |
+    | Configure SSO/authentication                | ✓      |
+    | Access all workspaces (with workspace role) | ✓      |
   </Accordion>
   <Accordion title="Use Cases">
     - Platform administrators responsible for ContraForce setup
@@ -92,18 +92,18 @@ Standard platform access for team members who work within workspaces.
 
 <AccordionGroup>
   <Accordion title="Permissions">
-    | Capability | Access |
-    |------------|--------|
-    | View organization dashboard | ✓ |
-    | Manage organization settings | — |
-    | Create and delete workspaces | — |
-    | Add and remove organization users | — |
-    | Create and manage organization groups | — |
-    | Assign users to workspaces | — |
-    | View billing and usage | — |
-    | Manage API keys | — |
-    | Configure SSO/authentication | — |
-    | Access assigned workspaces (with workspace role) | ✓ |
+    | Capability                                       | Access |
+    | ------------------------------------------------ | ------ |
+    | View organization dashboard                      | ✓      |
+    | Manage organization settings                     | —      |
+    | Create and delete workspaces                     | —      |
+    | Add and remove organization users                | —      |
+    | Create and manage organization groups            | —      |
+    | Assign users to workspaces                       | —      |
+    | View billing and usage                           | —      |
+    | Manage API keys                                  | —      |
+    | Configure SSO/authentication                     | —      |
+    | Access assigned workspaces (with workspace role) | ✓      |
   </Accordion>
   <Accordion title="Use Cases">
     - SOC analysts handling daily incident triage
@@ -126,13 +126,13 @@ Workspace roles control what a user can do within a specific customer workspace.
 
 ### Workspace Roles Summary
 
-| Role | View Incidents | Respond to Incidents | Manage Gamebooks | Configure Modules | Manage Users |
-|------|:--------------:|:-------------------:|:----------------:|:-----------------:|:------------:|
-| **Admin** | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **Incident Responder** | ✓ | ✓ | ✓ | — | — |
-| **Incident Analyst** | ✓ | — | — | — | — |
-| **Data Source Admin** | ✓ | — | — | ✓ | — |
-| **Content Admin** | ✓ | — | — | CMS Only | — |
+| Role                   | View Incidents | Respond to Incidents | Manage Gamebooks | Configure Modules | Manage Users |
+| ---------------------- | :------------: | :------------------: | :--------------: | :---------------: | :----------: |
+| **Admin**              | ✓              | ✓                    | ✓                | ✓                 | ✓            |
+| **Incident Responder** | ✓              | ✓                    | ✓                | —                 | —            |
+| **Incident Analyst**   | ✓              | —                    | —                | —                 | —            |
+| **Data Source Admin**  | ✓              | —                    | —                | ✓                 | —            |
+| **Content Admin**      | ✓              | —                    | —                | CMS Only          | —            |
 
 ---
 
@@ -143,45 +143,49 @@ Full control over a workspace including user management and configuration.
 <AccordionGroup>
   <Accordion title="Complete Permissions">
     **Incident Management**
-    | Capability | Access |
-    |------------|--------|
-    | View incidents | ✓ |
-    | View incident details and entities | ✓ |
-    | Update incident status | ✓ |
-    | Update incident severity | ✓ |
-    | Assign incidents | ✓ |
-    | Add comments | ✓ |
-    | Close incidents | ✓ |
-    | Delete incidents | ✓ |
+
+    | Capability                         | Access |
+    | ---------------------------------- | ------ |
+    | View incidents                     | ✓      |
+    | View incident details and entities | ✓      |
+    | Update incident status             | ✓      |
+    | Update incident severity           | ✓      |
+    | Assign incidents                   | ✓      |
+    | Add comments                       | ✓      |
+    | Close incidents                    | ✓      |
+    | Delete incidents                   | ✓      |
 
     **Response Actions**
-    | Capability | Access |
-    |------------|--------|
-    | Run Gamebooks | ✓ |
-    | Create custom Gamebooks | ✓ |
-    | Execute response actions | ✓ |
-    | Isolate endpoints | ✓ |
-    | Disable user accounts | ✓ |
-    | Block IPs/URLs | ✓ |
+
+    | Capability               | Access |
+    | ------------------------ | ------ |
+    | Run Gamebooks            | ✓      |
+    | Create custom Gamebooks  | ✓      |
+    | Execute response actions | ✓      |
+    | Isolate endpoints        | ✓      |
+    | Disable user accounts    | ✓      |
+    | Block IPs/URLs           | ✓      |
 
     **Configuration**
-    | Capability | Access |
-    |------------|--------|
-    | Configure modules | ✓ |
-    | Manage data connectors | ✓ |
-    | Configure notifications | ✓ |
-    | Manage CMS rules | ✓ |
-    | Deploy detection rules | ✓ |
+
+    | Capability              | Access |
+    | ----------------------- | ------ |
+    | Configure modules       | ✓      |
+    | Manage data connectors  | ✓      |
+    | Configure notifications | ✓      |
+    | Manage CMS rules        | ✓      |
+    | Deploy detection rules  | ✓      |
 
     **Administration**
-    | Capability | Access |
-    |------------|--------|
-    | Add users to workspace | ✓ |
-    | Remove users from workspace | ✓ |
-    | Assign workspace roles | ✓ |
-    | Add groups to workspace | ✓ |
-    | View workspace settings | ✓ |
-    | Modify workspace settings | ✓ |
+
+    | Capability                  | Access |
+    | --------------------------- | ------ |
+    | Add users to workspace      | ✓      |
+    | Remove users from workspace | ✓      |
+    | Assign workspace roles      | ✓      |
+    | Add groups to workspace     | ✓      |
+    | View workspace settings     | ✓      |
+    | Modify workspace settings   | ✓      |
   </Accordion>
   <Accordion title="Use Cases">
     - SOC managers overseeing a specific customer
@@ -206,45 +210,49 @@ Can investigate incidents and execute response actions, but cannot configure the
 <AccordionGroup>
   <Accordion title="Complete Permissions">
     **Incident Management**
-    | Capability | Access |
-    |------------|--------|
-    | View incidents | ✓ |
-    | View incident details and entities | ✓ |
-    | Update incident status | ✓ |
-    | Update incident severity | ✓ |
-    | Assign incidents | ✓ |
-    | Add comments | ✓ |
-    | Close incidents | ✓ |
-    | Delete incidents | — |
+
+    | Capability                         | Access |
+    | ---------------------------------- | ------ |
+    | View incidents                     | ✓      |
+    | View incident details and entities | ✓      |
+    | Update incident status             | ✓      |
+    | Update incident severity           | ✓      |
+    | Assign incidents                   | ✓      |
+    | Add comments                       | ✓      |
+    | Close incidents                    | ✓      |
+    | Delete incidents                   | —      |
 
     **Response Actions**
-    | Capability | Access |
-    |------------|--------|
-    | Run Gamebooks | ✓ |
-    | Create custom Gamebooks | ✓ |
-    | Execute response actions | ✓ |
-    | Isolate endpoints | ✓ |
-    | Disable user accounts | ✓ |
-    | Block IPs/URLs | ✓ |
+
+    | Capability               | Access |
+    | ------------------------ | ------ |
+    | Run Gamebooks            | ✓      |
+    | Create custom Gamebooks  | ✓      |
+    | Execute response actions | ✓      |
+    | Isolate endpoints        | ✓      |
+    | Disable user accounts    | ✓      |
+    | Block IPs/URLs           | ✓      |
 
     **Configuration**
-    | Capability | Access |
-    |------------|--------|
-    | Configure modules | — |
-    | Manage data connectors | — |
-    | Configure notifications | — |
-    | Manage CMS rules | — |
-    | Deploy detection rules | — |
+
+    | Capability              | Access |
+    | ----------------------- | ------ |
+    | Configure modules       | —      |
+    | Manage data connectors  | —      |
+    | Configure notifications | —      |
+    | Manage CMS rules        | —      |
+    | Deploy detection rules  | —      |
 
     **Administration**
-    | Capability | Access |
-    |------------|--------|
-    | Add users to workspace | — |
-    | Remove users from workspace | — |
-    | Assign workspace roles | — |
-    | Add groups to workspace | — |
-    | View workspace settings | Limited |
-    | Modify workspace settings | — |
+
+    | Capability                  | Access  |
+    | --------------------------- | ------- |
+    | Add users to workspace      | —       |
+    | Remove users from workspace | —       |
+    | Assign workspace roles      | —       |
+    | Add groups to workspace     | —       |
+    | View workspace settings     | Limited |
+    | Modify workspace settings   | —       |
   </Accordion>
   <Accordion title="Use Cases">
     - Tier 2 SOC analysts who handle escalations
@@ -269,45 +277,49 @@ Read-only access to incidents for monitoring and analysis without response capab
 <AccordionGroup>
   <Accordion title="Complete Permissions">
     **Incident Management**
-    | Capability | Access |
-    |------------|--------|
-    | View incidents | ✓ |
-    | View incident details and entities | ✓ |
-    | Update incident status | — |
-    | Update incident severity | — |
-    | Assign incidents | — |
-    | Add comments | ✓ |
-    | Close incidents | — |
-    | Delete incidents | — |
+
+    | Capability                         | Access |
+    | ---------------------------------- | ------ |
+    | View incidents                     | ✓      |
+    | View incident details and entities | ✓      |
+    | Update incident status             | —      |
+    | Update incident severity           | —      |
+    | Assign incidents                   | —      |
+    | Add comments                       | ✓      |
+    | Close incidents                    | —      |
+    | Delete incidents                   | —      |
 
     **Response Actions**
-    | Capability | Access |
-    |------------|--------|
-    | Run Gamebooks | — |
-    | Create custom Gamebooks | — |
-    | Execute response actions | — |
-    | Isolate endpoints | — |
-    | Disable user accounts | — |
-    | Block IPs/URLs | — |
+
+    | Capability               | Access |
+    | ------------------------ | ------ |
+    | Run Gamebooks            | —      |
+    | Create custom Gamebooks  | —      |
+    | Execute response actions | —      |
+    | Isolate endpoints        | —      |
+    | Disable user accounts    | —      |
+    | Block IPs/URLs           | —      |
 
     **Configuration**
-    | Capability | Access |
-    |------------|--------|
-    | Configure modules | — |
-    | Manage data connectors | — |
-    | Configure notifications | — |
-    | Manage CMS rules | — |
-    | Deploy detection rules | — |
+
+    | Capability              | Access |
+    | ----------------------- | ------ |
+    | Configure modules       | —      |
+    | Manage data connectors  | —      |
+    | Configure notifications | —      |
+    | Manage CMS rules        | —      |
+    | Deploy detection rules  | —      |
 
     **Administration**
-    | Capability | Access |
-    |------------|--------|
-    | Add users to workspace | — |
-    | Remove users from workspace | — |
-    | Assign workspace roles | — |
-    | Add groups to workspace | — |
-    | View workspace settings | — |
-    | Modify workspace settings | — |
+
+    | Capability                  | Access |
+    | --------------------------- | ------ |
+    | Add users to workspace      | —      |
+    | Remove users from workspace | —      |
+    | Assign workspace roles      | —      |
+    | Add groups to workspace     | —      |
+    | View workspace settings     | —      |
+    | Modify workspace settings   | —      |
   </Accordion>
   <Accordion title="Use Cases">
     - Tier 1 SOC analysts who triage and escalate
@@ -333,45 +345,49 @@ Can configure modules and data connectors but cannot respond to incidents.
 <AccordionGroup>
   <Accordion title="Complete Permissions">
     **Incident Management**
-    | Capability | Access |
-    |------------|--------|
-    | View incidents | ✓ |
-    | View incident details and entities | ✓ |
-    | Update incident status | — |
-    | Update incident severity | — |
-    | Assign incidents | — |
-    | Add comments | ✓ |
-    | Close incidents | — |
-    | Delete incidents | — |
+
+    | Capability                         | Access |
+    | ---------------------------------- | ------ |
+    | View incidents                     | ✓      |
+    | View incident details and entities | ✓      |
+    | Update incident status             | —      |
+    | Update incident severity           | —      |
+    | Assign incidents                   | —      |
+    | Add comments                       | ✓      |
+    | Close incidents                    | —      |
+    | Delete incidents                   | —      |
 
     **Response Actions**
-    | Capability | Access |
-    |------------|--------|
-    | Run Gamebooks | — |
-    | Create custom Gamebooks | — |
-    | Execute response actions | — |
-    | Isolate endpoints | — |
-    | Disable user accounts | — |
-    | Block IPs/URLs | — |
+
+    | Capability               | Access |
+    | ------------------------ | ------ |
+    | Run Gamebooks            | —      |
+    | Create custom Gamebooks  | —      |
+    | Execute response actions | —      |
+    | Isolate endpoints        | —      |
+    | Disable user accounts    | —      |
+    | Block IPs/URLs           | —      |
 
     **Configuration**
-    | Capability | Access |
-    |------------|--------|
-    | Configure modules | ✓ |
-    | Manage data connectors | ✓ |
-    | Configure notifications | ✓ |
-    | Manage CMS rules | — |
-    | Deploy detection rules | — |
+
+    | Capability              | Access |
+    | ----------------------- | ------ |
+    | Configure modules       | ✓      |
+    | Manage data connectors  | ✓      |
+    | Configure notifications | ✓      |
+    | Manage CMS rules        | —      |
+    | Deploy detection rules  | —      |
 
     **Administration**
-    | Capability | Access |
-    |------------|--------|
-    | Add users to workspace | — |
-    | Remove users from workspace | — |
-    | Assign workspace roles | — |
-    | Add groups to workspace | — |
-    | View workspace settings | ✓ |
-    | Modify workspace settings | Limited |
+
+    | Capability                  | Access  |
+    | --------------------------- | ------- |
+    | Add users to workspace      | —       |
+    | Remove users from workspace | —       |
+    | Assign workspace roles      | —       |
+    | Add groups to workspace     | —       |
+    | View workspace settings     | ✓       |
+    | Modify workspace settings   | Limited |
   </Accordion>
   <Accordion title="Use Cases">
     - Integration engineers setting up data connectors
@@ -396,47 +412,51 @@ Can manage CMS detection rules but cannot configure other modules or respond to 
 <AccordionGroup>
   <Accordion title="Complete Permissions">
     **Incident Management**
-    | Capability | Access |
-    |------------|--------|
-    | View incidents | ✓ |
-    | View incident details and entities | ✓ |
-    | Update incident status | — |
-    | Update incident severity | — |
-    | Assign incidents | — |
-    | Add comments | ✓ |
-    | Close incidents | — |
-    | Delete incidents | — |
+
+    | Capability                         | Access |
+    | ---------------------------------- | ------ |
+    | View incidents                     | ✓      |
+    | View incident details and entities | ✓      |
+    | Update incident status             | —      |
+    | Update incident severity           | —      |
+    | Assign incidents                   | —      |
+    | Add comments                       | ✓      |
+    | Close incidents                    | —      |
+    | Delete incidents                   | —      |
 
     **Response Actions**
-    | Capability | Access |
-    |------------|--------|
-    | Run Gamebooks | — |
-    | Create custom Gamebooks | — |
-    | Execute response actions | — |
-    | Isolate endpoints | — |
-    | Disable user accounts | — |
-    | Block IPs/URLs | — |
+
+    | Capability               | Access |
+    | ------------------------ | ------ |
+    | Run Gamebooks            | —      |
+    | Create custom Gamebooks  | —      |
+    | Execute response actions | —      |
+    | Isolate endpoints        | —      |
+    | Disable user accounts    | —      |
+    | Block IPs/URLs           | —      |
 
     **Configuration**
-    | Capability | Access |
-    |------------|--------|
-    | Configure modules | — |
-    | Manage data connectors | — |
-    | Configure notifications | — |
-    | Manage CMS rules | ✓ |
-    | Deploy detection rules | ✓ |
-    | Enable/disable rules | ✓ |
-    | Configure auto-updates | ✓ |
+
+    | Capability              | Access |
+    | ----------------------- | ------ |
+    | Configure modules       | —      |
+    | Manage data connectors  | —      |
+    | Configure notifications | —      |
+    | Manage CMS rules        | ✓      |
+    | Deploy detection rules  | ✓      |
+    | Enable/disable rules    | ✓      |
+    | Configure auto-updates  | ✓      |
 
     **Administration**
-    | Capability | Access |
-    |------------|--------|
-    | Add users to workspace | — |
-    | Remove users from workspace | — |
-    | Assign workspace roles | — |
-    | Add groups to workspace | — |
-    | View workspace settings | Limited |
-    | Modify workspace settings | — |
+
+    | Capability                  | Access  |
+    | --------------------------- | ------- |
+    | Add users to workspace      | —       |
+    | Remove users from workspace | —       |
+    | Assign workspace roles      | —       |
+    | Add groups to workspace     | —       |
+    | View workspace settings     | Limited |
+    | Modify workspace settings   | —       |
   </Accordion>
   <Accordion title="Use Cases">
     - Detection engineers managing rule deployments
@@ -460,46 +480,46 @@ Can manage CMS detection rules but cannot configure other modules or respond to 
 
 <Tabs>
   <Tab title="Incident Operations">
-    | Capability | Admin | Responder | Analyst | Data Source | Content |
-    |------------|:-----:|:---------:|:-------:|:-----------:|:-------:|
-    | View incidents | ✓ | ✓ | ✓ | ✓ | ✓ |
-    | View details/entities | ✓ | ✓ | ✓ | ✓ | ✓ |
-    | Update status | ✓ | ✓ | — | — | — |
-    | Update severity | ✓ | ✓ | — | — | — |
-    | Assign incidents | ✓ | ✓ | — | — | — |
-    | Add comments | ✓ | ✓ | ✓ | ✓ | ✓ |
-    | Close incidents | ✓ | ✓ | — | — | — |
-    | Delete incidents | ✓ | — | — | — | — |
+    | Capability            | Admin | Responder | Analyst | Data Source | Content |
+    | --------------------- | :---: | :-------: | :-----: | :---------: | :-----: |
+    | View incidents        | ✓     | ✓         | ✓       | ✓           | ✓       |
+    | View details/entities | ✓     | ✓         | ✓       | ✓           | ✓       |
+    | Update status         | ✓     | ✓         | —       | —           | —       |
+    | Update severity       | ✓     | ✓         | —       | —           | —       |
+    | Assign incidents      | ✓     | ✓         | —       | —           | —       |
+    | Add comments          | ✓     | ✓         | ✓       | ✓           | ✓       |
+    | Close incidents       | ✓     | ✓         | —       | —           | —       |
+    | Delete incidents      | ✓     | —         | —       | —           | —       |
   </Tab>
   <Tab title="Response Actions">
-    | Capability | Admin | Responder | Analyst | Data Source | Content |
-    |------------|:-----:|:---------:|:-------:|:-----------:|:-------:|
-    | Run Gamebooks | ✓ | ✓ | — | — | — |
-    | Create Gamebooks | ✓ | ✓ | — | — | — |
-    | Isolate endpoints | ✓ | ✓ | — | — | — |
-    | Disable users | ✓ | ✓ | — | — | — |
-    | Block IPs/URLs | ✓ | ✓ | — | — | — |
-    | Quarantine files | ✓ | ✓ | — | — | — |
-    | Reset passwords | ✓ | ✓ | — | — | — |
+    | Capability        | Admin | Responder | Analyst | Data Source | Content |
+    | ----------------- | :---: | :-------: | :-----: | :---------: | :-----: |
+    | Run Gamebooks     | ✓     | ✓         | —       | —           | —       |
+    | Create Gamebooks  | ✓     | ✓         | —       | —           | —       |
+    | Isolate endpoints | ✓     | ✓         | —       | —           | —       |
+    | Disable users     | ✓     | ✓         | —       | —           | —       |
+    | Block IPs/URLs    | ✓     | ✓         | —       | —           | —       |
+    | Quarantine files  | ✓     | ✓         | —       | —           | —       |
+    | Reset passwords   | ✓     | ✓         | —       | —           | —       |
   </Tab>
   <Tab title="Configuration">
-    | Capability | Admin | Responder | Analyst | Data Source | Content |
-    |------------|:-----:|:---------:|:-------:|:-----------:|:-------:|
-    | Configure modules | ✓ | — | — | ✓ | — |
-    | Manage connectors | ✓ | — | — | ✓ | — |
-    | Configure notifications | ✓ | — | — | ✓ | — |
-    | Manage CMS rules | ✓ | — | — | — | ✓ |
-    | Deploy detection rules | ✓ | — | — | — | ✓ |
+    | Capability              | Admin | Responder | Analyst | Data Source | Content |
+    | ----------------------- | :---: | :-------: | :-----: | :---------: | :-----: |
+    | Configure modules       | ✓     | —         | —       | ✓           | —       |
+    | Manage connectors       | ✓     | —         | —       | ✓           | —       |
+    | Configure notifications | ✓     | —         | —       | ✓           | —       |
+    | Manage CMS rules        | ✓     | —         | —       | —           | ✓       |
+    | Deploy detection rules  | ✓     | —         | —       | —           | ✓       |
   </Tab>
   <Tab title="Administration">
-    | Capability | Admin | Responder | Analyst | Data Source | Content |
-    |------------|:-----:|:---------:|:-------:|:-----------:|:-------:|
-    | Add workspace users | ✓ | — | — | — | — |
-    | Remove workspace users | ✓ | — | — | — | — |
-    | Assign roles | ✓ | — | — | — | — |
-    | Add groups | ✓ | — | — | — | — |
-    | View settings | ✓ | Limited | — | ✓ | Limited |
-    | Modify settings | ✓ | — | — | Limited | — |
+    | Capability             | Admin | Responder | Analyst | Data Source | Content |
+    | ---------------------- | :---: | :-------: | :-----: | :---------: | :-----: |
+    | Add workspace users    | ✓     | —         | —       | —           | —       |
+    | Remove workspace users | ✓     | —         | —       | —           | —       |
+    | Assign roles           | ✓     | —         | —       | —           | —       |
+    | Add groups             | ✓     | —         | —       | —           | —       |
+    | View settings          | ✓     | Limited   | —       | ✓           | Limited |
+    | Modify settings        | ✓     | —         | —       | Limited     | —       |
   </Tab>
 </Tabs>
 
@@ -509,24 +529,24 @@ Can manage CMS detection rules but cannot configure other modules or respond to 
 
 ### By Team Structure
 
-| Team Member | Org Role | Typical Workspace Role |
-|-------------|----------|------------------------|
-| SOC Manager | Organization Admin | Admin |
-| Tier 2 Analyst | Organization Member | Incident Responder |
-| Tier 1 Analyst | Organization Member | Incident Analyst |
-| Detection Engineer | Organization Member | Content Admin |
-| Integration Engineer | Organization Member | Data Source Admin |
-| Account Manager | Organization Member | Incident Analyst |
-| Customer CISO | — (workspace only) | Incident Analyst |
-| Customer IT Admin | — (workspace only) | Data Source Admin |
+| Team Member          | Org Role            | Typical Workspace Role |
+| -------------------- | ------------------- | ---------------------- |
+| SOC Manager          | Organization Admin  | Admin                  |
+| Tier 2 Analyst       | Organization Member | Incident Responder     |
+| Tier 1 Analyst       | Organization Member | Incident Analyst       |
+| Detection Engineer   | Organization Member | Content Admin          |
+| Integration Engineer | Organization Member | Data Source Admin      |
+| Account Manager      | Organization Member | Incident Analyst       |
+| Customer CISO        | — (workspace only)  | Incident Analyst       |
+| Customer IT Admin    | — (workspace only)  | Data Source Admin      |
 
 ### By Customer SLA
 
-| SLA Tier | Recommended Team Roles |
-|----------|------------------------|
-| **Premium** | Admin (manager) + Incident Responder (analysts) |
+| SLA Tier     | Recommended Team Roles                                  |
+| ------------ | ------------------------------------------------------- |
+| **Premium**  | Admin (manager) + Incident Responder (analysts)         |
 | **Standard** | Incident Responder (lead) + Incident Analyst (analysts) |
-| **Basic** | Incident Analyst (monitoring only) |
+| **Basic**    | Incident Analyst (monitoring only)                      |
 
 ---
 
@@ -586,7 +606,7 @@ Can manage CMS detection rules but cannot configure other modules or respond to 
   <Card title="User & Group Management" icon="users" href="/guides/onboarding/user-group-management-for-partners">
     Setting up users and groups for partners
   </Card>
-  <Card title="Workspace Manager" icon="building" href="/guides/getting-started/workspace-manager">
+  <Card title="Workspace Manager" icon="building" href="guides/getting-started/workspaces">
     Managing customer workspaces
   </Card>
   <Card title="Gamebooks" icon="bolt" href="/guides/getting-started/what-are-gamebooks">
@@ -600,5 +620,5 @@ Can manage CMS detection rules but cannot configure other modules or respond to 
 ---
 
 <Note>
-Questions about roles and permissions? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+  Questions about roles and permissions? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
 </Note>
