@@ -39,7 +39,7 @@
           {
             "group": "Onboarding",
             "pages": [
-              "guides/onboarding/onboarding-overview",
+              "guides/onboarding/platform-onboarding",
               "guides/onboarding/user-group-management-for-providers",
               "guides/onboarding/notifications-module",
               "guides/technical/notifications-configuration",
