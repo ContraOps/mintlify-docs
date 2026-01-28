@@ -1,0 +1,88 @@
+---
+title: "ContraForce Success Teams Channel"
+---
+
+## Setting Up a Shared Teams Channel with ContraForce Support
+
+This guide walks you through configuring your Microsoft 365 tenant to enable a shared Teams channel with the ContraForce Success Team. Using shared channels allows direct collaboration without guest accounts or switching tenants.
+
+## Overview
+
+Microsoft Teams shared channels use B2B direct connect, which enables seamless collaboration between organizations. Once configured, you can participate in a shared channel directly within your own Teams environment.
+
+## Prerequisites
+
+- Global Administrator or External Identity Provider Administrator role in Microsoft Entra
+- Microsoft 365 subscription with Teams enabled
+- Access to the Microsoft Entra admin center
+
+## Configuration Steps
+
+### Step 1: Access Cross-Tenant Settings
+
+1. Navigate to the [Microsoft Entra admin center](https://entra.microsoft.com)
+2. Go to **External Identities** → **Cross-tenant access settings**
+
+   Direct link: `https://entra.microsoft.com/#view/Microsoft_AAD_IAM/CompanyRelationshipsMenuBlade/~/CrossTenantAccessSettings`
+
+### Step 2: Add ContraForce as a Partner Organization
+
+1. Click **Add organization**
+2. Enter the domain: `contraforce.com`
+3. Click **Add**
+
+### Step 3: Configure Outbound Access
+
+1. Locate **contraforce.com** in your list of organizations
+2. Click **Inherited from default** in the **Outbound access** column
+3. Select the **B2B direct connect** tab
+4. Configure the following settings:
+
+   | Setting                   | Recommended Value | Notes                                                                             |
+   | ------------------------- | ----------------- | --------------------------------------------------------------------------------- |
+   | **Users and groups**      | Allow access      | Select "Select users and groups" if you need to limit which users can collaborate |
+   | **External applications** | Allow access      | Enables access to Teams shared channels                                           |
+5. Click **Save**
+
+### Step 4: Wait for Propagation
+
+Cross-tenant access changes can take up to 24 hours to fully propagate across Microsoft's systems. If the shared channel doesn't appear immediately, check again the following day.
+
+## Accepting the Shared Channel Invitation
+
+Once your tenant is configured and ContraForce sends a shared channel invitation:
+
+1. Open Microsoft Teams
+2. Look for a notification about the shared channel invitation
+3. Accept the invitation
+4. The shared channel will appear in your Teams sidebar
+
+## Troubleshooting
+
+### Shared channel not appearing
+
+- Verify B2B direct connect settings are saved correctly
+- Confirm the changes have had time to propagate (up to 24 hours)
+- Ensure the user accepting the invitation is included in the allowed users/groups
+
+### Access denied errors
+
+- Check that **Outbound access** is configured (not just Inbound)
+- Verify **External applications** is set to **Allow access**
+
+## Additional Resources
+
+- [Microsoft: Collaborate with external participants in a shared channel](https://learn.microsoft.com/en-us/microsoft-365/solutions/collaborate-teams-direct-connect)
+- [Microsoft: Allow B2B direct connect with all organizations](https://learn.microsoft.com/en-us/microsoft-365/solutions/allow-direct-connect-with-all-organizations)
+
+## Need Help?
+
+If you encounter issues during setup, contact ContraForce Support and include:
+
+- Screenshot of your Cross-tenant access settings for contraforce.com
+- Any error messages you're receiving
+- The email address of the user attempting to join the shared channel
+
+<Note>
+  Questions about offboarding? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>

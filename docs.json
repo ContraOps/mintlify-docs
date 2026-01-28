@@ -63,7 +63,8 @@
             "pages": [
               "guides/general-support/roles-and-permissions-reference",
               "guides/general-support/user-group-management",
-              "guides/general-support/offboarding-contra-force"
+              "guides/general-support/offboarding-contra-force",
+              "guides/general-support/contra-force-success-teams-channel"
             ]
           }
         ]
