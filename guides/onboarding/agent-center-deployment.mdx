@@ -1,10 +1,32 @@
 ---
-title: "Agent Center Onboarding"
+title: "Deploying Agent Center"
+description: "Deploy Azure AI Foundry infrastructure through ContraForce to enable automated security operations with Security Delivery Agents."
 ---
 
-# Deploying Agent Center
+The AI Agent Center enables you to deploy Azure AI Foundry infrastructure directly through ContraForce, powering automated incident investigation and response capabilities with Security Delivery Agents (SDAs).
 
-This guide walks you through the requirements and steps to deploy the ContraForce AI Agent Center, which enables you to leverage Azure AI Foundry infrastructure for automated security operations.
+<Info>
+  Agent Center leverages Microsoft Foundry to provision the AI infrastructure required for automated security operations. Once deployed, you can configure Security Delivery Agents to handle incidents automatically.
+</Info>
+
+## What Can You Do Here?
+
+<CardGroup cols={2}>
+  <Card title="Deploy AI Infrastructure" icon="server">
+    Provision Azure AI Foundry resources through ContraForce
+  </Card>
+  <Card title="Create Security Agents" icon="robot">
+    Deploy Security Delivery Agents for automated response
+  </Card>
+  <Card title="Enable Automation" icon="bolt">
+    Configure agents to investigate and respond to incidents
+  </Card>
+  <Card title="Run Gamebooks" icon="book">
+    Allow agents to execute response playbooks automatically
+  </Card>
+</CardGroup>
+
+---
 
 ## Prerequisites
 
@@ -12,38 +34,134 @@ Before deploying Agent Center, ensure you meet the following requirements.
 
 ### User Requirements
 
-- **Subscription Owner** – You must have Owner-level access to the Azure subscription where the Agent Center infrastructure will be deployed.
-- **ContraForce Role** – Your account must be added to ContraForce as either an Organizational Admin or Agent Admin.
-- **Provisioning** – Users do not need to be separately provisioned within ContraForce to begin deployment.
+| Requirement | Description |
+| ----------- | ----------- |
+| **Subscription Owner** | Owner-level access to the Azure subscription where infrastructure will be deployed |
+| **ContraForce Role** | Organizational Admin or Agent Admin role in ContraForce |
+| **Provisioning** | Users do not need to be separately provisioned for ContraForce |
 
 ### Required Tooling
 
-- Microsoft Foundry (Azure AI Foundry)
+| Tool | Purpose |
+| ---- | ------- |
+| **Microsoft Foundry** | Azure AI Foundry platform for AI infrastructure provisioning |
 
-## Deployment Steps
+<Warning>
+  You must have Owner permissions on the Azure subscription to successfully deploy Agent Center infrastructure. Work with your Azure administrator if you don't have the required access.
+</Warning>
 
-### Step 1: Access the ContraForce Portal
+---
 
-Navigate to [portal.contraforce.com](https://portal.contraforce.com) and sign in with your credentials.
+## Deploying Agent Center
 
-### Step 2: Navigate to AI Agent Center
+<Steps>
+  <Step title="Access ContraForce Portal">
+    Navigate to [portal.contraforce.com](https://portal.contraforce.com) and sign in with your credentials
+  </Step>
+  <Step title="Navigate to AI Agent Center">
+    From the main dashboard, locate and select the **AI Agent Center** option
+  </Step>
+  <Step title="Deploy Azure AI Foundry Infrastructure">
+    Follow the on-screen prompts to configure and provision the Azure AI Foundry infrastructure in your environment
+  </Step>
+  <Step title="Deploy Your First Security Delivery Agent">
+    Once infrastructure provisioning completes, deploy your first Security Delivery Agent (SDA) to begin automated incident handling
+  </Step>
+</Steps>
 
-From the main dashboard, locate and select the **AI Agent Center** option to access the deployment interface.
+<Tip>
+  The deployment process handles all Azure resource provisioning automatically. You don't need to manually configure Azure AI Foundry resources.
+</Tip>
 
-### Step 3: Deploy Azure AI Foundry Infrastructure
+---
 
-The Agent Center deployment process provisions the necessary Azure AI Foundry infrastructure in your environment. Follow the on-screen prompts to configure your deployment settings.
+## Post-Deployment Configuration
 
-### Step 4: Deploy Your First Security Delivery Agent (SDA)
+After successfully deploying Agent Center, configure your Security Delivery Agents to match your operational requirements.
 
-Once the infrastructure is provisioned, you can deploy your first Security Delivery Agent. The SDA will handle automated incident investigation and response tasks based on your configuration.
+### Configuration Options
 
-## Next Steps
+<Tabs>
+  <Tab title="Manual Execution">
+    **Run agents on-demand:**
+    
+    - Select individual incidents for investigation
+    - Choose between investigation-only or investigation with response
+    - Review agent findings before taking action
+  </Tab>
+  <Tab title="Automatic Execution">
+    **Configure severity-based automation:**
+    
+    - Set agents to run automatically on new incidents
+    - Filter by incident status (New, Active, Closed)
+    - Define which severity levels trigger automatic execution
+  </Tab>
+  <Tab title="Gamebook Automation">
+    **Enable automatic response actions:**
+    
+    - Allow agents to execute gamebooks
+    - Set confidence thresholds for automated actions
+    - Control which response types are permitted
+  </Tab>
+</Tabs>
 
-After successfully deploying Agent Center, proceed to [Configuring and Using Security Delivery Agents](/docs/configuring-security-delivery-agents) to learn how to set up automated incident handling and gamebook execution.
+---
 
-## Related Articles
+## Best Practices
 
-- Configuring and Using Security Delivery Agents
-- Understanding ContraForce User Roles
-- Azure AI Foundry Integration Overview
+<AccordionGroup>
+  <Accordion title="Verify Azure permissions before deployment">
+    Confirm you have Subscription Owner access before starting the deployment process to avoid interruptions.
+  </Accordion>
+  <Accordion title="Start with manual agent execution">
+    Begin with Phase 1 (manual execution) to understand how agents analyze your specific incident types before enabling automation.
+  </Accordion>
+  <Accordion title="Review agent outputs regularly">
+    Monitor agent investigation results to ensure accuracy and tune configurations as needed.
+  </Accordion>
+  <Accordion title="Document your deployment configuration">
+    Keep records of your Agent Center settings for troubleshooting and future reference.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+| Issue | Possible Cause | Solution |
+| ----- | -------------- | -------- |
+| Deployment fails | Insufficient Azure permissions | Verify Subscription Owner access |
+| Agent Center not visible | Missing ContraForce role | Confirm Organizational Admin or Agent Admin role assignment |
+| Infrastructure provisioning stuck | Azure resource limits | Check Azure subscription quotas and limits |
+| SDA deployment fails | Prerequisites incomplete | Ensure AI Foundry infrastructure deployed successfully first |
+
+<Note>
+  If you encounter persistent issues with Agent Center deployment, contact [support@contraforce.com](mailto:support@contraforce.com) with your subscription details and error messages.
+</Note>
+
+---
+
+## Related Guides
+
+<CardGroup cols={2}>
+  <Card title="Configuring Security Delivery Agents" icon="sliders" href="/guides/agent-center/configuring-security-delivery-agents">
+    Set up automated incident investigation and response
+  </Card>
+  <Card title="Understanding Gamebooks" icon="book" href="/guides/response/gamebooks-overview">
+    Learn about automated response playbooks
+  </Card>
+  <Card title="Incident Management" icon="triangle-exclamation" href="/guides/incidents/incident-management-overview">
+    Overview of incident handling in ContraForce
+  </Card>
+  <Card title="User Roles and Permissions" icon="users" href="/guides/onboarding/platform-onboarding">
+    Understanding ContraForce role requirements
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+  Questions about Agent Center deployment? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+</Note>
