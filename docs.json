@@ -40,8 +40,8 @@
             "group": "Onboarding",
             "pages": [
               "guides/onboarding/platform-onboarding",
-              "onboarding-customer-workspaces",
               "guides/onboarding/agent-center-deployment",
+              "onboarding-customer-workspaces",
               "guides/getting-started/configuring-secuirty-delivery-agents",
               "guides/onboarding/user-group-management-for-providers",
               "guides/onboarding/notifications-module",
