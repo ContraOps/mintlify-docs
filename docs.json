@@ -143,5 +143,8 @@
   "icons": {
     "library": "fontawesome"
   },
-  "description": "ContraForce Knowledge Base"
+  "description": "ContraForce Knowledge Base",
+  "thumbnails": {
+    "appearance": "dark"
+  }
 }
