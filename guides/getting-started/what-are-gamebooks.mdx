@@ -1,12 +1,12 @@
 ---
 title: "What are Gamebooks?"
-description: "Automate incident response with one-click actions. Gamebooks let you isolate devices, disable users, block IPs, and more—without manual intervention."
+description: "Automate incident response with AI-generated response actions. Gamebooks let you isolate devices, disable users, block IPs, and more—without manual intervention."
 ---
 
-Gamebooks are ContraForce's automated response engine. Instead of manually logging into multiple consoles to contain a threat, you can execute proven response actions with a single click.
+Gamebooks are SOP-driven incident response workflows powered by ContraForce's response engine, IRIS. Instead of manually logging into multiple consoles to contain a threat, you can execute proven response actions with a single-click across any workspace. 
 
 <Info>
-Think of Gamebooks as your incident response playbook—automated. Select the actions you need, click run, and ContraForce handles the execution across your integrated security tools.
+  Think of Gamebooks as your incident response playbook—automated. Select the actions you need, click run, and ContraForce handles the execution across your integrated security tools.
 </Info>
 
 ## Why Gamebooks?
@@ -40,36 +40,36 @@ Gamebook actions are organized by entity type. ContraForce automatically shows r
 
 ### User Actions
 
-| Action | Description | Use Case |
-|--------|-------------|----------|
-| **Invalidate Existing Sessions** | Terminates all active sessions | Compromised account, suspicious activity |
-| **Lockout User** | Prevents user from signing in | Confirmed account compromise |
-| **Reset User Password** | Forces password reset on next login | Credential theft suspected |
-| **Unlock User** | Re-enables a locked account | After remediation is complete |
+| Action                           | Description                         | Use Case                                 |
+| -------------------------------- | ----------------------------------- | ---------------------------------------- |
+| **Invalidate Existing Sessions** | Terminates all active sessions      | Compromised account, suspicious activity |
+| **Lockout User**                 | Prevents user from signing in       | Confirmed account compromise             |
+| **Reset User Password**          | Forces password reset on next login | Credential theft suspected               |
+| **Unlock User**                  | Re-enables a locked account         | After remediation is complete            |
 
 ### Endpoint Actions
 
-| Action | Description | Use Case |
-|--------|-------------|----------|
-| **Isolate Endpoint** | Disconnects device from network (except Defender) | Active malware, lateral movement |
-| **Scan Endpoint** | Triggers antivirus/EDR scan | Suspicious file activity |
-| **Release from Isolation** | Restores network connectivity | After threat is contained |
-| **Quarantine File** | Moves malicious file to quarantine | Known malware detected |
+| Action                     | Description                                       | Use Case                         |
+| -------------------------- | ------------------------------------------------- | -------------------------------- |
+| **Isolate Endpoint**       | Disconnects device from network (except Defender) | Active malware, lateral movement |
+| **Scan Endpoint**          | Triggers antivirus/EDR scan                       | Suspicious file activity         |
+| **Release from Isolation** | Restores network connectivity                     | After threat is contained        |
+| **Quarantine File**        | Moves malicious file to quarantine                | Known malware detected           |
 
 ### Network Actions
 
-| Action | Description | Use Case |
-|--------|-------------|----------|
+| Action       | Description          | Use Case                           |
+| ------------ | -------------------- | ---------------------------------- |
 | **Block IP** | Adds IP to blocklist | C2 communication, malicious source |
 
 ### Email Actions
 
-| Action | Description | Use Case |
-|--------|-------------|----------|
+| Action           | Description                          | Use Case                   |
+| ---------------- | ------------------------------------ | -------------------------- |
 | **Delete Email** | Removes malicious email from mailbox | Phishing, malware delivery |
 
 <Tip>
-Available actions depend on your connected integrations. For example, endpoint actions require Microsoft Defender for Endpoint to be onboarded.
+  Available actions depend on your connected integrations. For example, endpoint actions require Microsoft Defender for Endpoint to be onboarded.
 </Tip>
 
 ---
@@ -89,7 +89,7 @@ Available actions depend on your connected integrations. For example, endpoint a
 </Steps>
 
 <Frame>
-  <img src="/images/gamebook-access-dropdown.png" alt="Accessing Gamebook Workbench" />
+  ![Accessing Gamebook Workbench](/images/gamebook-access-dropdown.png)
 </Frame>
 
 ---
@@ -103,7 +103,7 @@ Creating a Gamebook is intuitive—select entities, choose actions, and execute.
 Click an entity in the **Entity Graph** (user, device, IP, etc.). The action carousel appears showing available response actions.
 
 <Frame>
-  <img src="/images/gamebook-entity-selection.png" alt="Entity selection in Gamebook" />
+  ![Entity selection in Gamebook](/images/gamebook-entity-selection.png)
 </Frame>
 
 ### Step 2: Add Actions
@@ -121,14 +121,14 @@ Select additional entities and add their actions. You can build comprehensive re
 Your selected actions appear in the **Gamebook Card**:
 
 <Frame>
-  <img src="/images/gamebook-actions-queue.png" alt="Gamebook actions queue" />
+  ![Gamebook actions queue](/images/gamebook-actions-queue.png)
 </Frame>
 
-| Column | Description |
-|--------|-------------|
+| Column     | Description                         |
+| ---------- | ----------------------------------- |
 | **Action** | The response action to be performed |
-| **Entity** | Target of the action |
-| **Status** | "Pending" before execution |
+| **Entity** | Target of the action                |
+| **Status** | "Pending" before execution          |
 
 Click **Run Gamebook** to execute all actions.
 
@@ -138,19 +138,19 @@ Click **Run Gamebook** to execute all actions.
 
 After clicking Run Gamebook, monitor the execution:
 
-| Status | Meaning |
-|--------|---------|
-| **Pending** | Action queued, not yet started |
-| **Running** | Action currently executing |
-| **Finished** | Action completed successfully |
-| **Failed** | Action encountered an error |
+| Status       | Meaning                        |
+| ------------ | ------------------------------ |
+| **Pending**  | Action queued, not yet started |
+| **Running**  | Action currently executing     |
+| **Finished** | Action completed successfully  |
+| **Failed**   | Action encountered an error    |
 
 <Frame>
-  <img src="/images/gamebook-execution-status.png" alt="Gamebook execution status" />
+  ![Gamebook execution status](/images/gamebook-execution-status.png)
 </Frame>
 
 <Warning>
-If an action fails, check the Gamebook Activity page for error details. Common causes include permission issues or connectivity problems with the target system.
+  If an action fails, check the Gamebook Activity page for error details. Common causes include permission issues or connectivity problems with the target system.
 </Warning>
 
 ---
@@ -164,7 +164,7 @@ Some actions are too impactful to execute without oversight. These require appro
 Actions requiring approval display a **red lock icon** in the carousel.
 
 <Frame>
-  <img src="/images/gamebook-approval-required.png" alt="Approval required indicator" />
+  ![Approval required indicator](/images/gamebook-approval-required.png)
 </Frame>
 
 ### Requesting Approval
@@ -202,18 +202,18 @@ Track all Gamebook activity across your environment from the dedicated **Gameboo
 Click the **Gamebooks icon** (triangle) in the navigation bar—it's the 2nd icon from the top.
 
 <Frame>
-  <img src="/images/gamebooks-page-navigation.png" alt="Gamebooks page navigation" />
+  ![Gamebooks page navigation](/images/gamebooks-page-navigation.png)
 </Frame>
 
 ### What You Can See
 
 The Gamebooks page shows:
 
-| Filter | Description |
-|--------|-------------|
-| **Completed** | Successfully executed Gamebooks |
-| **Waiting Approval** | Pending approval requests |
-| **Failed** | Gamebooks with errors |
+| Filter               | Description                     |
+| -------------------- | ------------------------------- |
+| **Completed**        | Successfully executed Gamebooks |
+| **Waiting Approval** | Pending approval requests       |
+| **Failed**           | Gamebooks with errors           |
 
 ### Viewing Details
 
@@ -225,11 +225,11 @@ Click the **dropdown arrow** on any row to expand and see:
 - Entity details
 
 <Frame>
-  <img src="/images/gamebook-history-expanded.png" alt="Gamebook history expanded view" />
+  ![Gamebook history expanded view](/images/gamebook-history-expanded.png)
 </Frame>
 
 <Tip>
-Use the workspace filter to view Gamebook history for specific tenants. This is useful when reviewing activity for a particular customer.
+  Use the workspace filter to view Gamebook history for specific tenants. This is useful when reviewing activity for a particular customer.
 </Tip>
 
 ---
@@ -241,7 +241,7 @@ Not all entity types support Gamebook actions due to technical limitations with 
 If an entity doesn't support actions, you'll see an error message:
 
 <Frame>
-  <img src="/images/gamebook-unsupported-entity.png" alt="Unsupported entity message" />
+  ![Unsupported entity message](/images/gamebook-unsupported-entity.png)
 </Frame>
 
 **Common reasons:**
@@ -251,7 +251,7 @@ If an entity doesn't support actions, you'll see an error message:
 - Permissions not configured for response actions
 
 <Note>
-ContraForce continuously adds new integrations and actions. If you need specific response capabilities, contact [support@contraforce.com](mailto:support@contraforce.com) to discuss your requirements.
+  ContraForce continuously adds new integrations and actions. If you need specific response capabilities, contact [support@contraforce.com](mailto:support@contraforce.com) to discuss your requirements.
 </Note>
 
 ---
@@ -280,12 +280,12 @@ ContraForce continuously adds new integrations and actions. If you need specific
 
 ## Gamebook Actions Quick Reference
 
-| Entity | Actions Available |
-|--------|-------------------|
-| **User** | Invalidate Sessions, Lockout, Reset Password, Unlock |
+| Entity       | Actions Available                                      |
+| ------------ | ------------------------------------------------------ |
+| **User**     | Invalidate Sessions, Lockout, Reset Password, Unlock   |
 | **Endpoint** | Isolate, Scan, Release from Isolation, Quarantine File |
-| **Network** | Block IP |
-| **Email** | Delete Email |
+| **Network**  | Block IP                                               |
+| **Email**    | Delete Email                                           |
 
 ---
 
@@ -309,5 +309,5 @@ ContraForce continuously adds new integrations and actions. If you need specific
 ---
 
 <Note>
-Questions about Gamebooks? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+  Questions about Gamebooks? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
 </Note>
