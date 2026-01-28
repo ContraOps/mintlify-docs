@@ -1,6 +1,6 @@
 ---
 title: "Deploying Agent Center"
-description: "Deploy Azure AI Foundry infrastructure through ContraForce to enable automated security operations with Security Delivery Agents."
+description: "Deploy Microsoft Foundry infrastructure through ContraForce to enable automated security operations with Security Delivery Agents."
 ---
 
 The AI Agent Center enables you to deploy Azure AI Foundry infrastructure directly through ContraForce, powering automated incident investigation and response capabilities with Security Delivery Agents (SDAs).
@@ -34,16 +34,16 @@ Before deploying Agent Center, ensure you meet the following requirements.
 
 ### User Requirements
 
-| Requirement | Description |
-| ----------- | ----------- |
+| Requirement            | Description                                                                        |
+| ---------------------- | ---------------------------------------------------------------------------------- |
 | **Subscription Owner** | Owner-level access to the Azure subscription where infrastructure will be deployed |
-| **ContraForce Role** | Organizational Admin or Agent Admin role in ContraForce |
-| **Provisioning** | Users do not need to be separately provisioned for ContraForce |
+| **ContraForce Role**   | Organizational Admin or Agent Admin role in ContraForce                            |
+| **Provisioning**       | Users do not need to be separately provisioned for ContraForce                     |
 
 ### Required Tooling
 
-| Tool | Purpose |
-| ---- | ------- |
+| Tool                  | Purpose                                                      |
+| --------------------- | ------------------------------------------------------------ |
 | **Microsoft Foundry** | Azure AI Foundry platform for AI infrastructure provisioning |
 
 <Warning>
@@ -84,21 +84,21 @@ After successfully deploying Agent Center, configure your Security Delivery Agen
 <Tabs>
   <Tab title="Manual Execution">
     **Run agents on-demand:**
-    
+
     - Select individual incidents for investigation
     - Choose between investigation-only or investigation with response
     - Review agent findings before taking action
   </Tab>
   <Tab title="Automatic Execution">
     **Configure severity-based automation:**
-    
+
     - Set agents to run automatically on new incidents
     - Filter by incident status (New, Active, Closed)
     - Define which severity levels trigger automatic execution
   </Tab>
   <Tab title="Gamebook Automation">
     **Enable automatic response actions:**
-    
+
     - Allow agents to execute gamebooks
     - Set confidence thresholds for automated actions
     - Control which response types are permitted
@@ -130,12 +130,12 @@ After successfully deploying Agent Center, configure your Security Delivery Agen
 
 ### Common Issues
 
-| Issue | Possible Cause | Solution |
-| ----- | -------------- | -------- |
-| Deployment fails | Insufficient Azure permissions | Verify Subscription Owner access |
-| Agent Center not visible | Missing ContraForce role | Confirm Organizational Admin or Agent Admin role assignment |
-| Infrastructure provisioning stuck | Azure resource limits | Check Azure subscription quotas and limits |
-| SDA deployment fails | Prerequisites incomplete | Ensure AI Foundry infrastructure deployed successfully first |
+| Issue                             | Possible Cause                 | Solution                                                     |
+| --------------------------------- | ------------------------------ | ------------------------------------------------------------ |
+| Deployment fails                  | Insufficient Azure permissions | Verify Subscription Owner access                             |
+| Agent Center not visible          | Missing ContraForce role       | Confirm Organizational Admin or Agent Admin role assignment  |
+| Infrastructure provisioning stuck | Azure resource limits          | Check Azure subscription quotas and limits                   |
+| SDA deployment fails              | Prerequisites incomplete       | Ensure AI Foundry infrastructure deployed successfully first |
 
 <Note>
   If you encounter persistent issues with Agent Center deployment, contact [support@contraforce.com](mailto:support@contraforce.com) with your subscription details and error messages.
