@@ -98,7 +98,8 @@
   },
   "logo": {
     "light": "/images/contraforce_logp_lightmode.svg",
-    "dark": "/images/contraforce_logo_darkmode.svg"
+    "dark": "/images/contraforce_logo_darkmode.svg",
+    "href": "https://docs.contraforce.com/"
   },
   "navbar": {
     "links": [
@@ -147,7 +148,8 @@
   },
   "description": "ContraForce Knowledge Base",
   "thumbnails": {
-    "appearance": "dark"
+    "appearance": "dark",
+    "background": "/images/contraforce_logo_darkmode.svg"
   },
   "banner": {
     "content": "Welcome to the new ContraForce Knowledge Base! If you have feedback, please reach out to support@contraforce.",
