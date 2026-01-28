@@ -152,18 +152,18 @@ After clicking Run Gamebook, monitor the execution:
 
 ## Gamebook Approval Workflow
 
-Manage the team members responsible for approving Gamebooks that require manual authorization. Only users with the **Workspace Owner **role can be assigned as Gamebook approvers.
+Manage the team members responsible for approving Gamebooks that require manual authorization. Only users with the \*\*Workspace Owner \*\*role can be assigned as Gamebook approvers.
 
 ### Gamebook Approval Configuration
 
-Within each workspace settings page, under **General, **scroll to the bottom and configure the **Gamebook Configuration** settings based on your SOP for that specific workspace. 
+Within each workspace settings page, under \*\*General, \*\*scroll to the bottom and configure the **Gamebook Configuration** settings based on your SOP for that specific workspace.
 
 <Frame>
   ![Approval required indicator](/service-provider-gamebook-approval-config.png)
 </Frame>
 
 <Warning>
-  Some respones actions (Reset user password) requires the end user of the workspace to have Global Admin role. As a Serivce Provider, you can approve this action on your end without the end user consent. 
+  Some respones actions (Reset user password) requires the end user of the workspace to have Global Admin role. As a Serivce Provider, you can approve this action on your end without the end user consent.
 </Warning>
 
 ### Approving Gamebooks
@@ -174,14 +174,12 @@ Users with approval permissions can approve from:
   <Card title="Incident Summary" icon="file-lines">
     Open the incident and approve directly from the Gamebook status
   </Card>
-  <Card title="Gamebooks Page" icon="list-check">
-    Review all pending approvals in one centralized location
+  <Card title="Gamebooks Page" icon="gamepad">
+    Review all pending approvals in one centralized queue
   </Card>
 </CardGroup>
 
 Once approved, the Gamebook executes automatically.
-
----
 
 ## Gamebook History
 
@@ -192,7 +190,12 @@ Track all Gamebook activity across your environment from the dedicated **Gameboo
 Click the **Gamebooks icon** (triangle) in the navigation bar—it's the 2nd icon from the top.
 
 <Frame>
-  ![Gamebooks page navigation](/images/gamebooks-page-navigation.png)
+  <img
+    src="/gamebooks-page-overview.png"
+    alt="Gamebooks page navigation"
+    title=""
+    style={{ width:"100%" }}
+  />
 </Frame>
 
 ### What You Can See
@@ -215,24 +218,16 @@ Click the **dropdown arrow** on any row to expand and see:
 - Entity details
 
 <Frame>
-  ![Gamebook history expanded view](/images/gamebook-history-expanded.png)
+  ![Gamebook history expanded view](/gamebook-activity-dropdown-menu.png)
 </Frame>
 
 <Tip>
   Use the workspace filter to view Gamebook history for specific tenants. This is useful when reviewing activity for a particular customer.
 </Tip>
 
----
-
 ## Unsupported Entities
 
-Not all entity types support Gamebook actions due to technical limitations with source integrations.
-
-If an entity doesn't support actions, you'll see an error message:
-
-<Frame>
-  ![Unsupported entity message](/images/gamebook-unsupported-entity.png)
-</Frame>
+Not all entity types support Gamebook actions due to technical limitations with module integrations.
 
 **Common reasons:**
 
@@ -240,11 +235,9 @@ If an entity doesn't support actions, you'll see an error message:
 - Entity type not yet supported
 - Permissions not configured for response actions
 
-<Note>
-  ContraForce continuously adds new integrations and actions. If you need specific response capabilities, contact [support@contraforce.com](mailto:support@contraforce.com) to discuss your requirements.
-</Note>
-
----
+<Info>
+  If you need specific response capabilities, contact [support@contraforce.com](mailto:support@contraforce.com) to discuss your requirements.
+</Info>
 
 ## Best Practices
 
@@ -266,8 +259,6 @@ If an entity doesn't support actions, you'll see an error message:
   </Accordion>
 </AccordionGroup>
 
----
-
 ## Gamebook Actions Quick Reference
 
 | Entity       | Actions Available                                      |
@@ -276,8 +267,6 @@ If an entity doesn't support actions, you'll see an error message:
 | **Endpoint** | Isolate, Scan, Release from Isolation, Quarantine File |
 | **Network**  | Block IP                                               |
 | **Email**    | Delete Email                                           |
-
----
 
 ## Related Guides
 
