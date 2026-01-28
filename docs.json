@@ -145,6 +145,7 @@
   },
   "description": "ContraForce Knowledge Base",
   "thumbnails": {
-    "appearance": "dark"
+    "appearance": "dark",
+    "background": "/images/contraforce_logo_darkmode.svg"
   }
 }
