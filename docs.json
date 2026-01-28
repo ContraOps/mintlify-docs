@@ -149,5 +149,8 @@
   },
   "banner": {
     "content": "Welcome to the new ContraForce Knowledge Base! If you have feedback, please reach out to support@contraforce."
+  },
+  "seo": {
+    "indexing": "all"
   }
 }
