@@ -106,29 +106,29 @@ Click any entity icon to:
 
 ## Building a Gamebook
 
-Gamebooks are custom response workflows you build by selecting actions for each affected entity.
+Gamebooks are custom response workflows you build or agents can build by selecting actions for each affected entity.
 
 ### Step 1: Select an Entity
 
-Click an entity icon in the Entity Graph. The **Incident Response Carousel** appears with available actions for that entity type.
+Left-click an entity icon in the Entity Context Graph. The **Incident Response Carousel** appears with available actions for that entity type.
 
 <Frame>
-  ![Entity action carousel](/images/entity-action-carousel.png)
+  ![Entity action carousel](/left-click-entity-graph.png)
 </Frame>
 
 ### Step 2: Browse Available Actions
 
 Use the **arrows** on either side of the carousel to rotate through available actions:
 
-| Entity Type | Example Actions                                                 |
-| ----------- | --------------------------------------------------------------- |
-| **User**    | Disable account, Reset password, Revoke sessions, Block sign-in |
-| **Device**  | Isolate device, Run AV scan, Collect investigation package      |
-| **IP**      | Block IP, Add to watchlist                                      |
-| **File**    | Quarantine file, Block hash                                     |
+| Entity Type | Example Actions                                                         |
+| ----------- | ----------------------------------------------------------------------- |
+| **User**    | Invalidate sessions, lockout user, reset user password, and unlock user |
+| **Device**  | Isolate device, run AV scan, unisolate device                           |
+| **IP**      | Block Azure Network Security Group (NSG)                                |
+| **File**    | Quarantine file, block hash                                             |
 
 <Info>
-  Available actions depend on the entity type and your connected integrations. ContraForce automatically shows only actions that are relevant and executable.
+  Available actions depend on the entity type and your connected modules. Gamebook actions automatically map to actions that are relevant and executable.
 </Info>
 
 ### Step 3: Add Actions to Gamebook
