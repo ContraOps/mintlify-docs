@@ -6,7 +6,7 @@ description: "Deploy and manage security detection rules across Microsoft Sentin
 The Content Management System (CMS) transforms security detection engineering from a specialized discipline into an accessible, scalable process. Deploy expert-authored detection rules to your Sentinel workspaces with simple toggles—no complex configuration, no KQL expertise required.
 
 <Info>
-CMS is available for workspaces with the **XDR + SIEM module** deployed. Detection rules are continuously updated by ContraForce's security engineering team.
+  CMS is available for workspaces with the **XDR + SIEM module** deployed. Detection rules are continuously updated by ContraForce's security engineering team.
 </Info>
 
 ## Why CMS?
@@ -57,16 +57,16 @@ Security teams face what we call "the content storm"—the overwhelming challeng
 
 CMS provides access to a continuously updated library of detection rules organized by data source. Each rule includes:
 
-| Attribute | Description |
-|-----------|-------------|
-| **Display Name** | Clear, descriptive name for the detection |
-| **Description** | What the rule detects and why it matters |
-| **Severity** | Risk level (Low, Medium, High) to prioritize response |
-| **MITRE ATT&CK Mapping** | Tactics and techniques the detection covers |
-| **Query** | The underlying KQL logic (visible for transparency) |
-| **Version** | CalVer format (e.g., 2024.01.15) for tracking updates |
-| **Query Frequency** | How often the rule runs |
-| **Query Period** | The time window the rule analyzes |
+| Attribute                | Description                                           |
+| ------------------------ | ----------------------------------------------------- |
+| **Display Name**         | Clear, descriptive name for the detection             |
+| **Description**          | What the rule detects and why it matters              |
+| **Severity**             | Risk level (Low, Medium, High) to prioritize response |
+| **MITRE ATT&CK Mapping** | Tactics and techniques the detection covers           |
+| **Query**                | The underlying KQL logic (visible for transparency)   |
+| **Version**              | CalVer format (e.g., 2024.01.15) for tracking updates |
+| **Query Frequency**      | How often the rule runs                               |
+| **Query Period**         | The time window the rule analyzes                     |
 
 ### Simple Deployment
 
@@ -95,7 +95,7 @@ Deploying a detection rule is as simple as toggling a switch:
 When our security engineering team improves a detection rule—whether to catch new attack variants, reduce false positives, or optimize performance—CMS can automatically update the rule in your environment.
 
 <Tip>
-You control whether updates happen automatically or require manual approval based on your change management requirements.
+  You control whether updates happen automatically or require manual approval based on your change management requirements.
 </Tip>
 
 ### Version Management
@@ -115,28 +115,28 @@ This transparency lets you make informed decisions about when and whether to upd
 <Tabs>
   <Tab title="Multi-Tenant Deployment">
     For MSSPs and organizations with multiple Sentinel workspaces, CMS enables deployment across all environments from a single interface.
-    
+
     - Deploy to one customer or one hundred—the process is identical
     - Consistent detection coverage across your entire customer base
     - No need to log into each Azure tenant separately
   </Tab>
   <Tab title="Toggle-Based Activation">
     Enable or disable any rule with a single click.
-    
+
     - No navigating through Azure portals
     - No complex configuration forms
     - At-a-glance visibility into which rules are active, disabled, or have updates available
   </Tab>
   <Tab title="Real-Time Status">
     When you deploy or remove a rule, you see immediate feedback:
-    
+
     - Deployment in progress indicator
     - Success confirmation
     - Error details with actionable information if something goes wrong
   </Tab>
   <Tab title="Role-Based Access">
     CMS respects your organization's permission structure:
-    
+
     - Control who can deploy new rules
     - Control who can enable automatic updates
     - Control who can remove deployed rules
@@ -162,8 +162,8 @@ CMS provides detection rules for threats across your Microsoft Sentinel data sou
     - Teams
   </Card>
   <Card title="Azure Infrastructure" icon="cloud">
-    - Azure Activity
-    - Azure Security Center
+    - aAzure Activity
+    - Security Center
     - Network Security Groups
   </Card>
   <Card title="Endpoints" icon="laptop">
@@ -173,11 +173,11 @@ CMS provides detection rules for threats across your Microsoft Sentinel data sou
   </Card>
   <Card title="Network" icon="network-wired">
     - DNS Analytics
-    - Firewall logs
+    - Firewall logs via Syslog
     - Network flow data
   </Card>
   <Card title="And More" icon="plus">
-    Library continuously expands with new data sources and detections
+    The library continuously expands within the Content Management System module with  new detections
   </Card>
 </CardGroup>
 
@@ -191,11 +191,11 @@ Each data source has its own collection of rules tailored to the specific threat
 
 CMS communicates directly with Microsoft Sentinel through the Azure Resource Manager (ARM) API:
 
-| Advantage | Description |
-|-----------|-------------|
-| **Reliability** | No intermediate systems that could fail or introduce delays |
-| **Speed** | Rule deployments complete in seconds, not minutes |
-| **Transparency** | Every deployment operation is logged with full details |
+| Advantage        | Description                                                 |
+| ---------------- | ----------------------------------------------------------- |
+| **Reliability**  | No intermediate systems that could fail or introduce delays |
+| **Speed**        | Rule deployments complete in seconds, not minutes           |
+| **Transparency** | Every deployment operation is logged with full details      |
 
 ### Background Processing
 
@@ -291,7 +291,7 @@ Detection rules are stored in a dedicated Azure Cosmos DB database with:
 </Steps>
 
 <Frame>
-  <img src="/images/cms-rule-deployment.png" alt="CMS rule deployment interface" />
+  ![CMS rule deployment interface](/images/cms-rule-deployment.png)
 </Frame>
 
 ### Configuring Automatic Updates
@@ -309,7 +309,7 @@ Detection rules are stored in a dedicated Azure Cosmos DB database with:
 </Steps>
 
 <Info>
-You can enable auto-update for individual rules or set a workspace-wide default. Rules with auto-update disabled will show an "Update Available" indicator when new versions are released.
+  You can enable auto-update for individual rules or set a workspace-wide default. Rules with auto-update disabled will show an "Update Available" indicator when new versions are released.
 </Info>
 
 ---
@@ -403,5 +403,5 @@ You can enable auto-update for individual rules or set a workspace-wide default.
 ---
 
 <Note>
-Questions about the Content Management System? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
+  Questions about the Content Management System? Contact us at [support@contraforce.com](mailto:support@contraforce.com).
 </Note>
