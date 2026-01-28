@@ -40,6 +40,7 @@
             "group": "Onboarding",
             "pages": [
               "guides/onboarding/platform-onboarding",
+              "guides/onboarding/agent-center-deployment",
               "onboarding-customer-workspaces",
               "guides/onboarding/user-group-management-for-providers",
               "guides/onboarding/notifications-module",
