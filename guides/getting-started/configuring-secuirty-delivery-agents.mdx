@@ -32,13 +32,14 @@ Security Delivery Agents (SDAs) automate incident investigation and response wit
 
 Before configuring Security Delivery Agents, ensure you meet the following requirements.
 
-| Requirement | Description |
-| ----------- | ----------- |
-| **Agent Center Deployed** | Azure AI Foundry infrastructure must be provisioned |
-| **ContraForce Roles** | Organizational Admin and Workspace Owner roles required |
+| Requirement               | Description                                             |
+| ------------------------- | ------------------------------------------------------- |
+| **Agent Center Deployed** | Microsoft AI Foundry infrastructure must be provisioned |
+| **ContraForce Roles**     | Organizational Admin and Workspace Owner roles required |
 
 <Warning>
   Prerequisites to Configure Security Delivery Agents:
+
   - Agent Center must be fully deployed in your environment
   - ContraForce Role: Organizational Admin
   - ContraForce Workspace Role: Owner
@@ -61,6 +62,7 @@ In this initial phase, you manually select individual incidents and trigger the 
   </Step>
   <Step title="Choose Investigation Type">
     Select one of the following options:
+
     - **Run Agent Investigation** — Agent analyzes the incident and provides findings without taking remediation actions
     - **Run Agent Investigation and Response** — Agent analyzes the incident and executes recommended response actions
   </Step>
@@ -71,10 +73,10 @@ In this initial phase, you manually select individual incidents and trigger the 
 
 ### Investigation Options
 
-| Option | Description | When to Use |
-| ------ | ----------- | ----------- |
-| **Run Agent Investigation** | Analysis only, no response actions | When you want to review findings before taking action |
-| **Run Agent Investigation and Response** | Analysis plus automated response | When you trust the agent to execute appropriate responses |
+| Option                                   | Description                        | When to Use                                               |
+| ---------------------------------------- | ---------------------------------- | --------------------------------------------------------- |
+| **Run Agent Investigation**              | Analysis only, no response actions | When you want to review findings before taking action     |
+| **Run Agent Investigation and Response** | Analysis plus automated response   | When you trust the agent to execute appropriate responses |
 
 <Tip>
   Start with investigation-only runs to understand how the agent analyzes your specific incident types before enabling response actions.
@@ -97,6 +99,7 @@ Once you're comfortable with agent behavior, configure automatic execution based
   </Step>
   <Step title="Configure Status Filters">
     Select which incident statuses trigger automatic agent execution:
+
     - **New** — Agent runs on newly created incidents
     - **Active** — Agent runs on incidents currently being worked
     - **Closed** — Agent runs on closed incidents for retrospective analysis
@@ -111,21 +114,21 @@ Once you're comfortable with agent behavior, configure automatic execution based
 <Tabs>
   <Tab title="New">
     **Process new incidents automatically:**
-    
+
     - Agent triggers immediately when incidents are created
     - Provides rapid initial triage and analysis
     - Recommended for high-volume environments
   </Tab>
   <Tab title="Active">
     **Process incidents under investigation:**
-    
+
     - Agent assists with ongoing investigations
     - Provides additional context and recommendations
     - Useful for augmenting analyst workflows
   </Tab>
   <Tab title="Closed">
     **Process closed incidents:**
-    
+
     - Agent performs retrospective analysis
     - Identifies missed indicators or patterns
     - Supports continuous improvement efforts
@@ -157,11 +160,11 @@ In this advanced phase, you enable the agent to automatically execute gamebooks 
 
 ### Understanding Confidence Levels
 
-| Confidence Level | Behavior | Recommended For |
-| ---------------- | -------- | --------------- |
-| **High** | Agent requires strong evidence before taking action | Production environments, sensitive systems |
-| **Medium** | Balanced approach between automation and caution | Most standard deployments |
-| **Low** | Agent takes action with less certainty | Test environments, high-volume low-risk scenarios |
+| Confidence Level | Behavior                                            | Recommended For                                   |
+| ---------------- | --------------------------------------------------- | ------------------------------------------------- |
+| **High**         | Agent requires strong evidence before taking action | Production environments, sensitive systems        |
+| **Medium**       | Balanced approach between automation and caution    | Most standard deployments                         |
+| **Low**          | Agent takes action with less certainty              | Test environments, high-volume low-risk scenarios |
 
 <Warning>
   Lower confidence thresholds result in more aggressive automation. Start with higher thresholds and adjust based on observed accuracy and your risk tolerance.
@@ -174,7 +177,7 @@ In this advanced phase, you enable the agent to automatically execute gamebooks 
 <Tabs>
   <Tab title="Phase 1">
     **Manual Execution:**
-    
+
     - User selects individual incidents
     - User triggers agent via Actions menu
     - User reviews results before any response
@@ -182,7 +185,7 @@ In this advanced phase, you enable the agent to automatically execute gamebooks 
   </Tab>
   <Tab title="Phase 2">
     **Automatic by Status:**
-    
+
     - Agent runs automatically on matching incidents
     - Mode set to On Queue
     - Status filters control which incidents are processed
@@ -190,7 +193,7 @@ In this advanced phase, you enable the agent to automatically execute gamebooks 
   </Tab>
   <Tab title="Phase 3">
     **Automatic Gamebooks:**
-    
+
     - Agent executes response playbooks automatically
     - Confidence level controls action threshold
     - Full automation of investigation and response
@@ -226,13 +229,13 @@ In this advanced phase, you enable the agent to automatically execute gamebooks 
 
 ### Common Issues
 
-| Issue | Possible Cause | Solution |
-| ----- | -------------- | -------- |
-| Agent not processing incidents | Mode not set to On Queue | Verify Mode is set to On Queue in Agent Center |
-| Gamebooks not executing | Feature not enabled | Confirm "Allow Agent to run gamebooks" is toggled on |
-| Too many automated actions | Confidence threshold too low | Increase confidence level setting |
-| Agent missing incidents | Status filters misconfigured | Review and adjust status filter selections |
-| Investigation not starting | Missing permissions | Verify Organizational Admin and Workspace Owner roles |
+| Issue                          | Possible Cause               | Solution                                              |
+| ------------------------------ | ---------------------------- | ----------------------------------------------------- |
+| Agent not processing incidents | Mode not set to On Queue     | Verify Mode is set to On Queue in Agent Center        |
+| Gamebooks not executing        | Feature not enabled          | Confirm "Allow Agent to run gamebooks" is toggled on  |
+| Too many automated actions     | Confidence threshold too low | Increase confidence level setting                     |
+| Agent missing incidents        | Status filters misconfigured | Review and adjust status filter selections            |
+| Investigation not starting     | Missing permissions          | Verify Organizational Admin and Workspace Owner roles |
 
 <Note>
   If you encounter persistent issues with Security Delivery Agent configuration, contact [support@contraforce.com](mailto:support@contraforce.com) with your configuration details and observed behavior.
