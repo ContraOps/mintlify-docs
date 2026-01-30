@@ -39,6 +39,7 @@
           {
             "group": "Onboarding",
             "pages": [
+              "guides/onboarding/workspace-onboarding",
               "guides/onboarding/platform-onboarding",
               "guides/onboarding/agent-center-deployment",
               "onboarding-customer-workspaces",

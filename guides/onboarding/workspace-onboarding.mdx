@@ -1,0 +1,202 @@
+---
+title: "Workspace Permissions and Consent"
+description: "Understanding the Microsoft Entra ID permissions and enterprise applications required for ContraForce workspace deployments. "
+---
+
+# Understanding Enterprise Applications
+
+Before ContraForce can protect your organization, specific Microsoft Entra ID permissions must be granted to enable secure communication between ContraForce services and your Microsoft environment. This article explains the enterprise applications deployed during onboarding and the permissions each requires.
+
+## Getting Started
+
+<Info>
+  **Onboarding Portal:** [onboard.contraforce.com](https://onboard.contraforce.com)
+</Info>
+
+### Required Roles for Onboarding
+
+To complete the ContraForce onboarding process and consent to the required enterprise applications, the following roles must be assigned to the user performing the onboarding:
+
+| Role                     | Purpose                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------ |
+| **Global Administrator** | Required to grant admin consent for Microsoft Entra ID application permissions |
+| **Subscription Owner**   | Required to authorize Azure resource deployment and management operations      |
+
+<Warning>
+  Both roles must be assigned to the same user account performing the onboarding. If your organization separates these roles across different users, coordinate with both administrators to complete the consent process.
+</Warning>
+
+## Overview of ContraForce Enterprise Applications
+
+ContraForce uses a modular application architecture designed around the principle of least privilege. Rather than requesting all permissions through a single application, ContraForce distributes responsibilities across purpose-built enterprise applications. This approach ensures that each application only receives the permissions necessary for its specific function.
+
+When you onboard with ContraForce, the following enterprise applications are registered in your Microsoft Entra tenant:
+
+| Application                        | Primary Function                                          |
+| ---------------------------------- | --------------------------------------------------------- |
+| ContraForce API                    | Core API services and Azure resource management           |
+| ContraForce Portal                 | User authentication and profile management                |
+| ContraForce Sentinel Hunting       | Log Analytics queries and incident evidence retrieval     |
+| ContraForce for MDE                | Microsoft Defender for Endpoint visibility and management |
+| ContraForce User Management        | Portal user and security group management                 |
+| ContraForce Gamebooks for Identity | Identity-based automated response actions                 |
+| ContraForce Gamebooks for MDE      | Endpoint-based automated response actions                 |
+
+## Onboarding Consent Flow
+
+### Initial Registration
+
+1. Navigate to [onboard.contraforce.com](https://onboard.contraforce.com)
+2. Click **Register with Microsoft**
+3. Sign in with your Microsoft Work account (must have Global Admin and Subscription Owner roles)
+4. Consent to the **ContraForce API** permissions
+5. Consent to the **ContraForce Portal** permissions
+6. Complete the Onboarding Wizard to select your Microsoft Sentinel workspace
+
+### Additional Permissions
+
+After initial onboarding, additional enterprise application permissions can be configured from **Settings → Permissions** within the ContraForce portal based on the features your organization requires.
+
+## Enterprise Application Details
+
+### ContraForce API
+
+The ContraForce API is the core service principal that enables communication between ContraForce services and Microsoft APIs including Microsoft Graph and Azure Resource Manager.
+
+<Accordion title="View ContraForce API Permissions">
+  | Permission                                      | Type      | Admin Consent | Purpose                                                            |
+  | ----------------------------------------------- | --------- | ------------- | ------------------------------------------------------------------ |
+  | `offline_access`                                | Delegated | No            | Enables refresh token acquisition for persistent sessions          |
+  | `openid`                                        | Delegated | No            | Allows sign-in using OpenID Connect                                |
+  | `profile`                                       | Delegated | No            | Retrieves signed-in user's name and object ID                      |
+  | `Application.Read.All`                          | Delegated | Yes           | Evaluates which ContraForce service principals have been consented |
+  | `RoleManagement.Read.Directory`                 | Delegated | Yes           | Evaluates user roles for Portal access control                     |
+  | `User.Read.All`                                 | Delegated | Yes           | Reads user profile data for user management operations             |
+  | `user_impersonation` (Azure Service Management) | Delegated | No            | Performs Azure resource onboarding and deployment                  |
+</Accordion>
+
+### ContraForce Portal
+
+The ContraForce Portal service principal handles user authentication through Microsoft's OpenID Connect implementation and retrieves basic profile information for signed-in users.
+
+<Accordion title="View ContraForce Portal Permissions">
+  | Permission       | Type      | Admin Consent | Purpose                                       |
+  | ---------------- | --------- | ------------- | --------------------------------------------- |
+  | `offline_access` | Delegated | No            | Enables refresh token acquisition             |
+  | `openid`         | Delegated | No            | Allows sign-in using OpenID Connect           |
+  | `profile`        | Delegated | No            | Retrieves signed-in user's name and object ID |
+</Accordion>
+
+### ContraForce Sentinel Hunting
+
+This service principal enables direct queries to your Microsoft Sentinel workspace for incident investigation and advanced hunting capabilities.
+
+<Accordion title="View ContraForce Sentinel Hunting Permissions">
+  | Permission                  | Type      | Admin Consent | Purpose                                                                         |
+  | --------------------------- | --------- | ------------- | ------------------------------------------------------------------------------- |
+  | `Data.Read` (Log Analytics) | Delegated | No            | Queries Log Analytics workspace data for incident evidence and advanced hunting |
+</Accordion>
+
+### ContraForce for MDE
+
+This service principal provides visibility into Microsoft Defender for Endpoint data, enabling endpoint monitoring and threat intelligence display in the ContraForce portal.
+
+<Accordion title="View ContraForce for MDE Permissions">
+  | Permission                                         | Type      | Admin Consent | Purpose                                             |
+  | -------------------------------------------------- | --------- | ------------- | --------------------------------------------------- |
+  | `ThreatHunting.Read.All`                           | Delegated | Yes           | Enables threat hunting queries                      |
+  | `SecurityAlert.Read.All`                           | Delegated | Yes           | Displays Microsoft Graph Security alerts            |
+  | `SecurityIncident.Read.All`                        | Delegated | Yes           | Displays Microsoft Graph Security incidents         |
+  | `SecurityIncident.ReadWrite.All`                   | Delegated | Yes           | Manages Microsoft Graph Security incidents          |
+  | `Incident.Read` (Microsoft Threat Protection)      | Delegated | Yes           | Reads threat protection incidents                   |
+  | `Incident.ReadWrite` (Microsoft Threat Protection) | Delegated | Yes           | Manages threat protection incidents                 |
+  | `AdvancedQuery.Read` (WindowsDefenderATP)          | Delegated | Yes           | Queries raw event and incident data                 |
+  | `Alert.Read` (WindowsDefenderATP)                  | Delegated | Yes           | Displays Defender alerts                            |
+  | `Machine.Read` (WindowsDefenderATP)                | Delegated | Yes           | Retrieves endpoint profile details                  |
+  | `Score.Read` (WindowsDefenderATP)                  | Delegated | Yes           | Displays Threat and Vulnerability Management scores |
+  | `Vulnerability.Read` (WindowsDefenderATP)          | Delegated | Yes           | Displays vulnerability information                  |
+</Accordion>
+
+### ContraForce User Management
+
+This service principal manages user access to your Microsoft Sentinel workspace through security group membership and Portal role assignments.
+
+<Accordion title="View ContraForce User Management Permissions">
+  | Permission                  | Type      | Admin Consent | Purpose                                               |
+  | --------------------------- | --------- | ------------- | ----------------------------------------------------- |
+  | `Group.ReadWrite.All`       | Delegated | Yes           | Creates security groups for Sentinel workspace access |
+  | `GroupMember.ReadWrite.All` | Delegated | Yes           | Manages security group membership for Portal users    |
+</Accordion>
+
+### ContraForce Gamebooks for Identity
+
+This service principal enables automated response actions targeting user entities, including session invalidation, account lockout, and password reset capabilities.
+
+<Accordion title="View ContraForce Gamebooks for Identity Permissions">
+  **Delegated Permissions (Default)**
+
+  | Permission                                | Type      | Admin Consent | Purpose                                      |
+  | ----------------------------------------- | --------- | ------------- | -------------------------------------------- |
+  | `User.ReadWrite.All`                      | Delegated | Yes           | Invalidates user sessions and locks accounts |
+  | `User.AuthenticationMethod.ReadWrite.All` | Delegated | Yes           | Resets user passwords                        |
+  | `User.ManagedIdentities.All`              | Delegated | Yes           | Manages user identities                      |
+  | `UserAuthenticationMethod.ReadWrite`      | Delegated | Yes           | Resets user passwords                        |
+
+  **Application Permissions (Service Provider Mode)**
+
+  | Permission           | Type        | Admin Consent | Purpose                                                                          |
+  | -------------------- | ----------- | ------------- | -------------------------------------------------------------------------------- |
+  | `User.ReadWrite.All` | Application | Yes           | Enables automated session invalidation and account lockout without user presence |
+
+  <Note>
+    Application permissions allow ContraForce to execute Gamebook actions without requiring a service provider user to be signed in. Password reset operations always require delegated permissions.
+  </Note>
+</Accordion>
+
+### ContraForce Gamebooks for MDE
+
+This service principal enables automated response actions targeting endpoint entities, including device isolation, antivirus scans, and file quarantine operations.
+
+<Accordion title="View ContraForce Gamebooks for MDE Permissions">
+  **Delegated Permissions (Default)**
+
+  | Permission                  | Type      | Admin Consent | Purpose                                              |
+  | --------------------------- | --------- | ------------- | ---------------------------------------------------- |
+  | `Machine.Isolate`           | Delegated | Yes           | Isolates endpoints from the network                  |
+  | `Machine.Offboard`          | Delegated | Yes           | Offboards endpoints from Defender                    |
+  | `Machine.Scan`              | Delegated | Yes           | Initiates Microsoft Defender Antivirus scans         |
+  | `Machine.StopAndQuarantine` | Delegated | Yes           | Stops file execution and quarantines malicious files |
+  | `Alert.ReadWrite`           | Delegated | Yes           | Reads and writes Defender alerts                     |
+
+  **Application Permissions (Service Provider Mode)**
+
+  | Permission                  | Type        | Admin Consent | Purpose                                  |
+  | --------------------------- | ----------- | ------------- | ---------------------------------------- |
+  | `Machine.Isolate`           | Application | Yes           | Isolates endpoints without user presence |
+  | `Machine.Scan`              | Application | Yes           | Initiates scans without user presence    |
+  | `Machine.StopAndQuarantine` | Application | Yes           | Quarantines files without user presence  |
+
+  <Note>
+    Application permissions enable service providers to execute endpoint response actions in customer tenants without requiring a user to be actively signed in.
+  </Note>
+</Accordion>
+
+## Why This Architecture?
+
+ContraForce's modular application architecture provides several benefits:
+
+- **Principle of Least Privilege** — Each application only requests the permissions necessary for its specific function
+- **Granular Control** — Organizations can enable only the features they need without granting unnecessary permissions
+- **Reduced Friction** — Service providers can onboard customers incrementally based on their security maturity
+- **Improved Security Posture** — Limiting permissions reduces potential attack surface
+
+## Managing Permissions
+
+After onboarding, you can review and manage ContraForce enterprise application permissions in two locations:
+
+1. **ContraForce Portal:** Navigate to **Settings → Permissions** to consent to additional service principals
+2. **Microsoft Entra Admin Center:** Review enterprise applications and their granted permissions under **Enterprise Applications**
+
+<Tip>
+  For questions about specific permissions or to request changes to your ContraForce configuration, contact your ContraForce support: [support@contraforce.com](mailto:support@contraforce.com).
+</Tip>
