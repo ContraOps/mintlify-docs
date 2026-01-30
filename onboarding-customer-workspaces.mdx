@@ -306,21 +306,21 @@ Use this checklist to verify a successful deployment:
 
 ### Typical Onboarding Timeline
 
-| Phase                    | Duration  | Activities                                 |
-| ------------------------ | --------- | ------------------------------------------ |
-| **Pre-call preparation** | 15-30 min | Gather credentials, verify prerequisites   |
-| **XDR onboarding**       | 15-20 min | Consent apps, configure module             |
-| **SIEM onboarding**      | 30-45 min | Above + Azure deployment, Lighthouse setup |
-| **User setup**           | 10-15 min | Assign groups, configure roles             |
-| **CMS deployment**       | 15-30 min | Deploy initial detection rules             |
-| **Verification**         | 10-15 min | Confirm incidents flowing, test actions    |
+| Phase                       | Duration  | Activities                                 |
+| --------------------------- | --------- | ------------------------------------------ |
+| **Pre-call preparation**    | 15-30 min | Gather credentials, verify prerequisites   |
+| **Defender XDR onboarding** | 15-20 min | Consent apps, configure module             |
+| **Sentinel onboarding**     | 30-45 min | Above + Azure deployment, Lighthouse setup |
+| **User setup**              | 10-15 min | Assign groups, configure roles             |
+| **CMS deployment**          | 15-30 min | Deploy initial detection rules             |
+| **Verification**            | 10-15 min | Confirm incidents flowing, test actions    |
 
 ### First Incidents
 
-| Module | Expected Time to First Incident             |
-| ------ | ------------------------------------------- |
-| XDR    | 5-15 minutes (depends on Defender activity) |
-| SIEM   | 5-15 minutes (depends on Sentinel activity) |
+| Module        | Expected Time to First Incident             |
+| ------------- | ------------------------------------------- |
+| Denfender XDR | 5-15 minutes (depends on Defender activity) |
+| Sentinel      | 5-15 minutes (depends on Sentinel activity) |
 
 <Note>
   If no incidents appear within 30 minutes, verify the customer has active incidents in their Defender/Sentinel console. ContraForce syncs existing incidents, so if there are none in the source system, none will appear in ContraForce.
@@ -347,7 +347,7 @@ Use this checklist to verify a successful deployment:
 If you encounter issues during onboarding:
 
 1. **Check the troubleshooting guide** for your specific module
-2. **Review Azure deployment logs** (SIEM module) in the Azure Portal
+2. **Review Azure deployment logs** (Sentinel module) in the Azure Portal
 3. **Contact ContraForce support** at [support@contraforce.com](mailto:support@contraforce.com)
 
 <Tip>
