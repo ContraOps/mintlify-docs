@@ -148,10 +148,7 @@ Flowchart:
     - ContraForce API
     - ContraForce Portal
   </Step>
-  <Step title="Select Module">
-    Choose either XDR or XDR + SIEM based on customer requirements and environment.
-  </Step>
-  <Step title="Consent Module Applications">
+  <Step title="Consent Module Applications" stepNumber={4}>
     Consent additional enterprise applications required for the selected module.
 
     **XDR Applications:**
@@ -165,7 +162,7 @@ Flowchart:
 
     - ContraForce Sentinel Hunting
   </Step>
-  <Step title="Configure Azure Resources (SIEM Only)">
+  <Step title="Configure Azure Resources (SIEM Only)" stepNumber={5}>
     For XDR + SIEM module, deploy Azure resources including Lighthouse delegation and Apollo infrastructure.
 
     **Resources Deployed:**
@@ -174,7 +171,7 @@ Flowchart:
     - Apollo resource group
     - Logic Apps for incident streaming
   </Step>
-  <Step title="Add Users and Groups">
+  <Step title="Add Users and Groups" stepNumber={6}>
     Assign your team members to the workspace with appropriate roles.
 
     **Recommended:**
@@ -182,7 +179,7 @@ Flowchart:
     - Assign organization groups (SOC Tier 1, Tier 2, etc.)
     - Add customer users if they need portal access
   </Step>
-  <Step title="Configure Notifications">
+  <Step title="Configure Notifications" stepNumber={7}>
     Set up email notifications for incident alerts (SIEM module only).
 
     **Options:**
@@ -190,7 +187,7 @@ Flowchart:
     - Configure severity filters
     - Set up distribution group notifications
   </Step>
-  <Step title="Verify Deployment">
+  <Step title="Verify Deployment" stepNumber={8}>
     Confirm everything is working correctly before going live.
 
     **Verification:**
