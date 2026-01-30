@@ -39,10 +39,10 @@
           {
             "group": "Onboarding",
             "pages": [
-              "guides/onboarding/workspace-onboarding",
               "guides/onboarding/platform-onboarding",
-              "guides/onboarding/agent-center-deployment",
               "onboarding-customer-workspaces",
+              "guides/onboarding/workspace-onboarding",
+              "guides/onboarding/agent-center-deployment",
               "guides/getting-started/configuring-secuirty-delivery-agents",
               "guides/onboarding/user-group-management-for-providers",
               "guides/onboarding/notifications-module",
