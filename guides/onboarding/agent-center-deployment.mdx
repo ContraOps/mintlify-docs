@@ -1,19 +1,19 @@
 ---
 title: "Deploying Agent Center"
-description: "Deploy Microsoft Foundry infrastructure through ContraForce to enable automated security operations with Security Delivery Agents."
+description: "Deploy Azure AI Foundry infrastructure through ContraForce to enable automated security operations with Security Delivery Agents."
 ---
 
-The AI Agent Center enables you to deploy Microsoft Foundry infrastructure directly through ContraForce, powering automated incident investigation and response capabilities with Security Delivery Agents (SDAs).
+The AI Agent Center enables you to deploy Azure AI Foundry infrastructure directly through ContraForce, powering automated incident investigation and response capabilities with Security Delivery Agents (SDAs).
 
 <Info>
-  Agent Center leverages Microsoft Foundry to provision the AI infrastructure required for automated security operations. Once deployed, you can configure Security Delivery Agents to handle incidents automatically.
+  Agent Center leverages Azure AI Foundry to provision the AI infrastructure required for automated security operations. Once deployed, you can configure Security Delivery Agents to handle incidents automatically.
 </Info>
 
 ## What Can You Do Here?
 
 <CardGroup cols={2}>
   <Card title="Deploy AI Infrastructure" icon="server">
-    Provision Microsoft Foundry resources through ContraForce
+    Provision Azure AI Foundry resources through ContraForce
   </Card>
   <Card title="Create Security Agents" icon="robot">
     Deploy Security Delivery Agents for automated response
@@ -42,9 +42,9 @@ Before deploying Agent Center, ensure you meet the following requirements.
 
 ### Required Tooling
 
-| Tool                  | Purpose                                                       |
-| --------------------- | ------------------------------------------------------------- |
-| **Microsoft Foundry** | Microsoft Foundry platform for AI infrastructure provisioning |
+| Tool                 | Purpose                                                      |
+| -------------------- | ------------------------------------------------------------ |
+| **Azure AI Foundry** | Azuer AI Foundry platform for AI infrastructure provisioning |
 
 <Warning>
   You must have Owner permissions on the Azure subscription to successfully deploy Agent Center infrastructure. Work with your Azure administrator if you don't have the required access.
@@ -61,8 +61,8 @@ Before deploying Agent Center, ensure you meet the following requirements.
   <Step title="Navigate to AI Agent Center">
     From the main dashboard, locate and select the **Agent Center**  option
   </Step>
-  <Step title="Deploy Microsoft Foundry Infrastructure">
-    Follow the on-screen prompts to configure and provision the Microsoft Foundry infrastructure in your environment
+  <Step title="Deploy Azure AI Foundry Infrastructure">
+    Follow the on-screen prompts to configure and provision the Azure AI Foundry infrastructure in your environment
   </Step>
   <Step title="Deploy Your First Security Delivery Agent">
     Once infrastructure provisioning completes, deploy your first Security Delivery Agent (SDA) to begin automated incident handling
@@ -70,7 +70,7 @@ Before deploying Agent Center, ensure you meet the following requirements.
 </Steps>
 
 <Tip>
-  The deployment process handles all Azure resource provisioning automatically. You don't need to manually configure Microsoft Foundry resources.
+  The deployment process handles all Azure resource provisioning automatically. You don't need to manually configure Azure AI Foundry resources.
 </Tip>
 
 ---
@@ -130,12 +130,12 @@ After successfully deploying Agent Center, configure your Security Delivery Agen
 
 ### Common Issues
 
-| Issue                             | Possible Cause                 | Solution                                                    |
-| --------------------------------- | ------------------------------ | ----------------------------------------------------------- |
-| Deployment fails                  | Insufficient Azure permissions | Verify Subscription Owner access                            |
-| Agent Center not visible          | Missing ContraForce role       | Confirm Organizational Admin or Agent Admin role assignment |
-| Infrastructure provisioning stuck | Azure resource limits          | Check Azure subscription quotas and limits                  |
-| SDA deployment fails              | Prerequisites incomplete       | Ensure Foundry infrastructure deployed successfully first   |
+| Issue                             | Possible Cause                 | Solution                                                     |
+| --------------------------------- | ------------------------------ | ------------------------------------------------------------ |
+| Deployment fails                  | Insufficient Azure permissions | Verify Subscription Owner access                             |
+| Agent Center not visible          | Missing ContraForce role       | Confirm Organizational Admin or Agent Admin role assignment  |
+| Infrastructure provisioning stuck | Azure resource limits          | Check Azure subscription quotas and limits                   |
+| SDA deployment fails              | Prerequisites incomplete       | Ensure AI Foundry infrastructure deployed successfully first |
 
 <Note>
   If you encounter persistent issues with Agent Center deployment, contact [support@contraforce.com](mailto:support@contraforce.com) with your subscription details and error messages.
