@@ -1,0 +1,98 @@
+---
+title: "Platform Permissions and Consent"
+---
+
+## Introduction
+
+Before ContraForce can operate in your Microsoft Entra tenant, a sufficiently privileged user must grant permission for ContraForce applications to access tenant data. This article explains which permissions ContraForce requires, when they're requested, and why.
+
+## How ContraForce Connects to Your Environment
+
+ContraForce uses a modular set of Microsoft Entra ID applications to securely connect with your environment. Each application is purpose-built for a specific function and requests only the permissions it needs.
+
+This design follows the **principle of least privilege**—you only grant permissions for the capabilities you actually use. For example, if you don't use Gamebooks to respond to endpoint threats, you never need to consent to the ContraForce Gamebooks for MDE application.
+
+## ContraForce Applications
+
+| Application                        | Purpose                                          |
+| ---------------------------------- | ------------------------------------------------ |
+| ContraForce API                    | Core platform connectivity and coordination      |
+| ContraForce Portal                 | Secure sign-in with your Microsoft account       |
+| ContraForce Sentinel Hunting       | Query logs and investigate incidents in Sentinel |
+| ContraForce for MDE                | View and manage Defender for Endpoint devices    |
+| ContraForce Gamebooks for Identity | Automated response actions for user accounts     |
+| ContraForce Gamebooks for MDE      | Automated response actions for endpoints         |
+| Microsoft 365 Response             | Automated response actions for email threats     |
+
+During onboarding, you'll consent to **ContraForce API** and **ContraForce Portal**. The remaining applications can be consented to later from **Settings → Permissions** based on the capabilities you need.
+
+## Application Details
+
+### ContraForce API
+
+The core connection that allows ContraForce to communicate with your Microsoft environment. This application coordinates all platform operations—from onboarding your workspace to managing Azure resources—and securely connects the other ContraForce services.
+
+### ContraForce Portal
+
+Enables secure sign-in to ContraForce using your Microsoft work account. This application verifies your identity and displays your basic profile information (name and email) within the platform.
+
+### ContraForce Sentinel Hunting
+
+Allows ContraForce to query your Microsoft Sentinel workspace for deeper investigation. This powers the Advanced Hunting feature and retrieves raw log evidence to give analysts full context behind security incidents.
+
+### ContraForce for Defender for Endpoint (MDE)
+
+Connects ContraForce to Microsoft Defender for Endpoint so you can view and manage protected devices in one place. This powers the Endpoints page, providing visibility into device health, alerts, and security posture across your environment.
+
+### ContraForce Gamebooks for Identity
+
+Powers automated response actions for user-related threats. When a Gamebook runs, this application can lock out compromised accounts, reset passwords, and revoke active sessions—containing identity-based attacks in seconds instead of hours.
+
+### ContraForce Gamebooks for MDE
+
+Powers automated response actions for endpoint threats through Microsoft Defender. When a Gamebook runs, this application can isolate compromised devices from your network, quarantine malicious files, and trigger antivirus scans—stopping threats before they spread.
+
+### Microsoft 365 Response
+
+Powers automated response actions for email-based threats. When a Gamebook runs, this application can delete malicious emails from user mailboxes, block dangerous senders, and purge phishing messages across your organization—neutralizing email attacks before users can click.
+
+## Onboarding and Consent Flow
+
+1. Click **Register with Microsoft** from [onboard.contraforce.com](https://onboard.contraforce.com)
+2. Sign in with a Microsoft Work account
+3. Consent to **ContraForce API** permissions
+4. Consent to **ContraForce Portal** permissions
+5. Complete the ContraForce Onboarding Wizard to select your Microsoft Sentinel workspace
+
+Additional application permissions can be granted later as needed from **Settings → Permissions**.
+
+<Note>
+  Users first encounter a consent prompt for a ContraForce service principal when clicking the **REGISTER WITH MICROSOFT** button from [onboard.contraforce.com](http://onboard.contraforce.com)
+</Note>
+
+<Frame>
+  ![User Signin Wizard](/images/user-signin-wizard.png)
+</Frame>
+
+After clicking this button, the user is directed to login with a Microsoft Work account and then consent to the ContraForce API. Then the user is prompted to consent permissions requested for the ContraForce Portal service principal. Following these consents, the user is redirected to the ContraForce Onboarding Wizard, where they can then begin selecting their Microsoft Sentinel workspace.
+
+## Learn More
+
+For detailed information about Microsoft's consent framework, see Microsoft's [Application model overview](https://learn.microsoft.com/en-us/entra/identity-platform/application-model) and [consent experience documentation](https://learn.microsoft.com/en-us/entra/identity-platform/application-consent-experience).
+
+<Columns cols={1}>
+  <Card title="Workspace Permissions and Consnet" icon="key" href="/guides/onboarding/workspace-onboarding">
+    Understanding the Microsoft Entra ID permissions and enterprise applications required for ContraForce workspace deployments. 
+  </Card>
+</Columns>
+
+## Getting Help
+
+<CardGroup cols={2}>
+  <Card title="Contact Support" icon="envelope">
+    Email [support@contraforce.com](mailto:support@contraforce.com) for assistance
+  </Card>
+  <Card title="Request Onboarding Support" icon="headset">
+    Schedule a call for hands-on help with your first deployment
+  </Card>
+</CardGroup>
