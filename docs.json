@@ -63,6 +63,12 @@
             ]
           },
           {
+            "group": "ContraForce and Compliance",
+            "pages": [
+              "guides/compliance/contraforce-and-cyber-insurance"
+            ]
+          },
+          {
             "group": "General Support",
             "pages": [
               "guides/general-support/roles-and-permissions-reference",
